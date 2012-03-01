@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+
+\bibitem{bishop2006pattern}
+C.M Bishop.
+\newblock {\em Pattern recognition and machine learning}, volume~4.
+\newblock springer New York, 2006.
+
+\bibitem{kschischang2001factor}
+F.R. Kschischang, B.J. Frey, and H.A. Loeliger.
+\newblock Factor graphs and the sum-product algorithm.
+\newblock {\em Information Theory, IEEE Transactions on}, 47(2):498--519, 2001.
+
+
+\bibitem{wiki-private-tracker}
+Moral Graph, Wikipedia, 
+\url{http://en.wikipedia.org/wiki/Moral_graph}
+\end{thebibliography}
