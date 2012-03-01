@@ -1,0 +1,24 @@
+This repository collects tutorial materials constructed by HU, Pili
+
+>> 1. Citation Notes
+
+If you find anything useful and want to build 
+your future work on it, please cite this page properly. 
+One suggested entry:
+---
+Pili HU, Tutorial Collection, https://github.com/hupili/tutorial
+---
+One suggested BibTex entry:
+---
+@MISC{hu2011-cd2hop,
+	author = {Hu Pili},
+	title = {Tutorial Collection},
+	howpublished = {GitHub, https://github.com/hupili/tutorial},
+	month = {3},
+	year = {2012},
+	note = {HU, Pili's tutorial collection},
+}
+---
+
+Since tutorials are further grouped into those subdirectories, 
+you're encouraged to cite them separately. 
