@@ -23,6 +23,29 @@
 
 \section{An Example}
 
+\section{Discussions}
+
+Since the development of factor graph is boosted in the past decade, 
+different authors come up with different description of similar problems. 
+Not to distinguish right from wrong, I just regard those stuffs out there
+as inconsistent. My opinion on some parts of past literature:
+\begin{itemize}
+	\item In Bishop's book\cite{bishop2006pattern}, chapter 8.4.5, P411. 
+	The example is not good. Actually, when talking about that probability 
+	maximization problem, we should know "product" corresponds to product operator, 
+	and "sum" corresponds to max operator. In this case, the maginalization 
+	operation for a single varialbe is indeed the maximization for each 
+	instancde of that variable. Using local marginalized function(max), we 
+	can certainly get the global probability maximization point considering
+	all variables. 
+	\item As for Dynamic Factor Graph, the author of this paper do not advocate 
+	the abuse of this term like an extension of factor graph. FG itself is able 
+	to model system dynamics, as we've already seen in those examples above. 
+	Other authors may use the term DFG, but their DFG is application specific. 
+	Those graphs are essentially FG. Not until we examine the physical meaning of 
+	some factor nodes do we realize their "dynamic" property. 
+\end{itemize}
+
 
 \input{reference/gen_bib.bbl}
 

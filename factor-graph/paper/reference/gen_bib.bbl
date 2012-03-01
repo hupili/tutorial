@@ -10,8 +10,24 @@ F.R. Kschischang, B.J. Frey, and H.A. Loeliger.
 \newblock Factor graphs and the sum-product algorithm.
 \newblock {\em Information Theory, IEEE Transactions on}, 47(2):498--519, 2001.
 
+\bibitem{mirowski2009dynamic}
+P.~Mirowski and Y.~LeCun.
+\newblock Dynamic factor graphs for time series modeling.
+\newblock {\em Machine Learning and Knowledge Discovery in Databases},
+  v:128--143, 2009.
 
-\bibitem{wiki-private-tracker}
+\bibitem{wang2011-dynamic}
+C.~Wang, J.~Tang, J.~Sun, and J.~Han.
+\newblock Dynamic social influence analysis through time-dependent factor
+  graphs.
+\newblock {\em ASONAM}, v:p, 2011.
+
+
+\bibitem{wiki-moral-graph}
 Moral Graph, Wikipedia, 
 \url{http://en.wikipedia.org/wiki/Moral_graph}
+
+\bibitem{wiki-markov-blanket}
+Markov Blanket, Wikipedia, 
+\url{http://en.wikipedia.org/wiki/Markov_blanket}
 \end{thebibliography}
