@@ -17,7 +17,23 @@
 \maketitle
 
 \begin{abstract}
-	
+	Factor graph is one general problem solving technique
+	(personally, I prefer to call it a technique rather than a model). 
+	It can solve marginalization problem very efficiently. 
+	Our traditional model, which involve probability marginalization, 
+	like Hidden Markov Model, Bayesian Network, Markov Random Field,
+	etc, can all be translated into a factor graph 
+	representation. This article first constructs a toy motivating 
+	example to show the benefit of using factor graph. With the 
+	observation from the examples, factor graph is deduced. 
+	Notations, definitions, and descriptions mainly follow the original 
+	works, \cite{kschischang2001factor}
+	\cite{frey1997factor}. Then we present two selected applications 
+	of FG, one for modeing underlying system dynamics\cite{mirowski2009dynamic}
+	, and the other
+	for modeling influence in social network\cite{wang2011-dynamic}. 
+	We end this article by relating factor graphs to other existing 
+	graphical models and algorithms, together with some discussion. 
 \end{abstract}
 
 \pagebreak
@@ -579,17 +595,44 @@ We omit further citation for simplicity.
 
 \subsubsection{Quick Note of the Main Idea}
 
+Problem settings:
+\begin{itemize}
+	\item Graph $G^t=<V^t,E^t>$. $V$ corresponds to people in a certain 
+	social network. $E$ corresponds activity relationships. There is 
+	a real valued wegith function $w$ defined on $E$. 
+	\item Graph $G^t$ captures time varying relationships. 
+	\item Definition of $w$ is problem(application) specific. 
+	\item Want to find the pairwise influence $\mu_{ij}$. Denote 
+	the node to influence node $i$ by $y_i$, a random variable . 
+	$\mu_{ij}$ is $P(y_i=j)$. 
+\end{itemize}
+
 \begin{figure}[htb]
 \centering
 	\includegraphics[width=0.8\textwidth]{fig/wang2011-problem.png}
 	\caption{Problem Definition}
 \end{figure}
 
+When defined on the static version, one $\mu_{ij}$ is output for 
+each $i,j$. When defined on the dynamic version, a vectore
+$(\mu^{(t)}_{ij})$ is output. 
+
 \begin{figure}[htb]
 \centering
 	\includegraphics[width=0.8\textwidth]{fig/wang2011-FG-vis.png}
 	\caption{Visualization of the Factor Graph}
 \end{figure}
+
+Two definitions to facilitate further description:
+\begin{itemize}
+	\item $NB(i)$: the neighbourhood of $i$. (More precisely, 
+	$v_i$, this is defined on the original graph)
+	\item $SC(i) = NB(i) \cup i$. 
+\end{itemize} 
+
+More precisely, $y_i$ should be linked to $v_j, \forall j \in NB(i)$
+in the FG depicted in fig(). This can be justified through the definition
+of node factor function. 
 
 \begin{figure}[htb]
 \centering
@@ -603,13 +646,78 @@ We omit further citation for simplicity.
 	\caption{Choice of Link Factor Function}
 \end{figure}
 
+The definition of node factor function and link factor function, together 
+with the observation of $G$ removes complex links from $y_i$ to $V$. The 
+resultant FG can be viewed as one single layer with $y_i$ vertices 
+as variable nodes. Function nodes $g_i(y_i)$ are completely defined 
+with the observation of $G$. 
+
+Note that there is one parameter $u$ in the choice of 
+link factor function. If not for this paramter, the FG in this paper
+was able to marginalize each $y_i$ directly and give the influence 
+using $\mu_{ij} = P(y_i=j)$. Again, the parameter estimation can be done
+using EM schema. 
+
 \begin{figure}[htb]
 \centering
 	\includegraphics[width=0.8\textwidth]{fig/wang2011-FG-dynamic.png}
 	\caption{Factor Graph with Time Dependency}
 \end{figure}
 
+In order to capture the time varying property of social influence, the 
+authors augmented original static FG to be time-dependent FG. Bridging 
+function nodes are added between two time consecutive sub graphs. For 
+detailed discussion, please refer to original paper. 
+
+Since the current section aims at modeling, details of algorithms are 
+omitted. However, it's worth referring to the original paper for 
+a specialized message passing algorithm named SIP(Social Influence 
+Propagation) by the authors. That algorithm works more efficiently 
+than general junction tree algorithms. 
+
 \subsubsection{Comments}
+
+\begin{itemize}
+	\item Modeling an FG is rather easy. However, coming up with 
+	right choice of functions and paramters are difficult. 
+	\item In this paper, the authors used heuristics to generate 
+	$w_{ij}$, which is a very important raw data. After the calculation 
+	of $w_{ij}$, the FG and so does the marginalizations are fully defined. 
+	\item The original itention(we've already shown that at the beginning
+	of this article) of FG is to reduce complexity by utilizing graphical 
+	structures. However, the compuation in practice is still a concern. 
+	How to carefully design the algorithm to perform marginalization 
+	under the message passing framework according to physical 
+	meanings will be an interesting and chanllenging problem.   
+\end{itemize}
+
+\subsection{Short Summary on the Application of FG}
+
+\begin{itemize}
+	\item Framework and general algorithm is mature both in 
+	theory and in practice. 
+	\item Original FG can be used to solve marginalization problem 
+	directly. At this point, FG can be think of as a problem solver
+	rather than a model. For this flavour, please refer to Bishop's book
+	\cite{bishop2006pattern}, Chapter 8. The author begins with 
+	BN and MRF which model directed and undirected independencies. 
+	In order to solve the inference problem, the author propose to 
+	convert BN and MRF to FG. 
+	\item According to different backgrounds, different authors 
+	come up with different Paramterized Factor Graph. 
+	Most of the works include two efforts: 
+		\begin{itemize}
+			\item Heuristics to determine paramters. 
+			\item Iterative methods to determine paramters. 
+			(EM schema)
+		\end{itemize}			
+	Solving marginalization in FG is one sub problem then. Before
+	giving the final marginalized answer, there is a training stage. 
+	\item Specific message passing algorithms are worth investigating. 
+	As is in \cite{wang2011-dynamic}, the authors propose SIP, specialized 
+	for their problem. The resulting algorithm is more tractable than 
+	general solvers. 
+\end{itemize}
 
 \section{Other Taste of Modeling}
 
@@ -682,6 +790,7 @@ as inconsistent. My opinion on some parts of past literature:
 	some factor nodes do we realize their "dynamic" property. 
 \end{itemize}
 
+\section*{Acknowledgements}
 
 \input{reference/gen_bib.bbl}
 

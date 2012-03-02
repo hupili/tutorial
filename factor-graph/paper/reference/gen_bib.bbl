@@ -12,6 +12,13 @@ B.J. Frey.
 \newblock In {\em Proc. 19th Conf. Uncertainty in Artificial Intelligence},
   pages 257--264, 2003.
 
+\bibitem{frey1997factor}
+B.J. Frey, F.R. Kschischang, H.A. Loeliger, and N.~Wiberg.
+\newblock Factor graphs and algorithms.
+\newblock In {\em PROCEEDINGS OF THE ANNUAL ALLERTON CONFERENCE ON
+  COMMUNICATION CONTROL AND COMPUTING}, volume~35, pages 666--680. UNIVERSITY
+  OF ILLINOIS, 1997.
+
 \bibitem{kschischang2001factor}
 F.R. Kschischang, B.J. Frey, and H.A. Loeliger.
 \newblock Factor graphs and the sum-product algorithm.
