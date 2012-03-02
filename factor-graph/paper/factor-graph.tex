@@ -5,6 +5,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{url}
+\usepackage{graphicx}
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 
@@ -417,11 +418,243 @@ highlight one more thing:
 
 \section{Factor Graph Transformation}
 
+Transformation of loopy factor graph can result in 
+tree structures. Thus ordinary sum-product algorithm 
+can be used to obtain an exact solution. 
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.8\textwidth]{fig/kschischang2001-clutering.png}
+	\caption{Transformation: Clustering}
+\end{figure}	
+
+Effect of clustering:
+\begin{itemize}
+	\item Cluster variable nodes: domain enlarged; no complexity increasing
+	in local functions; increase complexity in sum-product algorithm
+	(function evaluation). 
+	\item Cluster function nodes: do not increase complexity of variables;
+	increase complxity in sum-product algorithm
+	(sizes of messages are increased). 
+\end{itemize}
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.8\textwidth]{fig/kschischang2001-streching.png}
+	\caption{Transformation: Streching}
+\end{figure}
+
+Effect of stretching:
+\begin{itemize}
+	\item Simply stretching variables adds positional variables to some local functions.
+	Local function complexity is not changed. Variable alphabets are enlarged. 
+	\item After stretching, redundant links or even redundant variables can be removed. 
+	By systematic stretching, all cycles can be eliminated. 
+\end{itemize}
 
 
-\section{Conversion from Other Model}
+
+\section{Selected Applications}
+
+\subsection{Model System Dynamics}
+This section follows the paper:\\
+P.~Mirowski and Y.~LeCun.
+\newblock Dynamic factor graphs for time series modeling.
+\newblock {\em Machine Learning and Knowledge Discovery in Databases},
+  v:128--143, 2009.
+  
+Declaration: figures in this section are borrowed from the orignal paper\cite{mirowski2009dynamic}. 
+We omit further citation for simplicity.
 
 
+\subsubsection{Quick Note of the Main Idea}
+
+Problem settings:
+\begin{itemize}
+	\item System is composed of state variables and observation 
+	variables. 
+	\item Observation function maps state to observation. 
+	\item Dynamic function governs state transitions. 
+	\item Aim at modeling high dimensional underlying dynamic, 
+	probably non-linear, but deterministc. 
+\end{itemize}
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.8\textwidth]{fig/mirowski2009-HMM.png}
+	\caption{Single State Dependency(HMM)}
+\end{figure}	
+
+When current state is only dependent on previous one state, it
+is like an HMM model. 
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.8\textwidth]{fig/mirowski2009-framework.png}
+	\caption{Multiple States and Observation Dependency}
+\end{figure}
+
+The state transition model can be more general that it may depend
+on several previous states, or even observations. 
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.8\textwidth]{fig/mirowski2009-detail.png}
+	\caption{System Details}
+\end{figure}
+
+Formulation of paramterized FG:
+\begin{eqnarray}
+	L(\mathbf{W}, Y, Z) &=& E(\mathbf{W}, Y) + R_z(Z) + R(\mathbf{W}) \\
+	\tilde{Z} &=& \argmax_{Z} L(\tilde{\mathbf{W}}, Y, Z) \label{eq:dfg-e}\\
+	\tilde{\mathbf{W}} &=& \argmax_{\mathbf{W}} L(\mathbf{W}, Y, \tilde{Z})
+	\label{eq:dfg-m}
+\end{eqnarray}
+Since the paper operates in the negative log domain, they want to minimize
+$L$. The more likely some configuration is, the energy $E$ is lower. As is 
+depicted in fig(), energy function is the square error. 
+
+When parameters are fixed, eqn(\ref{eq:dfg-e}) acts as what ordinary 
+factor graph does, namely, given all explicit function definitions, 
+compute the marginalization problem. In ths application, paramters $\mathbf{W}$
+is not determined. An usual way to tackle with this problem is 
+by Expectation-Maximization schema (sometimes called Generalized Expectation 
+Maximization algorithm). eqn(\ref{eq:dfg-e}) resembles the E-step, while 
+eqn(\ref{eq:dfg-m}) resembles the M-step. 
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.8\textwidth]{fig/mirowski2009-sine.png}
+	\caption{Training and Evaluation on Superimposed Sine Waves}
+\end{figure}
+
+To decouple 5 superimposed sine waves, the authors choose the architecture:
+\begin{itemize}
+	\item 5 dimensional state variable. 
+	\item Dynamic function(f): 5 independent FIR filter of order 25. 
+\end{itemize}
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.8\textwidth]{fig/mirowski2009-Lorenz.png}
+	\caption{Training and Evaluation on Lorenz Curve}
+\end{figure}
+To capture the observation of 1D variable whose underlying 
+dynamic is 3D-Lorenz curve, the authors choose the architecture:
+\begin{itemize}
+	\item 3 dimensional state variable. 
+	\item Dynamic function(f): 3 layered convelutional network. 
+\end{itemize}
+
+Besides the two evaluation mentioned above, the original paper
+contains more. Interested readers can refer to \cite{mirowski2009dynamic} for 
+more information. 
+
+\subsubsection{Comments}
+
+\begin{itemize}
+	\item DFG(in this paper) is basically FG. 
+	"dynamic" only address the application aspects, rather 
+	than claiming an extension of FG. 
+	\item The framework of FG is too general. 
+	Designing observation function and state transition function, 
+	choice of regularizer, setting coefficients are really tricky.
+	There doesn't seem to be a rule of thumb. 
+	\item The introduction of unknown parameters and regularizers
+	make the formulation deviate from ordinary factor graph. 
+	Before final marginalization, there is a training stage 
+	to obtain opimal paramters. 
+\end{itemize}
+
+\subsection{Solving Marginalization Problem in Social Network}
+This section follows the paper:\\
+C.~Wang, J.~Tang, J.~Sun, and J.~Han.
+\newblock Dynamic social influence analysis through time-dependent factor
+  graphs.
+\newblock {\em ASONAM}, v:p, 2011.
+
+Declaration: figures in this section are borrowed from the orignal paper
+\cite{wang2011-dynamic}. 
+We omit further citation for simplicity. 
+
+\subsubsection{Quick Note of the Main Idea}
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.8\textwidth]{fig/wang2011-problem.png}
+	\caption{Problem Definition}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.8\textwidth]{fig/wang2011-FG-vis.png}
+	\caption{Visualization of the Factor Graph}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.8\textwidth]{fig/wang2011-nodefactor.png}
+	\caption{Choice of Node Factor Function}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.8\textwidth]{fig/wang2011-edgefactor.png}
+	\caption{Choice of Link Factor Function}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.8\textwidth]{fig/wang2011-FG-dynamic.png}
+	\caption{Factor Graph with Time Dependency}
+\end{figure}
+
+\subsubsection{Comments}
+
+\section{Other Taste of Modeling}
+
+
+
+\section{Related Models/Algorithms}
+
+Models:
+\begin{itemize}
+	\item Bayesian Network. Directed Graphical Model. 
+	\item Markov Random Field. Undirected Graphical Model.
+	\item Chain Graph. Directed + Undirected.  
+	\item Factor Graph. 
+\end{itemize}
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.3\textwidth]{illustration/graphical-venn.png}
+	\caption{Venn Graph of Several Graphical Models}
+\end{figure}
+
+Justification of modeling ability:
+\begin{itemize}
+	\item BN $\rightarrow$ MRF. The moralization process hides certain stucture 
+	previously available in BN. 
+	\item MRF. An example of square located 4 nodes. If two diagonal variables 
+	are observed, the other two variables become independent. BN can not express 
+	such information. 
+	\item CG. Since both directed and undirected, it forms the superset of 
+	the union of BN and	MRF.
+	\item FG. Converting CG to FG reveals more details, namely, how the joint 
+	distribution is factorized(usually, one explicit normalization function 
+	exhibits). BTW, FG can model not only probabilistic problems, but also 
+	other problems like system dynamics and coding. It is super general in the
+	sense.
+\end{itemize}
+
+
+Algorithms:
+\begin{itemize}
+	\item Junction tree. 
+	\item Bayesian ball. 
+	\item (Loopy)Belief propagation. 
+	\item Sum-product. 
+\end{itemize}
 
 \section{Discussions}
 
