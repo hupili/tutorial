@@ -5,6 +5,13 @@ C.M Bishop.
 \newblock {\em Pattern recognition and machine learning}, volume~4.
 \newblock springer New York, 2006.
 
+\bibitem{frey2003extending}
+B.J. Frey.
+\newblock Extending factor graphs so as to unify directed and undirected
+  graphical models.
+\newblock In {\em Proc. 19th Conf. Uncertainty in Artificial Intelligence},
+  pages 257--264, 2003.
+
 \bibitem{kschischang2001factor}
 F.R. Kschischang, B.J. Frey, and H.A. Loeliger.
 \newblock Factor graphs and the sum-product algorithm.

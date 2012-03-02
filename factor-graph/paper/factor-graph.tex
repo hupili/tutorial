@@ -6,6 +6,8 @@
 \usepackage{amssymb}
 \usepackage{url}
 
+\DeclareMathOperator*{\argmax}{arg\,max}
+
 \author{HU, Pili}
 \title{Factor Graph Tutorial}
 
@@ -21,7 +23,405 @@
 \tableofcontents
 \pagebreak
 
-\section{An Example}
+\section{A Motivating Example}
+
+\subsection{Marginalization Problem}
+
+Consider a joint probability distribution:
+\begin{equation}
+	p(\vec{x})
+\end{equation}
+where $\vec{x}=\{x_1,x_2, \ldots, x_n\}$. 
+
+Marginalization operator:
+\begin{equation}
+	p_1(x_1) = \sum_{x_2} \ldots \sum_{x_{n-1}} \sum_{x_n}p(\vec{x})
+\end{equation}
+Assuming discrete variable. For continous ones, substitute sum 
+with integral accordingly. 
+
+For simplicity of notation, introduce the shorthand "summary" notation:
+\begin{eqnarray}
+	p_1(x_1) &=& \sum_{\sim\{x_1\}}{p(\vec{x}}) \\
+	&=& \sum_{\{x_2,x_3,\ldots,x_n\}}{p(\vec{x}}) \\
+	&=& \sum_{x_2} \ldots \sum_{x_{n-1}} \sum_{x_n}p(\vec{x}) 
+	\label{eq:marginal}
+\end{eqnarray}
+
+The marginalization problem is defined as:
+Given $p(\vec{x}) $, find $p_i(x_i)$. 
+This problem can be generalized as summary for more than one variables. 
+
+\subsection{Inference Problem}
+
+%The inference problem is defined as: Given $p(\vec{x}) $, and a set of 
+%observed variables $x_j=\hat{x}_j$, for $j \in O$, where $O$ is the 
+%indices set of observed variables, find most possible configuration 
+%of other variables. 
+
+%Inference problem can be reduced to a marginalization problem in this way:
+%\begin{enumerate}
+%	\item Compute $p(x_i)$, for $i \notin O$. (Marginalization).  
+%\end{enumerate} 
+
+The inference problem is defined as: Given $p(\vec{x},\vec{y})$, 
+and the observed value of $\vec{y}$, say 
+$\hat{\vec{y}}=\{\hat{y_1},\hat{y_2},\ldots, \hat{y_n}\}$, 
+find the most probable configuration of $\vec{x}$:
+\begin{equation}
+	\vec{x}^* = \argmax_{\vec{x}} \{ p(\vec{x}|\hat{\vec{y}}) \}
+	\label{eq:inference1}
+\end{equation}
+
+The conditional probability can be rewritten as:
+\begin{eqnarray}
+%	p(\vec{x},\hat{\vec{y}}) &=& p(\vec{x}|\vec{y}) |_{\vec{y}=\hat{\vec{y}}} \\
+%	&=& p(\vec{x},\vec{y})
+p(\vec{x}|\hat{\vec{y}}) &=& \frac{p(\vec{x},\hat{\vec{y}})}{p(\hat{\vec{y}})} \\
+p(\vec{x}|\hat{\vec{y}}) &\propto & p(\vec{x},\hat{\vec{y}})
+\end{eqnarray}
+
+Thus eqn(\ref{eq:inference1}) can be rewritten as:
+\begin{equation}
+	\vec{x}^* = \argmax_{\vec{x}} \{ p(\vec{x},\hat{\vec{y}}) \}
+	\label{eq:inference2}
+\end{equation}
+
+
+We'll bridge the gap between the inference problem and marginalization problem 
+defined above later. Now, we start with a toy example. 
+
+\subsection{Inference with Four Binary Variables}
+
+Assume we have a joint distribution $p(a,b,c,d)$. 
+Without any knowledge of the internal structure of the distribution, 
+we can always write it as:
+\begin{equation}
+	p(a,b,c,d) = p(a)p(b|a)p(c|a,b)p(d|a,b,c)
+\end{equation}
+
+Now assume the distribution can be factorized in the following way:
+\begin{equation}
+	p(a,b,c,d) = p(a)p(b)p(c|b)p(d|c)
+	\label{eq:toy_chain}
+\end{equation}
+We'll compare two ways of commputing \
+$$\max_{abcd}{p(abcd)}$$
+ using the following data:
+\begin{eqnarray}
+	p(a) &=& \left[
+	\begin{matrix}
+	0.1 & 0.9
+	\end{matrix}
+	\right] \\
+	p(b) &=& \left[
+	\begin{matrix}
+	0.2 & 0.8
+	\end{matrix}
+	\right] \\
+	p(c|b) &=& \left[
+	\begin{matrix}
+	0.4 & 0.6 \\
+	0.6 & 0.4
+	\end{matrix}
+	\right] \\
+	p(d|c) &=& \left[
+	\begin{matrix}
+	0.3 & 0.7 \\
+	0.8 & 0.2
+	\end{matrix}
+	\right] 
+\end{eqnarray}
+
+\subsubsection{Search Max on Joint Distribution Directly}
+First, we pretend there is no structure information available. 
+Thus a naive way to compute the max is to evaluate the joint distribution 
+everywhere on tha complete alphabets of variables, and then get 
+maximum by comparison. 
+
+\begin{equation}
+p(abcd)=\left[ 
+\begin{tabular}{c|c}
+%\hline
+abcd & Probability \\
+\hline
+  0000 & 0.0024 \\
+  0001 & 0.0056 \\ 
+  0010 & 0.0096 \\ 
+  0011 & 0.0024 \\ 
+  0100 & 0.0144 \\ 
+  0101 & 0.0336 \\ 
+  0110 & 0.0256 \\ 
+  0111 & 0.0064 \\ 
+  1000 & 0.0216 \\ 
+  1001 & 0.0504 \\ 
+  1010 & 0.0864 \\ 
+  1011 & 0.0216 \\ 
+  1100 & 0.1296 \\ 
+  1101 & 0.3024 \\ 
+  1110 & 0.2304 \\ 
+  1111 & 0.0576 \\ 
+%\hline
+\end{tabular} \right]
+\end{equation}
+
+\begin{eqnarray}
+	p(abcd^*) &=& \max_{abcd}{p(abcd)} \\
+	&=& p(1101) \\ 
+	&=& 0.3024 
+\end{eqnarray}
+
+Corresponding computation complexity:
+\begin{itemize}
+	\item Function evaluation: $16 \times 4 = 64$
+	\item Product: $16 \times 3 = 48$
+	\item Comparison(for max operator): $15$
+\end{itemize}
+
+\subsubsection{Search Max Intelligently}
+Indeed, eqn(\ref{eq:toy_chain}) conveys useful information by the 
+factorization of the joint probability. 
+
+Let's expand the maximization $p(a,b,c,d)$
+\begin{eqnarray}
+\max_{abcd} \{ p(abcd) \} &=& \max_{abcd} \{ p(a)p(b)p(c|b)p(d|c) \} \\
+&=& \max_{a} \{ p(a) \} \max_{bcd} \{ p(b)p(c|b)p(d|c) \}  \\
+&=& \max_{a} \{ p(a) \} \max_{d} \{ \max_{bc} \{p(b)p(c|b)p(d|c)\} \}  \\
+&=& \max_{a} \{ p(a) \} \max_{d} \{ \max_{c} \{\max_{b} \{p(b)p(c|b) \} p(d|c)\} \}  
+\end{eqnarray}
+
+\begin{eqnarray}
+\max_{a} \{ p(a) \} &=& \max_{a}{f_a(a)} = 0.9 
+\end{eqnarray}
+
+\begin{eqnarray}
+\max_{b} \{p(b)p(c|b) \} &=& 
+\max_{b} f_{bc}(bc) \\
+&=&\max_{b} \left[ 
+\begin{tabular}{c|c}
+bc & Probability \\
+\hline
+  00 &   0.08\\
+  01 &   0.12\\
+  10 &   0.48(*)\\
+  11 &   0.32(*)\\
+\end{tabular} \right] \\
+&=& \left[ 
+\begin{tabular}{c|c}
+c & Probability \\
+\hline
+  0 &   0.48\\
+  1 &   0.32\\
+\end{tabular} \right]
+\end{eqnarray}
+
+Denote $\max_{b} \{p(b)p(c|b) \}$ by $\mu_{bc}(c)$. 
+
+\begin{eqnarray}
+%	\max_{c} \{\max_{b} \{p(b)p(c|b) \} p(d|c)\}
+	\max_{c} \{\mu_{bc}(c) p(d|c)\} &=& 
+	\max_{c} f_{cd}(cd) \\
+&=&\max_{c} \left[ 
+\begin{tabular}{c|c}
+cd & Probability \\
+\hline
+00 & 0.144 \\
+01 & 0.336(*) \\
+10 & 0.256(*) \\ 
+11 & 0.064 \\
+\end{tabular} \right] \\
+&=&\left[ 
+\begin{tabular}{c|c}
+d & Probability \\
+\hline
+0 & 0.256 \\ 
+1 & 0.336 
+\end{tabular} \right]
+\end{eqnarray}
+
+Denote $\max_{c} \{\mu_{bc}(c) p(d|c)\}$ by $\mu_{cd}(d)$. 
+\begin{eqnarray}
+&& \max_{d} \{ \max_{c} \{\max_{b} \{p(b)p(c|b) \} p(d|c)\} \}  \\
+&=& \max_{d}\{\mu_{cd}(d)\} \\
+&=& 0.336 
+\end{eqnarray}
+
+Thus we get final result:
+\begin{eqnarray}
+\max_{abcd} \{ p(abcd) \} &=& \max_{a} \{ p(a) \} \times \max_{d}\{\mu_{cd}(d)\} \\
+&=& 0.3024 
+\end{eqnarray}
+
+Again, we calculate the computation complexity:
+\begin{itemize}
+	\item Function evaluation: 
+	$$
+	2 + 4 \times 2 + 4 \times 2 + 2 = 20
+	$$
+	\item Product: 
+	$$
+	0 + 4 \times 1 + 4 \times 1 + 0 + 1 = 9
+	$$
+	\item Comparison(for max operator): 
+	$$
+	1 + 2 \times 1 + 2 \times 1 + 1 = 6
+	$$
+\end{itemize}
+
+\subsubsection{Observation}
+
+%\begin{itemize}
+%	\item Function evaluation: $16 \times 4 = 64$
+%	\item Product: $16 \times 3 = 48$
+%	\item Comparison(for max operator): $15$
+%\end{itemize}
+
+We compare the complexity of two methods in table(\ref{tbl:toy_cmp}). 
+
+\begin{table}[htb]
+\centering
+	\caption{Comparison Between Two Methods}
+	\label{tbl:toy_cmp}
+	\begin{tabular}{c|cc}
+	\hline
+	Items & Naive & Intelligent \\
+	\hline
+	Function & 64 & 20 \\
+	Product & 48 & 9 \\
+	Comparison & 15 & 6 \\
+	\hline
+	\end{tabular}
+\end{table}
+
+The observations:
+\begin{itemize}
+	\item By properly using the structure of joint distribution, 
+	it's possible to reduce computation complexity.
+	\item The trick to reduce complexity in the second method is:
+	"product" is distributive through "max". Thus we can 
+	separate some variables when evaluating the maximum of 
+	others. We'll address this issue in details later.   
+	\item How to reveal and utilize the structure in a 
+	systematic way is still a problem. 
+\end{itemize}
+
+\subsection{Inference with One Observed Variable}
+
+Here's another example. Assume $c$ is observed to be 1 in 
+the last example. What's the new most probable configuration of 
+other variables? 
+
+\subsubsection{Naive}
+As before, simply restrict the evaluation of functions only 
+on points where $c=1$. 
+\begin{equation}
+p(abcd)=\left[ 
+\begin{tabular}{c|c}
+abcd & Probability \\
+\hline
+  0010 & 0.0096 \\ 
+  0011 & 0.0024 \\ 
+  0110 & 0.0256 \\ 
+  0111 & 0.0064 \\ 
+  1010 & 0.0864 \\ 
+  1011 & 0.0216 \\ 
+  1110 & 0.2304 \\ 
+  1111 & 0.0576 \\ 
+\end{tabular} \right]
+\end{equation}
+
+The most probable configuration of the four variables is 1110, and 
+corresponding probability is 0.2304(the joint probability, not the probability
+of $a=1,b=1,d=0$ conditioned $c=1$). 
+
+\subsubsection{Intelligent}
+
+With the observation of $c=1$, the joint distribution can be decomposed as:
+\begin{eqnarray}
+\max_{abd} \{ p(ab1d) \} &=& \max_{abd} \{ p(a)p(b)p(c=1|b)p(d|c=1) \} \\
+&=& \max_{a} \{ p(a) \} \max_{b} \{p(b)p(c=1|b)\} \max_{d} \{p(d|c=1) \} 
+\end{eqnarray}
+
+\begin{eqnarray}
+\max_{a} \{ p(a) \} &=& \max_{a}{f_a(a)} = 0.9 
+\end{eqnarray}
+
+\begin{eqnarray}
+\max_{b} \{p(b)p(c=1|b) \} &=& 
+\max_{b} f_{bc}(bc,c=1) \\
+&=&\max_{b} \left[ 
+\begin{tabular}{c|c}
+bc & Probability \\
+\hline
+  01 &   0.12\\
+  11 &   0.32\\
+\end{tabular} \right] \\
+&=& 0.32 
+\end{eqnarray}
+
+\begin{eqnarray}
+\max_{d} \{p(d|c=1) \}  
+&=&\max_{d} \left[ 
+\begin{tabular}{c|c}
+cd & Probability \\
+\hline
+  10 &   0.8\\
+  11 &   0.2\\
+\end{tabular} \right] \\
+&=& 0.8
+\end{eqnarray}
+
+Thus the final maximum probability is given by:
+\begin{eqnarray}
+	&& \max_{a} \{ p(a) \} \max_{b} \{p(b)p(c=1|b)\} \max_{d} \{p(d|c=1) \} \\
+	&=& 0.9 * 0.32 * 0.8 \\
+	&=& 0.2304 
+\end{eqnarray}
+
+\subsubsection{Observation}
+
+Now that we validated the correctness of our intelligent method, 
+we again compare the complexity as is in table(\ref{tbl:toy_cmp2}). 
+
+\begin{table}[htb]
+\centering
+	\caption{Comparison Between Two Methods}
+	\label{tbl:toy_cmp2}
+	\begin{tabular}{c|cc}
+	\hline
+	Items & Naive & Intelligent \\
+	\hline
+	Function & 32 & 8 \\
+	Product & 24 & 4 \\
+	Comparison & 7 & 3 \\
+	\hline
+	\end{tabular}
+\end{table}
+
+Besides previous observations on the value of "structure", we 
+highlight one more thing:
+\begin{itemize}
+	\item When the variable $c$ is observed, the joint distribution 
+	function can be further decomposed! That is, in previous example, 
+	there is a relationship between $b$ and $d$, so we evaluate max operator
+	in the order of b, then c, then d. However, with the observation 
+	of $c$, the sub functions involving $b$ and $d$ are fully 
+	decoupled, this further reduces the complexity. 
+	\item This observation is indeed the notion of 
+	conditional independence, as is one major concern in 
+	some graphical models like MRF and BN. 
+\end{itemize}
+
+\section{Factor Graph Specification}
+
+
+\section{Factor Graph Transformation}
+
+
+
+\section{Conversion from Other Model}
+
+
 
 \section{Discussions}
 
