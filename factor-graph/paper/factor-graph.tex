@@ -429,10 +429,13 @@ highlight one more thing:
 	some graphical models like MRF and BN. 
 \end{itemize}
 
-\section{Factor Graph Specification}
+\section{Factor Graph}
+
+\subsection{Specification}
 
 
-\section{Factor Graph Transformation}
+
+\subsection{Transformation}
 
 Transformation of loopy factor graph can result in 
 tree structures. Thus ordinary sum-product algorithm 
@@ -441,7 +444,7 @@ can be used to obtain an exact solution.
 \begin{figure}[htb]
 \centering
 	\includegraphics[width=0.8\textwidth]{fig/kschischang2001-clutering.png}
-	\caption{Transformation: Clustering}
+	\caption{Transformation: Clustering\cite{kschischang2001factor}}
 \end{figure}	
 
 Effect of clustering:
@@ -457,7 +460,7 @@ Effect of clustering:
 \begin{figure}[htb]
 \centering
 	\includegraphics[width=0.8\textwidth]{fig/kschischang2001-streching.png}
-	\caption{Transformation: Streching}
+	\caption{Transformation: Streching\cite{kschischang2001factor}}
 \end{figure}
 
 Effect of stretching:
@@ -720,6 +723,35 @@ than general junction tree algorithms.
 \end{itemize}
 
 \section{Other Taste of Modeling}
+
+Besides modeling probability problems, people also use FG to 
+model certain codes. 
+
+Consider a parity checking matrix given by $H$:
+\begin{equation}
+	H = \left[
+	\begin{matrix}
+		1 & 1 & 0 & 0 & 1 & 0 \\
+0 & 1 & 1 & 0 & 0 & 1 \\
+1 & 0 & 1 & 1 & 0 & 0 \\
+	\end{matrix}
+	\right]
+\end{equation}
+
+In the corresponding factor graph, each factor node corresponds
+to one row and each variable node corresponds to one column. The 
+type of the functions are indicators testing the predicate:
+$[x_{i_1} \oplus x_{i_2} \oplus x_{i_1} = 0]$. Note that 
+the logic "$\cap$" operator can be regarded as "product". 
+This kind of modeling is called behavioural modeling in 
+\cite{kschischang2001factor}. 
+
+\begin{figure}[htb]
+\centering
+	\includegraphics[width=0.4\textwidth]{fig/kschischang2001-parity}
+	\caption{A Parity Code Modeled by FG\cite{kschischang2001factor}}
+\end{figure}
+
 
 
 
