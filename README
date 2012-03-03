@@ -11,7 +11,7 @@ Pili HU, Tutorial Collection, https://github.com/hupili/tutorial
 One suggested BibTex entry:
 ---
 @MISC{hu2011-cd2hop,
-	author = {Hu Pili},
+	author = {Hu, Pili},
 	title = {Tutorial Collection},
 	howpublished = {GitHub, https://github.com/hupili/tutorial},
 	month = {3},
