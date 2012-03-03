@@ -433,6 +433,39 @@ highlight one more thing:
 
 \subsection{Specification}
 
+This section is illustrated on white board during the 
+group meeting of MobiTeC. 
+
+Roadmap:
+\begin{itemize}
+	\item Notion of semiring, distributive law. 
+	Generalize the building block operators.
+	Unify marginalization problem and maximum problem 
+	introduced in the motivating example.  
+	\item Make graph representation of toy example and
+	conclude the relationship. 
+	\item Rule1: connected component can be evaluated 
+	on its own. 
+	\item The rest part form a chain structure. 
+	\item Draw the "message", we denoted by $\mu$ in the toy 
+	example on corresponding edges.
+	\item Draw one trivial message for $p(b)$ to unify the message 
+	passing like process. 
+	\item Conclude how function node processes: receive messages;
+	multiply by local function; marginalization for destination 
+	variable; send out new message. 
+	\item Process of variable node is the same. Relationships:
+	1. local function is an identity function; 2. since the received
+	messages are marginalized for itself, the marginalization at 
+	a variable node is trivial operation. 
+	\item Process of variable and function is unified. 
+	\item Conclude possibility to handle a chain. 
+	\item Conclude possibility to handle a tree with designated root. 
+	\item Conclude possibility to handle a tree without designated root. 
+\end{itemize}
+
+This section ends by showing the computation ability of factor graph
+on acyclic graph. Next section deals with cycles. 
 
 
 \subsection{Transformation}
