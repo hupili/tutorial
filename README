@@ -10,7 +10,7 @@ Pili HU, Tutorial Collection, https://github.com/hupili/tutorial
 ---
 One suggested BibTex entry:
 ---
-@MISC{hu2011-cd2hop,
+@MISC{hu-tutorial,
 	author = {Hu, Pili},
 	title = {Tutorial Collection},
 	howpublished = {GitHub, https://github.com/hupili/tutorial},

@@ -10,7 +10,7 @@ Pili HU, Factor Graph Tutorial, https://github.com/hupili/tutorial/tree/master/f
 ---
 One suggested BibTex entry:
 ---
-@MISC{hu2011-cd2hop,
+@MISC{hu2011-factor-graph,
 	author = {Hu, Pili},
 	title = {Factor Graph Tutorial},
 	howpublished = {GitHub, https://github.com/hupili/tutorial/tree/master/factor-graph},
