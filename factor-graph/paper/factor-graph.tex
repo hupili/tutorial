@@ -818,7 +818,26 @@ This kind of modeling is called behavioural modeling in
 
 \subsection{Subgame Perfect Equilibrium}
 
+Interestingly, to search the subgame perfect equilibrium of 
+an extensive game, we can use factor graph. For detailed 
+course materials on extensive game, interested readers can 
+refer to \cite{osborne1994course}. 
 
+We know that to find the Nash Equilibrium of a game, 
+one can enumerate the set of strategy profiles, and 
+check for every player whether he can gain by deviation. 
+This method is time-consuming, since it is no more than 
+the definition of an equilibrium. However, subgame perfect 
+equilibrium can be found much more efficiently with the help 
+of One Deviation Property Lemma\cite{osborne1994course}. 
+The lemma says, for every subgame of original game, we 
+only need to check whether the first move is optimal or not. 
+More intuitively, we can do backward deduction on the tree
+from leaves to root. 
+
+Note that in our introduction to FG, the example that we marginalize
+for a tree structure with a designated root fits this compuation very 
+well. 
 
 
 \section{Related Models/Algorithms}

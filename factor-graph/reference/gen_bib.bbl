@@ -30,6 +30,11 @@ P.~Mirowski and Y.~LeCun.
 \newblock {\em Machine Learning and Knowledge Discovery in Databases},
   v:128--143, 2009.
 
+\bibitem{osborne1994course}
+M.J. Osborne and A.~Rubinstein.
+\newblock {\em A course in game theory}.
+\newblock The MIT press, 1994.
+
 \bibitem{wang2011-dynamic}
 C.~Wang, J.~Tang, J.~Sun, and J.~Han.
 \newblock Dynamic social influence analysis through time-dependent factor

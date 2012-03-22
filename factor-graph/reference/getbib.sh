@@ -22,6 +22,7 @@ mkdir -p tmp
 declare -a LIB_BIB=( \ 
 "/home/hpl/library/database/general-algorithm/factor-graph/mylibrary.bib" 
 "/home/hpl/library/database/machine-learning/mylibrary.bib" 
+"/home/hpl/library/database/game-theory/mylibrary.bib" 
 )
 
 rm -f tmp/all.bib
