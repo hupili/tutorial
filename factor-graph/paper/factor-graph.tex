@@ -504,6 +504,34 @@ Effect of stretching:
 	By systematic stretching, all cycles can be eliminated. 
 \end{itemize}
 
+\subsection{Parallelization}
+
+The major advantage as we have already seen in previous examples
+is, the locality of problems structure is captured by Factor Graph. 
+Besides lowering the overall computation complexity, Factor Graph 
+totally agrees with parallelization. 
+
+For example, the famous MapReduce framework can be utilized 
+to implement factor graph. Here we provide a short description 
+of how to map factor graph to MapReduce framework. 
+\begin{itemize}
+	\item Both function nodes and variable nodes are unified 
+	by one type of node, called unit. As we can see from the deduction 
+	of FG, the operations performed on them are also the same. 
+	\item Number of mappers is the same as number of reducers, 
+	and the same as number of units.
+	\item For every mapper, it calculates the multiplication of 
+	all current messages together with the local function, and then 
+	summarize it for every neighbouring nodes. After that, 
+	it simply issue all new messages using the target node ID as the key. 
+	\item For every reducer, it collects the list of messages targeted 
+	for it and do nothing. Those collected messages can fit into 
+	next round of map. 
+	\item We run multiple round of MapReduce until a certain termination 
+	criterion is reached. 
+	\item To bootstrap the computation, the message list is initialized 
+	as an identity message. 
+\end{itemize}
 
 
 \section{Selected Applications}
@@ -757,6 +785,8 @@ than general junction tree algorithms.
 
 \section{Other Taste of Modeling}
 
+\subsection{Coding}
+
 Besides modeling probability problems, people also use FG to 
 model certain codes. 
 
@@ -784,6 +814,9 @@ This kind of modeling is called behavioural modeling in
 	\includegraphics[width=0.4\textwidth]{fig/kschischang2001-parity}
 	\caption{A Parity Code Modeled by FG\cite{kschischang2001factor}}
 \end{figure}
+
+
+\subsection{Subgame Perfect Equilibrium}
 
 
 
@@ -857,6 +890,6 @@ as inconsistent. My opinion on some parts of past literature:
 
 \section*{Acknowledgements}
 
-\input{reference/gen_bib.bbl}
+\input{../reference/gen_bib.bbl}
 
 \end{document}
