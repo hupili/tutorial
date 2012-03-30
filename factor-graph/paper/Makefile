@@ -1,7 +1,4 @@
 TMP_LIST= \
-		  gen_bib.tex \
-		  gen_bib.pdf \
-		  mylibrary.bib \
 		  *.aux \
 		  *.log \
 		  *~ \
@@ -12,7 +9,5 @@ TMP_LIST= \
 		  *.nav \
 		  *.dvi
 			
-
 clean:
 	rm -f ${TMP_LIST}
-	rm -rf tmp
