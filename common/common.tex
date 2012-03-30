@@ -1,0 +1,39 @@
+%HU, Pili
+%Create: 20120330
+%Modify: 20120330
+%The unified entry to include in my tutorial series
+
+%HU, Pili
+%Create: 20110910
+%Modify: 20120330
+%purpose of this file is to gather commonly used
+%mathematical abbreviations, to speed up writing
+%notes
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{graphicx}
+
+%the following commands are not originated by me
+%I pick them from http://www-solar.mcs.st-and.ac.uk/~clare/Latex/
+\newcommand{\diff}[2]{\frac{{\rm d}#1}{{\rm d}#2}}
+\newcommand{\ndiff}[3]{\frac{{\rm d}^{#3}#1}{{\rm d}#2^{#3}}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\npdiff}[3]{\frac{\partial^{#3} #1}{\partial #2^{#3}}}
+\newcommand{\e}[1]{\ensuremath{{\rm e}^{#1}}}
+\newcommand{\ldiff}[2]{\ensuremath{{\rm d}#1/{\rm d}#2}}
+\newcommand{\lpdiff}[2]{\ensuremath{\partial#1/\partial#2}}
+\newcommand{\lnpdiff}[3]{\ensuremath{\partial^{#3}#1/\partial#2^{#3}}}
+
+%20120330
+%The reason I don't copy the original file as a whole
+%is that it contains too many individually preferred 
+%definitions. 
+%
+%I start with those basic symbols and adapt them in use. 
+\DeclareMathOperator*{\argmax}{arg\,max}
