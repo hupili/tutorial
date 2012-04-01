@@ -195,6 +195,7 @@ Trace of square matrix is defined as: $\tr{A} = \sum_{i}{A_{ii}}$
 \end{mydef}
 
 \begin{mythm}
+\label{thm:trace_prop}
 Matrix trace has the following properties:
 \begin{itemize}
 	\item (1) $\tr{A+B} = \tr{A} + \tr{B}$
@@ -351,6 +352,100 @@ derivative and matrix differential. We'll see in later applications
 that matrix differential is more convenient to manipulate. 
 After certain manipulation we can get the form of theorem(\ref{thm:matrix_dif_der}). 
 Then we can directly write out matrix derivative using this theorem. 
+
+\subsection{Matrix Differential Properties}
+
+\begin{mythm}
+	\label{thm:mdiff_prop}
+	We claim the following properties of matrix differential:
+	\begin{itemize}
+		\item $\dif (cA) = c \dif A$
+		\item $\dif (A+B) = \dif A + \dif B$
+		\item $\dif (AB) = \dif A B + A \dif B$
+	\end{itemize}
+\end{mythm}
+
+\begin{proof}
+	They're all natural consequences given the definition(\ref{def:mdiff}). 
+	We only show the 3rd one in this document. Note that the equivalence 
+	holds if LHS and RHS are equivalent element by element. We consider 
+	the (ij)-th element. 
+	\begin{eqnarray}
+		\text{LHS}_{ij} &=& \dif (\sum_{k}{A_{ik}B_{kj}}) \\
+		&=& \sum_{k}{(\dif A_{ik}B_{kj} + A_{ik} \dif B_{kj})} \\
+		\text{RHS}_{ij} &=& (\dif A B)_{ij} + (A \dif B)_{ij} \\
+		&=& \sum_{k}{\dif A_{ik}B_{kj}} + \sum_{k}{A_{ik}\dif B_{kj}} \\
+		&=& \text{LHS}_{ij}
+	\end{eqnarray}
+\end{proof}
+
+\begin{myex}
+	Given the function $f(x) = \tran{x} A x$, where 
+	$A$ is square and $x$ is a column vector, we can 
+	compute:
+	\begin{eqnarray}
+		\dif f &=& \dif \tr{ \tran{x} A x } \\
+		&=& \tr{\dif(\tran{x} A x)} \\
+		&=& \tr{\dif(\tran{x}) A x + \tran{x} \dif(A x)} \\
+		&=& \tr{\dif(\tran{x}) A x + \tran{x} \dif A x + \tran{x} A \dif x} \\
+		\text{(A is constant)}&=& \tr{\dif \tran{x} A x + \tran{x} A \dif x} \\
+		&=& \tr{\dif \tran{x} A x} + \tr{\tran{x} A \dif x} \\
+		&=& \tr{\tran{x} \tran{A} \dif x} + \tr{\tran{x} A \dif x} \\
+		&=& \tr{\tran{x} \tran{A} \dif x + \tran{x} A \dif x} \\
+		&=& \tr{(\tran{x} \tran{A} + \tran{x} A) \dif x}
+	\end{eqnarray}
+	Using theorem(\ref{thm:matrix_dif_der}), we obtain the derivative:
+	\begin{equation}
+		\pdiff{f}{x} = \tran{ (\tran{x} \tran{A} + \tran{x} A) }
+		= Ax + \tran{A} x
+	\end{equation}
+	When $A$ is symmetric, it simplifies to:
+	\begin{equation}
+		\pdiff{f}{x} = 2Ax
+	\end{equation}
+	Let $A=I$, we have:
+	\begin{equation}
+		\pdiff{(\tran{x}x)}{x} = 2x
+	\end{equation}
+\end{myex}
+
+\begin{myex}
+	For a non-singular square matrix $X$, we have $XX^{-1} = I$. 
+	Take matrix differentials at both sides:
+	\begin{equation}
+		0=\dif I = \dif (XX^{-1}) = \dif X X^{-1} + X \dif(X^{-1})
+	\end{equation}
+	Rearrange terms:
+	\begin{equation}
+		\dif(X^{-1})=-X^{-1} \dif X X^{-1}  
+\end{equation}	 
+\end{myex}
+
+\subsection{Schema of Hanlding Scalar Function}
+
+The above example already demonstrates the general schema. 
+Here we conclude the process:
+\begin{enumerate}
+	\item $\dif f = \dif \tr{f} =\tr{\dif f} $
+	\item Apply trace properties(see theorem(\ref{thm:trace_prop}))
+	and matrix differential properties(see theorem(\ref{thm:mdiff_prop}))
+	to get the following form:
+		\begin{equation}
+			\dif f = \tr{\tran{A}x}
+		\end{equation}
+	\item Apply theorem(\ref{thm:matrix_dif_der}) to get:
+		\begin{equation}
+			\pdiff{f}{x} = A
+		\end{equation}
+\end{enumerate}
+
+To this point, you can handle many problems. In this schema, 
+matrix differential and trace play crucial roles. Later we'll 
+deduce some widely used formula to facilitate potential 
+applications. As you will see, although we rely on matrix differential 
+in the schema, the deduction of certain formula may be more easily done 
+using matrix derivatives. 
+
 
 \section{Application}
 \label{sec:application}
