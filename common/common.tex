@@ -48,7 +48,10 @@
 %\newcommand{\m}[1]{\mathbf{#1}}
 
 %Theorem definitions
+\newcounter{mytheoremorder}
 \newtheorem{mydef}{Definition}
-\newtheorem{mythm}{Theorem}
 \newtheorem{myaxm}{Axiom}
-\newtheorem{myprop}{Proposition}
+\newtheorem{mythm}[mytheoremorder]{Theorem}
+\newtheorem{myprop}[mytheoremorder]{Proposition}
+\newtheorem{myex}{Example}
+
