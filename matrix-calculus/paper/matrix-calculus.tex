@@ -257,6 +257,90 @@ With this theorem and properties of trace we revisit example(\ref{ex:tran_x}).
 The above example actually demonstrates the usual way of handling a 
 matrix derivative problem. 
 
+\subsection{Define Matrix Differential}
+
+Although we want matrix derivative at most time, it turns out 
+matrix differential is easier to operate due to the 
+form invariance property of differential. Matrix differential 
+inherit this property as a natural consequence of the 
+following definition. 
+
+\begin{mydef}
+	\label{def:mdiff}
+	Define matrix differential:
+	\begin{equation}
+		\dif A = \left[
+		\begin{matrix}
+			\dif A_{11} & \dif A_{12} & \ldots &\dif A_{1n}\\
+			\dif A_{21} & \dif A_{22} & \ldots &\dif A_{2n}\\
+			\vdots & \vdots & \ddots & \vdots \\
+			\dif A_{m1} & \dif A_{m2} & \ldots &\dif A_{mn}\\
+		\end{matrix}
+		\right]
+	\end{equation}	 
+\end{mydef}
+
+\begin{mythm}
+Differential operator is distributive through trace operator:
+$\dif \tr{A} = \tr{\dif A}$
+\end{mythm}
+
+\begin{proof}
+	\begin{eqnarray}
+		\text{LHS} &=& \dif (\sum_{i}{A_{ii}}) = \sum_{i}{\dif A_{ii}}\\
+		\text{RHS} &=&  \tr{
+			\begin{matrix}
+			\dif A_{11} & \dif A_{12} & \ldots &\dif A_{1n}\\
+			\dif A_{21} & \dif A_{22} & \ldots &\dif A_{2n}\\
+			\vdots & \vdots & \ddots & \vdots \\
+			\dif A_{m1} & \dif A_{m2} & \ldots &\dif A_{mn}\\
+			\end{matrix}
+		} \\
+		&=& \sum_{i}{\dif A_{ii}} = \text{LHS} 
+	\end{eqnarray}
+\end{proof}
+
+Now that matrix differential is well defined, we want to relate it 
+back to matrix derivative. The scalar version differential and 
+derivative can be related as follows:
+\begin{equation}
+	\dif f = \pdiff{f}{x} \dif x
+	\label{eq:scalar_dif_der}
+\end{equation}
+So far, we're dealing with scalar function $f$ and matrix variable $x$. 
+$\pdiff{f}{x}$ and $\dif x$ are both matrix according to definition.
+In order to make the quantities in eqn(\ref{eq:scalar_dif_der}) equal, 
+we must figure out a way to make the RHS a scalar. It's not surprising
+that trace is what we want. 
+
+\begin{mythm}
+	\label{thm:matrix_dif_der}
+	\begin{equation}
+		\dif f = \tr{\tran{(\pdiff{f}{x})} \dif x}
+		\label{eq:matrix_dif_der}
+	\end{equation}
+	for scalar function $f$ and arbitrarily sized $x$. 
+\end{mythm}
+
+\begin{proof}
+	\begin{eqnarray}
+		\text{LHS} &=& \dif f \\
+		\text{(definition of scalar differential)}
+		&=& \sum_{ij}{\pdiff{f}{x_{ij}}\dif x_{ij}} \\
+		\text{RHS} &=&  \tr{\tran{(\pdiff{f}{x})} \dif x} \\
+		\text{(trace property (5))}&=& \sum_{ij}(\pdiff{f}{x})_{ij} (\dif x)_{ij} \\
+		\text{(definition(\ref{def:mdiff}))} &=& \sum_{ij}(\pdiff{f}{x})_{ij} \dif x_{ij} \\
+		\text{(definition(\ref{def:org}))} &=& \sum_{ij}\pdiff{f}{x_{ij}} \dif x_{ij} \\
+		&=& \text{LHS}
+	\end{eqnarray}
+\end{proof}
+
+Theorem(\ref{thm:matrix_dif_der}) is the bridge between matrix 
+derivative and matrix differential. We'll see in later applications 
+that matrix differential is more convenient to manipulate. 
+After certain manipulation we can get the form of theorem(\ref{thm:matrix_dif_der}). 
+Then we can directly write out matrix derivative using this theorem. 
+
 \section{Application}
 \label{sec:application}
 
