@@ -15,4 +15,13 @@ Pili Hu.
 
 
 \bibitem{wiki_mc} 
-	Matrix Calculus, Wikipedia, \url{http://en.wikipedia.org/wiki/Matrix_calculus}\end{thebibliography}
+	Matrix Calculus, Wikipedia, 
+	\url{http://en.wikipedia.org/wiki/Matrix_calculus}
+	
+\bibitem{wiki_mnorm}
+	Matrix Norm, Wikipedia, 
+	\url{http://en.wikipedia.org/wiki/Matrix_norm}
+	
+\bibitem{wiki_trace}
+	Matrix Trace, Wikipedia, 
+	\url{http://en.wikipedia.org/wiki/Trace_%28linear_algebra%29}\end{thebibliography}

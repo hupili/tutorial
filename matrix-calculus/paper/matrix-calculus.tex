@@ -105,7 +105,8 @@ Following sections are organized as follows:
 	\item Section(\ref{sec:derivation}) builds commonly used 
 	matrix calculus rules from ordinary calculus and linear 
 	algebra. Necessary and important properties of linear 
-	algebra is also proved along the way. 
+	algebra is also proved along the way. This section is not 
+	organized afterhand. All results are proved when we need them. 
 	\item Section(\ref{sec:application}) shows some applications 
 	using matrix calculus. 
 	\item Section(\ref{sec:cheat}) concludes a cheat sheet of 
@@ -115,9 +116,146 @@ Following sections are organized as follows:
 \end{itemize}
 
 
-
 \section{Derivation}
 \label{sec:derivation}
+
+\subsection{Organization of Elements}
+From the introductary example, we already see that matrix calculus 
+does not distinguish from ordinary calculus by fundamental rules. 
+However, with better organization of elements and 
+proving useful properties, we can simplify the derivation process 
+in real problems. 
+
+The author would like to adopt the following definition:
+\begin{mydef}
+	\label{def:org}
+	For a scalar valued function $f(x)$, the result $\pdiff{f}{x}$
+has the same size with $x$. 
+\end{mydef}
+
+In eqn(\ref{eq:fax-single}), $x$ is a 1-by-1 matrix and the result
+$\pdiff{f}{x}=a$ is also a 1-by-1 matrix. In eqn(\ref{eq:fax-multi}), 
+$x$ is a column vector(known as n-by-1 matrix) and the result
+$\pdiff{f}{x}=a$ has the same size. 
+
+\begin{myex}
+\label{ex:tran_x}
+By this definition, we have:
+\begin{equation}
+	\pdiff{f}{\tran{x}} = \tran{(\pdiff{f}{x})} = \tran{a}
+\end{equation}
+Note that we only use the organization definition in this example. 
+Later we'll show that with some matrix properties, this formula 
+can be derived without using $\pdiff{f}{x}$ as a bridge. 
+\end{myex}
+
+\subsection{Deal with Inner Product}
+
+\begin{mythm}
+	\label{thm:inner_product}
+	If there's a multivariate scalar function $f(x) = \tran{a}x$, 
+	we have $\pdiff{f}{x} = a$.
+\end{mythm}
+
+\begin{proof}
+See introductary example. 
+\end{proof}
+
+Since $\tran{a}x$ is scalar, we can write it equivalently as the 
+trace of its own. Thus, 
+\begin{myprop}
+	\label{prop:trace_inner_product}
+	If there's a multivariate scalar function $f(x) = \tr{\tran{a}x}$, 
+	we have $\pdiff{f}{x} = a$.
+\end{myprop}
+
+$\tr{\bullet}$ is the operator to sum up diagonal elements of a matrix. 
+In the next section, we'll explore more properties of trace. 
+As long as we can transform our target function into the form of 
+theorem(\ref{thm:inner_product}) or proposition(\ref{prop:trace_inner_product}), 
+the result can be written out directly. Notice in 
+proposition(\ref{prop:trace_inner_product}), $a$ and $x$ are both vectors. 
+We'll show later as long as their sizes agree, it holds for matrix $a$ and $x$. 
+
+\subsection{Properties of Trace}
+
+\begin{mydef}
+Trace of square matrix is defined as: $\tr{A} = \sum_{i}{A_{ii}}$
+\end{mydef}
+
+\begin{mythm}
+Matrix trace has the following properties:
+\begin{itemize}
+	\item (1) $\tr{A+B} = \tr{A} + \tr{B}$
+	\item (2) $\tr{cA} = c \tr{A}$
+	\item (3) $\tr{AB} = \tr{BA}$
+	\item (4) $\tr{A_1A_2 \ldots A_n}=\tr{A_nA_1 \ldots A_{n-1}}$
+	\item (5) $\tr{\tran{A}B} = \sum_{i}\sum_{j}{A_{ij}B_{ij}}$
+	\item (6) $\tr{A} = \tr{\tran{A}}$
+\end{itemize}
+where $A,B$ are matrices with proper sizes, and $c$ is a scalar value. 
+\end{mythm}
+
+\begin{proof}
+See wikipedia \cite{wiki_trace} for the proof. 
+\end{proof}
+
+Here we explain the intuitions behind each property
+to make it easier to remenber. Property(1)
+and property(2) shows the linearity of trace. 
+Property(3) means two matrices' multiplication inside a 
+the trace operator is commutative. Note that the matrix 
+multiplication without trace is not commutative and 
+the commutative property inside the trace does not hold 
+for more than 2 matrices. Property (4) is the proposition of 
+property (3) by considering $A_1A_2 \ldots A_{n-1}$ 
+as a whole. It is known as cyclic property, so that you can 
+rotate the matrices inside a trace operator. Property (5) 
+shows a way to express the sum of element by element product using 
+matrix product and trace. Note that inner product of two vectors 
+is also the sum of element by element product. Property (5) 
+resembles the vector inner product by form($\tran{A}B$). 
+The author regards property (5) as the extension of inner product 
+to matrices(Generalized Inner Product). 
+
+\subsection{Deal with Generalized Inner Product}
+
+\begin{mythm}
+	\label{thm:gip}
+	If there's a multivariate scalar function $f(x) = \tr{\tran{A}x}$, 
+	we have $\pdiff{f}{x} = A$. ($A,x$ can be matrices). 
+\end{mythm}
+
+\begin{proof}
+	Using property (5) of trace, we can write $f$ as:
+	\begin{equation}
+		f(x) = \tr{\tran{A}x} = \sum_{ij}A_{ij}x_{ij}
+	\end{equation}
+	It's easy to show:
+	\begin{equation}
+		\pdiff{f}{x_{ij}} = \pdiff{(\sum_{ij}A_{ij}x_{ij})}{x_{ij}} = A_{ij}
+	\end{equation}
+	Organize elements using definition(\ref{def:org}), it is proved. 
+\end{proof}
+
+With this theorem and properties of trace we revisit example(\ref{ex:tran_x}). 
+\begin{myex}
+	For vector $a,x$ and function $f(x) = \tran{a}x$
+	\begin{eqnarray}
+	 &&\pdiff{f}{\tran{x}} \\
+		&=& \pdiff{( \tran{a}x )}{\tran{x}} \\
+	\text{($f$ is scalar)}	&=& \pdiff{( \tr{\tran{a}x} )}{\tran{x}} \\
+	\text{(property(3))}	&=& \pdiff{( \tr{x\tran{a}} )}{\tran{x}} \\
+	\text{(property(6))}	&=& \pdiff{( \tr{a\tran{x}} )}{\tran{x}} \\
+	\text{(property of transpose)}	&=& \pdiff{( \tr{\tran{(\tran{a})}\tran{x}} )}{\tran{x}} \\
+	\text{(theorem(\ref{thm:gip}))}	&=& \tran{a}
+	\end{eqnarray}
+	The result is the same with example(\ref{ex:tran_x}), 
+	where we used the basic definition. 
+\end{myex}
+
+The above example actually demonstrates the usual way of handling a 
+matrix derivative problem. 
 
 \section{Application}
 \label{sec:application}
