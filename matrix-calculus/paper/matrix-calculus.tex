@@ -130,7 +130,18 @@ The author would like to adopt the following definition:
 \begin{mydef}
 	\label{def:org}
 	For a scalar valued function $f(x)$, the result $\pdiff{f}{x}$
-has the same size with $x$. 
+	has the same size with $x$. That is 
+	\begin{equation}
+		\pdiff{f}{x} = 
+		\left[
+		\begin{matrix}
+			\pdiff{f}{x_{11}} & \pdiff{f}{x_{12}} & \ldots &\pdiff{f}{x_{1n}}\\
+			\pdiff{f}{x_{21}} & \pdiff{f}{x_{22}} & \ldots &\pdiff{f}{x_{2n}}\\
+			\vdots & \vdots & \ddots & \vdots \\
+			\pdiff{f}{x_{m1}} & \pdiff{f}{x_{m2}} & \ldots &\pdiff{f}{x_{mn}}\\
+		\end{matrix}
+		\right]
+	\end{equation}
 \end{mydef}
 
 In eqn(\ref{eq:fax-single}), $x$ is a 1-by-1 matrix and the result
