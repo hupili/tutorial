@@ -446,11 +446,71 @@ applications. As you will see, although we rely on matrix differential
 in the schema, the deduction of certain formula may be more easily done 
 using matrix derivatives. 
 
+\subsection{Determinant}
+
+For a background of determinant, please refer to \cite{wiki_det}. 
+We first quote some definitions and properties without proof:
+\begin{mythm}
+	Let $A$ be a square matrix:
+	\begin{itemize}
+		\item The minor $M_{ij}$ is obtained by remove 
+		i-th row and j-th column of $A$ and then take determinant
+		of the resulting (n-1) by (n-1) matrix. 
+		\item The ij-th cofactor is defined as $C_{ij} = (-1)^{i+j}M_{ij}$. 
+		\item If we expand determinant with respect to the i-th row, 
+		$\det(A) = \sum_{j}{A_{ij}C_{ij}}$. 
+		\item The adjugate of $A$ is defined as 
+		$\adj(A)_{ij}=(-1)^{i+j}M_{ji}=C_{ji}$. So 
+		$\adj(A) = \tran{C}$
+		\item For non-singular matrix $A$, we have:
+		$A^{-1} = \frac{\adj(A)}{\det(A)} = \frac{\tran{C}}{\det(A)}$
+	\end{itemize}
+\end{mythm}
+
+Now we're ready to show the derivative of determinant. Note that determinant
+is just a scalar function, so all techniques discussed above is applicable. 
+We first write the derivative element by element. Expanding determinant
+on the i-th row, we have:
+\begin{equation}
+	\pdiff{\det(A)}{A_{ij}} = \pdiff{(\sum_{j}{A_{ij}C_{ij}})}{A_{ij}} = C_{ij}
+\end{equation}
+First equality is from determinant definition and second equality is 
+by the observation that only coefficient of $A_{ij}$ is left. Grouping all 
+elements using definition(\ref{def:org}), we have:
+\begin{equation}
+	\pdiff{\det(A)}{A} = C = \tran{\adj(A)}
+\end{equation}
+If $A$ is non-singular, we have:
+\begin{equation}
+	\pdiff{\det(A)}{A} = \tran{(\det(A)A^{-1})} =\det(A)\tran{(A^{-1})} 
+\end{equation}
+
+Next, we use theorem(\ref{thm:matrix_dif_der}) to give the differential 
+relationship:
+\begin{eqnarray}
+	\dif \det(A) &=& \tr{ \tran{(\pdiff{\det(A)}{A})} \dif A} \\
+	&=& \tr{ \tran{( \det(A)\tran{(A^{-1})}  )} \dif A} \\
+	&=& \tr{ \det(A)A^{-1}  \dif A}
+\end{eqnarray}
+
+In many practical problem, the log determinant is more widely used:
+\begin{eqnarray}
+	\pdiff{\ln \det(A)}{A} = \frac{1}{\det(A)} \pdiff{\det(A)}{A} = \tran{(A^{-1})}
+\end{eqnarray}
+The first equality comes from chain rule of ordinary calculus(
+$\ln \det(A)$ and $\det(A)$ are both scalars). Similarly, we derive
+for differential:
+\begin{equation}
+	\dif \ln \det(A) = \tr{ A^{-1}  \dif A}
+\end{equation}
+
 
 \section{Application}
 \label{sec:application}
 
 \subsection{The 2nd Induced Norm of Matrix}
+
+
 
 \section{Cheat Sheet}
 \label{sec:cheat}
