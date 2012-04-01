@@ -1,5 +1,12 @@
 \begin{thebibliography}{1}
 
+\bibitem{hu2012-matrix-calculus}
+Pili Hu.
+\newblock Matrix calculus.
+\newblock GitHub,
+  https://github.com/hupili/tutorial/tree/master/matrix-calculus, 3 2012.
+\newblock HU, Pili's tutorial collection.
+
 \bibitem{hu-tutorial}
 Pili Hu.
 \newblock Tutorial collection.
@@ -7,4 +14,5 @@ Pili Hu.
 \newblock HU, Pili's tutorial collection.
 
 
-\end{thebibliography}
+\bibitem{wiki_mc} 
+	Matrix Calculus, Wikipedia, \url{http://en.wikipedia.org/wiki/Matrix_calculus}\end{thebibliography}

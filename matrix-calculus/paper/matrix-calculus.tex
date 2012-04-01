@@ -40,18 +40,92 @@
 
 \section{Introductory Example}
 
+We start with an one variable linear function:
+\begin{equation}
+	f(x) = ax
+\end{equation}
+
+To be coherent, we abuse the partial derivative notation:
+\begin{equation}
+	\pdiff{f}{x} = a
+	\label{eq:fax-single}
+\end{equation}
+
+Extending this function to be multivariate, we have:
+\begin{equation}
+	f(x) = \sum_{i}{a_ix_i} = \tran{a}x
+\end{equation}
+%The followings are the suggested transpose online? 
+%What do you prefer? 
+%I choose \mathrm at present. It looks reasonably good. 
+%	a^\intercal
+%	a^\mathsf{T}
+%	a^\mathrm{T}
+%	a^\top
+%	a^\bot
+Where $a = \tran{[a_1,a_2,\ldots,a_n]}$ and 
+$x = \tran{[x_1,x_2,\ldots,x_n]}$. 
+We first compute partial derivatives directly:
+\begin{equation}
+	\pdiff{f}{x_k} = \pdiff{(\sum_{i}{a_ix_i})}{x_k} = a_k 
+\end{equation}
+for all $k=1,2, \ldots, n$. Then we organize $n$ partial derivatives
+in the following way:
+\begin{equation}
+	\pdiff{f}{x} = \left[
+	\begin{matrix}
+		\pdiff{f}{x_1} \\
+		\pdiff{f}{x_2} \\
+		\vdots \\
+		\pdiff{f}{x_n}
+	\end{matrix}
+	\right]
+	= \left[
+	\begin{matrix}
+		a_1 \\
+		a_2 \\
+		\vdots \\
+		a_n
+	\end{matrix}
+	\right]
+	= a
+	\label{eq:fax-multi}
+\end{equation}
+The first equality is by proper definition and the rest roots from 
+ordinary calculus rules. 
+
+Eqn(\ref{eq:fax-multi}) is analogous to eqn(\ref{eq:fax-single}), except
+the variable changes from a scalar to a vector. Thus we want to directly 
+claim the result of eqn(\ref{eq:fax-multi}) without those intermediate steps 
+solving for partial derivatives separately. Actually, we'll see soon 
+that eqn(\ref{eq:fax-multi}) plays a core role in matrix calculus. 
+
+Following sections are organized as follows:
+\begin{itemize}
+	\item Section(\ref{sec:derivation}) builds commonly used 
+	matrix calculus rules from ordinary calculus and linear 
+	algebra. Necessary and important properties of linear 
+	algebra is also proved along the way. 
+	\item Section(\ref{sec:application}) shows some applications 
+	using matrix calculus. 
+	\item Section(\ref{sec:cheat}) concludes a cheat sheet of 
+	matrix calculus. Note that this cheat sheet may be different 
+	from others. Users need to figure out some basic definitions 
+	before applying the rules. 
+\end{itemize}
 
 
 
 \section{Derivation}
+\label{sec:derivation}
 
 \section{Application}
+\label{sec:application}
 
 \subsection{The 2nd Induced Norm of Matrix}
 
 \section{Cheat Sheet}
-
-
+\label{sec:cheat}
 
 
 %>============================================
