@@ -20,6 +20,7 @@
 \usepackage{url}
 \usepackage{graphicx}
 
+%=====Calculus======
 %the following commands are not originated by me
 %I pick them from http://www-solar.mcs.st-and.ac.uk/~clare/Latex/
 \newcommand{\diff}[2]{\frac{{\rm d}#1}{{\rm d}#2}}
@@ -38,9 +39,8 @@
 %definitions. 
 %
 %I start with those basic symbols and adapt them in use. 
-\DeclareMathOperator*{\argmax}{arg\,max}
 
-%matrix series
+%=====Matrix======
 \newcommand{\tr}[1]{\mathrm{Tr}\left[#1\right]}
 \newcommand{\tran}[1]{#1^\mathrm{T}}
 %The following shorthand of matrix may be convenient. 
@@ -49,7 +49,7 @@
 %\newcommand{\m}[1]{\mathbf{#1}}
 \newcommand{\adj}[0]{\mathrm{adj}}
 
-%Theorem definitions
+%=====Theorem definitions=====
 \newcounter{mytheoremorder}
 \newtheorem{mydef}{Definition}
 \newtheorem{myaxm}{Axiom}
@@ -57,3 +57,7 @@
 \newtheorem{myprop}[mytheoremorder]{Proposition}
 \newtheorem{myex}{Example}
 
+%=====Optimization====
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\maximize}[0]{\mathrm{Maximize~}}
+\newcommand{\minimize}[0]{\mathrm{Minimize~}}

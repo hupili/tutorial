@@ -510,7 +510,94 @@ for differential:
 
 \subsection{The 2nd Induced Norm of Matrix}
 
+The induced norm of matrix is defined as \cite{wiki_norm}:
+\begin{equation}
+	||A||_p = \max_{x}{\frac{||Ax||_p}{||x||_p}}
+\end{equation}
+where $||\bullet||_p$ denotes the p-norm of vectors. Now we solve 
+for $p=2$. (By default, $||\bullet||$ means $||\bullet||_2$)
 
+The problem can be restated as:
+\begin{equation}
+	||A||^2 = \max_{x}{\frac{||Ax||^2}{||x||^2}}
+\end{equation}
+since all quantities involved are non-negative. Then we consider a 
+scaling of vector $x' = tx$, thus:
+\begin{equation}
+	||A||^2 = \max_{x'}{\frac{||Ax'||^2}{||x'||^2}} 
+	=\max_{x}{\frac{||tAx||^2}{||tx||^2}}
+	=\max_{x}{\frac{t^2||Ax||^2}{t^2||x||^2}}
+	=\max_{x}{\frac{||Ax||^2}{||x||^2}}
+\end{equation}
+This shows the invariance under scaling. Now we can restrict our attention 
+to those $x$ with $||x||=1$, and reach the following formulation:
+\begin{eqnarray}
+	\maximize && f(x) = ||Ax||^2 \\
+	s.t. && ||x||^2 = 1
+\end{eqnarray}
+
+The standard way to handle this constrained optimization is 
+using Lagrange relaxation:
+\begin{equation}
+	L(x) = f(x) - \lambda (||x||^2 - 1)
+\end{equation}
+Then we apply the general schema of handling scalar function 
+on $L(x)$. First take differential:
+\begin{eqnarray}
+	\dif L(x) &=& \dif \tr{L(x)} \\
+	&=& \tr{ \dif( L(x) ) } \\
+	&=& \tr{ \dif( \tran{x}\tran{A}Ax - \lambda(\tran{x}x - 1)) }  \\
+	&=& \tr{ 2 \tran{x} \tran{A}A \dif x - \lambda (2 \tran{x} \dif x) } \\
+	&=& \tr{ (2 \tran{x} \tran{A}A - 2\lambda \tran{x}) \dif x }
+\end{eqnarray}
+Next write out derivative:
+\begin{equation}
+	\pdiff{L}{x} = 2 \tran{A}A x - 2\lambda x
+\end{equation}
+Let $\pdiff{L}{x} = 0$, we have:
+\begin{equation}
+	(\tran{A}A) x = \lambda x
+\end{equation}
+That means x is the eigen vector of $(\tran{A}A)$
+(normalized to $||x||=1$), and $\lambda$ 
+is corresponding eigen value. We plug this result back to objective 
+function:
+\begin{equation}
+	f(x) = \tran{x}(\tran{A}Ax) =\tran{x} (\lambda x) = \lambda
+\end{equation}
+which means, to maximize $f(x)$, we should pick the maximum 
+eigen value:
+\begin{equation}
+	||A||^2 = \max f(x) = \lambda_{\max}(\tran{A}A)
+\end{equation}
+That is:
+\begin{equation}
+	||A|| = \sqrt{\lambda_{\max}(\tran{A}A)} = \sigma_{\max}(A)
+\end{equation}
+where $\sigma_{\max}$ denotes the maximum singular value. 
+If $A$ is real symmetric, $\sigma_{\max}(A) = \lambda_{\max}(A) $. 
+
+Now we consider a real symmetric $A$ and check whether:
+\begin{equation}
+	\lambda^2_{\max}(A) = \max_{x}{\frac{||Ax||^2}{||x||^2}}
+	= \max_{x}{\frac{\tran{x}\tran{A}Ax}{\tran{x}x}}
+\end{equation}
+
+\begin{proof}
+Since $\tran{A}A$ is real symmetric, it has an orthnormal basis 
+formed by $n$ eigen vectors, $v_1, v_2, \dots, v_n$, with 
+eigen values $\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_n$. We can 
+write $x=\sum_{i}{c_iv_i}$, where $c_i=<x,v_i>$. Then, 
+\begin{eqnarray}
+	&&\frac{\tran{x}\tran{A}Ax}{\tran{x}x} \\
+	\text{($v_k$ is an orthnormal set)}&=& \frac{\sum_i \lambda_i c_i^2}{\sum_{i}{c_i^2}} \\
+	&\le & \frac{\sum_i \lambda_1 c_i^2}{\sum_{i}{c_i^2}} \\
+	&=& \lambda_1
+\end{eqnarray}
+Now we have proved an upper bound for $||A||^2$. We show this bound is achievable 
+by assigning $x=v_1$. 
+\end{proof}
+	
 
 \section{Cheat Sheet}
 \label{sec:cheat}
