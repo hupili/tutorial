@@ -503,7 +503,200 @@ for differential:
 \begin{equation}
 	\dif \ln \det(A) = \tr{ A^{-1}  \dif A}
 \end{equation}
+	
 
+\subsection{Vector Function and Vector Variable}
+
+The above sections show how to deal with scalar functions. 
+In order to deal with vector function, we should restrict 
+our attention to vector variables. It's no surprising that 
+the tractable forms in matrix calculus is so scarse. If we 
+allow matrix functions and matrix variables, given the fact 
+that fully specification of all partial derivatives calls 
+for a tensor, it will be difficult to visualize the result
+on a paper. An alternative is to stretch functions and variables
+such that they appear as vectors. 
+
+An annoying fact of matrix calculus is that, when you 
+try to find reference materials, there are always two kinds 
+of people. One group calculates as the transpose of another. 
+Many online resources are not coherent, which mislead people. 
+
+We borrow the following definitions of Hessian matrix\cite{wiki_hesse} 
+and Jacobian matrix\cite{wiki_jacobian} from Wikipedia: 
+\begin{equation}
+	H(f) = 
+	\left[
+	\begin{matrix}
+\frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1\,\partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_1\,\partial x_n} \\  \\
+\frac{\partial^2 f}{\partial x_2\,\partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \cdots & \frac{\partial^2 f}{\partial x_2\,\partial x_n} \\  \\
+\vdots & \vdots & \ddots & \vdots \\  \\
+\frac{\partial^2 f}{\partial x_n\,\partial x_1} & \frac{\partial^2 f}{\partial x_n\,\partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_n^2}
+	\end{matrix}
+	\right]
+\end{equation}
+
+\begin{equation}
+	J = 
+	\left[
+	\begin{matrix}
+\dfrac{\partial y_1}{\partial x_1} & \cdots & \dfrac{\partial y_1}{\partial x_n} \\ \vdots & \ddots & \vdots \\ \dfrac{\partial y_m}{\partial x_1} & \cdots & \dfrac{\partial y_m}{\partial x_n}
+	\end{matrix}
+	\right]
+\end{equation}
+
+Note two things about second order derivative:
+\begin{itemize}
+	\item By writting the abbreviation $\frac{\partial^2 f}{\partial x_2\,\partial x_1}$, 
+	people mean $\pdiff{}{x_2}\left(\frac{\partial f}{\partial x_1}\right)$ by 
+	convention. That is, first take derivative with respect to $x_1$ and 
+	then take derivative with respect to $x_2$. 
+	\item The Hessian matrix can be regarded as first compute the $\pdiff{f}{\tran{x}}$
+	(using definition(\ref{def:org}) to organize), and then compute 
+	a vector-function-to-vector-variable derivative
+	treating $\pdiff{f}{\tran{x}}$ as the function. 
+\end{itemize}
+
+Bearing this in mind, we find Hessian matrix and Jacobian matrix actually have 
+contradictory notion of organization. In order to be coherent in 
+this document, we adopt the Hessian style. That is, each row
+corresponds to a variable, and each column corresponds to a function. 
+To be concrete:
+
+\begin{mydef}
+\label{def:v2v}
+%20120402====hpl====
+%when I first write this, I think letting f be a row vector 
+%looks more intuitive in the following definition. 
+%However, the theorem to bridge derivative and differential 
+%looks a disaster. So I turn back to modify f to be a column vector. 
+%I think it's OK to define in any way, as long as all details 
+%are claimed clearly in the context. 
+%This again tells us, most time, definition comes the first but 
+%it may be the last thing the inventor finalize. 
+%We always review from the basic step to see how theorems 
+%and propositions can be simplified. 
+%The fun of exploring is all gone, when a text-book like document
+%is organized. 
+For a vector function $f = \tran{[f_1, f_2, \ldots, f_n]}$, and 
+$f_i=f_i(x)$ where $x=\tran{[x_1, x_2, \ldots, x_m]}$, 
+we have the following definition:
+\begin{equation}
+	\pdiff{f}{x} = \left[
+	\begin{matrix}
+			\pdiff{f_1}{x_{1}} & \pdiff{f_2}{x_{1}} & \ldots &\pdiff{f_n}{x_{1}}\\
+			\pdiff{f_1}{x_{2}} & \pdiff{f_2}{x_{2}} & \ldots &\pdiff{f_n}{x_{2}}\\
+			\vdots & \vdots & \ddots & \vdots \\
+			\pdiff{f_1}{x_{m}} & \pdiff{f_2}{x_{m}} & \ldots &\pdiff{f_n}{x_{m}}\\
+	\end{matrix}
+	\right]
+\end{equation}
+\end{mydef}
+
+\begin{myex}
+According to definition(\ref{def:v2v}), we revisit the definition of Hessian 
+and Jacobian. 
+
+Given twice differentiable function $f(x)$, the Hessian is defined as:
+\begin{equation}
+	H(f) = \pdiff{}{x}\left(\pdiff{f}{\tran{x}}\right)	
+\end{equation}
+
+Given two variables $x$ and $y$, if we want to transform $x$ into $y$, 
+the Jacobian is defined as:
+\begin{equation}
+	J = \det \left(\tran{(\pdiff{x}{y})}\right) = 
+	\det \left(\pdiff{x}{y}\right)
+\end{equation}
+Note "Jacobian" is the shorthand name of "Jacobian determinant", 
+which is the determinant of "Jacobian matrix". Due to the transpose 
+invariance of determinant, the second equality shows that it does not
+matter which organization method we use if we only want to do 
+compute the Jacobian, rather than Jacobin matrix. However, 
+if we're to write out the Jacobin matrix, this may be a pitfall 
+depending on what organization of vector-to-vector derivative we define. 
+\end{myex}
+
+\subsection{Vector Function Differential}
+In the previous sections, we relate matrix differential 
+with matrix derivatvie using theorem(\ref{thm:matrix_dif_der}).
+This theorem bridges the two quantities using trace. 
+Thus we can handle the problem using preferred form 
+intechangeably. (As is seen: calculating derivative 
+of determinant is more direct; calculating differential 
+of inverse is tractable.)
+
+In this section, we provide another theorem to relate 
+vector function differential to vector-to-vector 
+derivatives. Amazingly, it takes a cleaner form. 
+
+\begin{mythm}
+	\label{thm:v2v_dif_der}
+	Consider the definition(\ref{def:v2v}), we have: 
+	$\dif f  = \tran{(\pdiff{f}{x})}\dif x$
+\end{mythm}
+
+\begin{proof}
+	Apparently, $\dif f$ has $n$ components, so we prove 
+	element by element. Consider the j-th component: 
+	\begin{eqnarray}
+		\text{LHS}_j &=& \dif f_j \\
+		&=& \sum_{i=1}^{m}{\pdiff{f_j}{x_i}\dif x_i}\\
+		\text{RHS}_j &=& (\tran{(\pdiff{f}{x})}x)_{j} \\
+		&=& \sum_{i=1}^{m}\tran{(\pdiff{f}{x})}_{ji}x_i \\
+		&=& \sum_{i=1}^{m}(\pdiff{f}{x})_{ij}x_i \\
+		&=& \sum_{i=1}^{m}(\pdiff{f}{x})_{ij}x_i \\
+		&=& \sum_{i=1}^{m}(\pdiff{f_j}{x_i})x_i = \text{LHS}_j 
+	\end{eqnarray}
+\end{proof}
+
+Note that the trace operator is gone compared with theorem(\ref{thm:matrix_dif_der})
+due to the nice way of defining matrix vector multiplication. 
+We can have a similar schema of handling vector-to-vector derivatives
+using this scheme. We don't bother to list the schema again.
+Instead, we provide an example. 
+
+\begin{myex}
+	Consider the variable transformation:$x = \sigma \Lambda^{-0.5}\tran{W} \xi$, 
+	where $\sigma$ is a real value, $\Lambda$ is full rank diagonal matrix, 
+	and $W$ is orthonormal square matrix
+	($namely W\tran{W}=\tran{W}W = I$). Compute
+	the absolute value of Jacobian.  
+	
+	First, we want to find $\pdiff{x}{\xi}$. This can be easily done 
+	by computing the differential:
+	\begin{equation}
+		\dif x = \dif (\sigma \Lambda^{-0.5}\tran{W} \xi) 
+		= \sigma \Lambda^{-0.5}\tran{W} \dif \xi
+	\end{equation}
+	Applying theorem(\ref{thm:v2v_dif_der}), we have:
+	\begin{equation}
+		\pdiff{x}{\xi} = \tran{ (\sigma \Lambda^{-0.5}\tran{W}) }
+	\end{equation}
+	Thus, 
+	\begin{equation}
+		J_m = \tran{ (\pdiff{x}{\xi}) } = \tran{(\tran{ (\sigma \Lambda^{-0.5}\tran{W}) })}
+		=\sigma \Lambda^{-0.5}\tran{W}
+	\end{equation}
+	where $J_m$ is the Jacobian matrix and $J= \det(J_m)$. Then we use 
+	some property of determinant to calculate the absolute value of 
+	Jacobian:
+	\begin{eqnarray}
+		|J| &=& |\det(J_m)| \\
+		&=& \sqrt{|\det(J_m)|\,|\det(J_m)|} \\
+		&=& \sqrt{|\det(\tran{J_m})|\,|\det(J_m)|} \\
+		&=& \sqrt{|\det(\tran{J_m}J_m)|} \\
+		&=& \sqrt{|\det(J_m\tran{J_m})|} \\
+		&=& \sqrt{|\det(   W \Lambda^{-0.5}\sigma \sigma \Lambda^{-0.5}\tran{W}  )|} \\
+		&=& \sqrt{|\det( \sigma^2  W \Lambda^{-1}\tran{W}  )|}
+	\end{eqnarray}
+	If the dimension of $x$ and $\xi$ is $d$ and we define $\Sigma = W \Lambda\tran{W}$. 
+	A nice result is calculated:
+	\begin{equation}
+		|J| = \sigma^d \det(\Sigma)^{-1/2}
+	\end{equation}
+	which we'll an application of generalizing the multivariate Gaussian distribution. 
+\end{myex}
 
 \section{Application}
 \label{sec:application}
