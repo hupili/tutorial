@@ -36,4 +36,24 @@ Pili Hu.
 	
 \bibitem{wiki_jacobian}
 	Jacobian Matrix, Wikipedia, 
-	\url{http://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant}\end{thebibliography}
+	\url{http://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant}
+	
+\bibitem{wiki_gaussian}
+	Gaussian Distribution, Wikipedia, 
+	\url{http://en.wikipedia.org/wiki/Normal_distribution}	
+	
+\bibitem{wiki_gaussian_integral}
+	Gaussian Integral, Wikipedia, 
+	\url{http://en.wikipedia.org/wiki/Gaussian_integral}
+
+\bibitem{wiki_fubini}
+	Fubini's Theorem, Wikipedia, 
+	\url{http://en.wikipedia.org/wiki/Fubini%27s_theorem}
+	
+\bibitem{xu2012-mlt}
+	XU, Lei, 2012, Machine Learning Theory(CUHK CSCI5030). 
+	
+\bibitem{finite_appendix_mc}
+	Appendix from Introduction to Finite Element Methods 
+	book on University of Colorado at Boulder. 
+	\url{http://www.colorado.edu/engineering/cas/courses.d/IFEM.d/IFEM.AppD.d/IFEM.AppD.pdf}\end{thebibliography}

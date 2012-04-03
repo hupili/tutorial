@@ -657,6 +657,7 @@ using this scheme. We don't bother to list the schema again.
 Instead, we provide an example. 
 
 \begin{myex}
+	\label{ex:gaussian_trans}
 	Consider the variable transformation:$x = \sigma \Lambda^{-0.5}\tran{W} \xi$, 
 	where $\sigma$ is a real value, $\Lambda$ is full rank diagonal matrix, 
 	and $W$ is orthonormal square matrix
@@ -695,7 +696,7 @@ Instead, we provide an example.
 	\begin{equation}
 		|J| = \sigma^d \det(\Sigma)^{-1/2}
 	\end{equation}
-	which we'll an application of generalizing the multivariate Gaussian distribution. 
+	which we'll see an application of generalizing the multivariate Gaussian distribution. 
 \end{myex}
 
 \section{Application}
@@ -791,6 +792,129 @@ Now we have proved an upper bound for $||A||^2$. We show this bound is achievabl
 by assigning $x=v_1$. 
 \end{proof}
 	
+	
+\subsection{General Multivaraite Gaussian Distribution}	
+
+The first time I came across multivariate Gaussian distribution 
+is in my sophomore year. However, at that time, the multivariate 
+version is optional, and the text book only gives us the formula 
+rather than explaining any intuition behind. I had trouble 
+remembering the formula, since I don't know why it is the case.
+
+During the Machine Learning course\cite{xu2012-mlt} I take recently, 
+the rationale becomes clear to me. We'll start from the basic notion, 
+generalize it to multivariate isotropic Gaussian, and then 
+use matrix calculus to derive the most general version. 
+The following content is adapted from the corresponding course notes
+and homework exercises. 
+
+We start from the univariate Gaussian\cite{wiki_gaussian}:
+\begin{equation}
+	G(x|\mu, \sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}\e{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{equation}
+The intuition behind is:
+\begin{itemize}
+	\item Use one centroid to represent a set of samples
+	coming from the same Gaussian mixture, which 
+	is denoted by $\mu$. 
+	\item Allow the existence of error. We express the reverse notion
+	of "error" by "likelihood". We want the density function describing 
+	the distribution that the farther away, the less likely a sample is 
+	drawn from the mixture. We want this likelihood to decrease 
+	in a accelerated manner. Negative exponential is one proper candidate, 
+	say  $\exp\{-D(x,\mu)\}$, where $D$ measures the distance between 
+	sample and centroid. 
+	\item To fit human's intuition, the "best" choice of distance measure 
+	is Euclidean distance, since we live in this Euclidean space. So far, 
+	we have $\exp\{-(x-\mu)^2\}$
+	\item How fast the likelihood decreases should be controlled by a 
+	parameter, say $\exp\{\frac{-(x-\mu)^2}{\sigma}\}$. 
+	$\sigma$ can also be thought to control the uncertainty. 
+\end{itemize}
+Now we already get Gaussian distribution. The division by 2 in the exponent 
+is only to simplify deductions. Writting $\sigma^2$ instead of $\sigma$ is 
+to align with some statistic quantities. The rest term is basically used 
+to do normalization, which can be derived by extending the 1-D
+Gaussian integral to a 2-D area integral using 
+Fubini's thorem\cite{wiki_fubini}. Interested reader can refer to  
+\cite{wiki_gaussian_integral}. 
+	
+Now we're ready to extend the univariate version to multivariate version. 
+The above four characteristics appear as simple interpretation to 
+everyone who learned Gaussian distribution before. However, they're 
+the real "axioms" behind. Now consider an isotropic Gaussian distribution 
+and we start with perpendicular axes. The uncertainty along each axis is 
+the same, so the distance measure is now $||x-\mu||_2^2=\tran{(x-\mu)}(x-\mu)$. 
+The exponent is $\exp\{ -\frac{1}{2\sigma^2} \tran{(x-\mu)}(x-\mu)\}$. 
+Integrating over the volume of $x$ can be done by transforming it 
+into iterated form using Fubini's theorem. Then we simply apply the method 
+that we deal with univariate Gaussian integral. Now we have 
+multivariate isotropic Gaussian distribution:
+\begin{equation}
+	\label{eq:gaussian_iso}
+	G(x|\mu, \sigma^2) = \frac{1}{(2\pi)^{d/2}\sigma^d}
+	\exp\{ -\frac{1}{2\sigma^2} \tran{(x-\mu)}(x-\mu)\}
+\end{equation}
+where $d$ is the dimension of $x,\mu$. 
+
+We are just one step away from a general Gaussian. Suppose we 
+have a general Gaussian, whose covariance is not isotropic nor 
+does it all along the standard Euclidean axes. Denote the sample
+from this Gaussian by $\xi$. We can first apply 
+a rotation on $\xi$ to bring it back to the standard axes,
+which can be done by left multiplying an
+orthongonal matrix $W^T$. Then we scale each component of $W\xi$
+by different ratio to make them isotropic, which can be done 
+by left multiplying a diagonal matrix $\Lambda^{-0.5}$. The 
+exponent $-0.5$ is simply to make later discussion convenient. 
+Finally, we multiply it by $\sigma$ to be able to control 
+the uncertainty at each direction again. The transform is 
+given by $x = \sigma \Lambda^{-0.5}\tran{W} \xi$. Plugging
+this back to eqn(\ref{eq:gaussian_iso}), we derive the following
+exponent:
+\begin{eqnarray}
+	&&\exp\{ -\frac{1}{2\sigma^2} \tran{(x-\mu)}(x-\mu)\} \\
+	&=& \exp\{ -\frac{1}{2\sigma^2} 
+	\tran{(\sigma \Lambda^{-0.5}\tran{W} \xi-\mu)}(\sigma \Lambda^{-0.5}\tran{W} \xi-\mu)\} \\
+	&=& \exp\{ -\frac{1}{2\sigma^2} 
+	\tran{(\xi-\mu_\xi)}\sigma^2W\Lambda^{-1}\tran{W}(\xi-\mu_\xi)\} \\
+	&=& \exp\{ -\frac{1}{2} 
+	\tran{(\xi-\mu_\xi)}\Sigma^{-1}(\xi-\mu_\xi)\} 
+\end{eqnarray}
+where we let $\mu_\xi = \E\xi$, and we plugged in the following result:
+\begin{equation}
+	\mu = \E x = \E[\sigma \Lambda^{-0.5}\tran{W} \xi]
+	=\sigma \Lambda^{-0.5}\tran{W} \E \xi
+	=\sigma \Lambda^{-0.5}\tran{W} \mu_\xi
+\end{equation}
+Now we only need to find the normalization factor to make it a 
+probability distribution. 
+Note eqn(\ref{eq:gaussian_iso}) integrates to 1, which is:
+\begin{equation}
+	\int G(x|\mu, \sigma^2)\dif x =  \int \frac{1}{(2\pi)^{d/2}\sigma^d}
+	\exp\{ -\frac{1}{2\sigma^2} \tran{(x-\mu)}(x-\mu)\} \dif x = 1
+\end{equation}
+Transforming variable from $x$ to $\xi$ causes a scaling by absolute Jacobian, 
+which we already calculated in example(\ref{ex:gaussian_trans}). 
+That is:
+\begin{eqnarray}
+	\int \frac{1}{(2\pi)^{d/2}\sigma^d}
+	\exp\{ -\frac{1}{2} \tran{(\xi-\mu_\xi)}\Sigma^{-1}(\xi-\mu_\xi)\} 
+	|J| \dif \xi &=& 1 \\
+	\int \frac{\sigma^d \det(\Sigma)^{-1/2}}{(2\pi)^{d/2}\sigma^d}
+	\exp\{ -\frac{1}{2} \tran{(\xi-\mu_\xi)}\Sigma^{-1}(\xi-\mu_\xi)\} 
+	 \dif \xi &=& 1 \\
+	 \int \frac{1}{(2\pi)^{d/2}\det(\Sigma)^{1/2}}
+	\exp\{ -\frac{1}{2} \tran{(\xi-\mu_\xi)}\Sigma^{-1}(\xi-\mu_\xi)\} 
+	 \dif \xi &=& 1  
+\end{eqnarray}
+The term inside integral is just the general Gaussian density we want 
+to find:
+\begin{equation}
+	G(x|\mu, \Sigma) = \frac{1}{(2\pi)^{d/2}\det(\Sigma)^{1/2}}
+	\exp\{ -\frac{1}{2} \tran{(x-\mu)}\Sigma^{-1}(x-\mu)\} 
+	\label{eq:gaussian_gen}
+\end{equation}
 
 \section{Cheat Sheet}
 \label{sec:cheat}
@@ -799,8 +923,8 @@ by assigning $x=v_1$.
 %>============================================
 \section*{Acknowledgements}
 \addcontentsline{toc}{section}{Acknowledgements}
-Thanks prof. XU, Lei's tutorial on matrix calculus. 
-Besides, the author also benefit a lot from other online 
+Thanks prof. XU, Lei's tutorial on matrix calculus\cite{xu2012-mlt}. 
+Besides, the author also benefits a lot from other online 
 materials. 
 %<=======Acknowledgements ENd=================
 
