@@ -435,6 +435,7 @@ Then we can directly write out matrix derivative using this theorem.
 \end{myex}
 
 \begin{myex}
+	\label{ex:dif_inv}
 	For a non-singular square matrix $X$, we have $XX^{-1} = I$. 
 	Take matrix differentials at both sides:
 	\begin{equation}
@@ -472,6 +473,7 @@ in the schema, the deduction of certain formula may be more easily done
 using matrix derivatives. 
 
 \subsection{Determinant}
+\label{sec:det}
 
 For a background of determinant, please refer to \cite{wiki_det}. 
 We first quote some definitions and properties without proof:
@@ -798,6 +800,7 @@ To see why I make this proposition, interested readers can refer
 to the comments in the corresponding \LaTeX ~source file. 
 
 \begin{myex}
+	\label{ex:gaussian_der_mu}
 	Show the derivative of $\tran{(x-\mu)}\Sigma^{-1}(x-\mu)$ to $\mu$
 	(for symmetric $\Sigma^{-1}$). 
 	\begin{eqnarray}
@@ -1025,6 +1028,65 @@ to find:
 	\exp\{ -\frac{1}{2} \tran{(x-\mu)}\Sigma^{-1}(x-\mu)\} 
 	\label{eq:gaussian_gen}
 \end{equation}
+
+
+\subsection{Maximum Likelihood Estimation of Gaussian}
+Given $N$ samples, $x_t, t=1,2,\dots,N$, independently indentically distributed
+that are drawn from the following Gaussian distribution:
+\begin{equation}
+	G(x_t|\mu, \Sigma) = \frac{1}{(2\pi)^{d/2}\det(\Sigma)^{1/2}}
+	\exp\{ -\frac{1}{2} \tran{(x_t-\mu)}\Sigma^{-1}(x_t-\mu)\} 
+	\label{eq:gaussian_gen}
+\end{equation}
+solve the paramters $\theta=\{\mu, \Sigma\}$, that maximize:
+\begin{equation}
+	p(X|\theta) = \prod_{t=1}^{N} G(x_t|\theta) 
+\end{equation}
+
+It's more conveninent to handle the log likelihood as defined below:
+\begin{equation}
+	L = \ln p(X|\theta) = \sum_{t=1}^{N} \ln G(x_t|\theta) 
+\end{equation}
+We write each term of $L$ out to facilitate further processing:
+\begin{equation}
+	L 
+	= -\frac{Nd}{2}\ln (2\pi) - \frac{N}{2}\ln |\Sigma |
+	- \frac{1}{2} \sum_t {\tran{(x_t-\mu)}\Sigma^{-1}(x_t-\mu)}
+\end{equation}
+Taking derivative of $\mu$, the first two terms are gone and 
+the third term is already handled by example(\ref{ex:gaussian_der_mu}):
+\begin{equation}
+	\pdiff{L}{\mu} = \sum_t\Sigma^{-1}(x_t-\mu)
+\end{equation} 
+Let $\pdiff{L}{\mu}=0$, we solve for $\mu = \frac{1}{N}\sum_t{x_t}$. 
+Then take derivative of $\Sigma$. It eaiser to be handled using our 
+trace schema:
+\begin{eqnarray}
+	\dif L &=& \dif [-\frac{N}{2}\ln |\Sigma |]+
+	\dif [- \frac{1}{2} \sum_t {\tran{(x_t-\mu)}\Sigma^{-1}(x_t-\mu)}] 
+\end{eqnarray}
+The first term is:
+\begin{eqnarray}
+	&& \dif [-\frac{N}{2}\ln |\Sigma |] \\
+	&=& -\frac{N}{2}\dif \ln |\Sigma | \\
+	\text{(section(\ref{sec:det}))}&=& -\frac{N}{2} \tr{\Sigma^{-1}\dif \Sigma} 
+\end{eqnarray}
+The second term is:
+\begin{eqnarray}	
+	&&\dif [- \frac{1}{2} \sum_t {\tran{(x_t-\mu)}\Sigma^{-1}(x_t-\mu)}]\\	
+	&=&-\frac{1}{2} \dif \tr{\sum_t {\tran{(x_t-\mu)}\Sigma^{-1}(x_t-\mu)}} \\
+	&=&-\frac{1}{2} \dif \tr{\sum_t {(x_t-\mu)\tran{(x_t-\mu)}\Sigma^{-1}}} \\
+	\text{(example(\ref{ex:dif_inv}))}&=& -\frac{1}{2} \tr{[\sum_t {(x_t-\mu)\tran{(x_t-\mu)}] 
+	(-\Sigma^{-1}\dif \Sigma\Sigma^{-1})}} \\
+	&=& \frac{1}{2} \tr{\Sigma^{-1}[\sum_t {(x_t-\mu)\tran{(x_t-\mu)}] \Sigma^{-1}\dif \Sigma}} 
+\end{eqnarray}
+Then we have:
+\begin{equation}
+	\pdiff{L}{\Sigma} = -\frac{N}{2}\Sigma^{-1}
+	+ \frac{1}{2}\Sigma^{-1} [\sum_t {(x_t-\mu)\tran{(x_t-\mu)}}] \Sigma^{-1} 
+\end{equation}
+Let $\pdiff{L}{\Sigma}=0$, we solve for 
+$\Sigma =\frac{1}{N}\sum_t {(x_t-\mu)\tran{(x_t-\mu)}} $. 
 
 \section{Cheat Sheet}
 \label{sec:cheat}
