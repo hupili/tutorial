@@ -395,6 +395,7 @@ Then we can directly write out matrix derivative using this theorem.
 \end{proof}
 
 \begin{myex}
+	\label{ex:xAx}
 	Given the function $f(x) = \tran{x} A x$, where 
 	$A$ is square and $x$ is a column vector, we can 
 	compute:
@@ -712,6 +713,91 @@ Instead, we provide an example.
 		|J| = \sigma^d \det(\Sigma)^{-1/2}
 	\end{equation}
 	which we'll see an application of generalizing the multivariate Gaussian distribution. 
+\end{myex}
+
+\subsection{Chain Rule}
+
+In the schemas we conclude above, differential is convenient in 
+many problems. For derivative, the nice aspect is that we have chain rule, 
+which is an analogy to the chain rule in ordinary calculus. However, 
+one should be very careful applying this chain rule, for the multiplication 
+of matrix requires dimension agreement. 
+
+\begin{mythm}
+Suppose we have n column vectors $x^{(1)},x^{(2)},\ldots, x^{(n)}$, each 
+is of length $l_1, l_2, \ldots, l_n$. We know $x^{(i)}$ is a function 
+of $x^{(i-1)}$, for all $i=2, 3, \dots, n$. The following relationship 
+holds:
+\begin{equation}
+	\pdiff{x^{(n)}}{x^{(1)}} = \pdiff{x^{(2)}}{x^{(1)}}
+	\pdiff{x^{(3)}}{x^{(2)}} \ldots \pdiff{x^{(n)}}{x^{(n-1)}}
+\end{equation}
+\end{mythm}
+
+\begin{proof}
+Under definition(\ref{def:v2v}), theorem(\ref{thm:v2v_dif_der}) holds. 
+We apply this theorem to each consecutive vectors:
+\begin{eqnarray}
+	\dif x^{(2)} &=& \tran{(\pdiff{x^{(2)}}{x^{(1)}})} \dif x^{(1)} \\
+	\dif x^{(3)} &=& \tran{(\pdiff{x^{(3)}}{x^{(2)}})} \dif x^{(2)} \\
+	\ldots \\
+	\dif x^{(n)} &=& \tran{(\pdiff{x^{(n)}}{x^{(n-1)}})} \dif x^{(n-1)}
+\end{eqnarray} 
+Plug previous one into next one, we have:
+\begin{eqnarray}
+	\dif x^{(n)} &=& \tran{(\pdiff{x^{(n)}}{x^{(n-1)}})} 
+	\ldots
+	\tran{(\pdiff{x^{(3)}}{x^{(2)}})} 
+	\tran{(\pdiff{x^{(2)}}{x^{(1)}})} 
+	\dif x^{(1)} \\
+	&=& \tran{(\pdiff{x^{(2)}}{x^{(1)}} \pdiff{x^{(3)}}{x^{(2)}}
+	\ldots \pdiff{x^{(n)}}{x^{(n-1)}} )} \dif x^{(1)}
+\end{eqnarray}
+Applying theorem(\ref{thm:v2v_dif_der}) again in the reverse direction, 
+we have:
+\begin{equation}
+	\pdiff{x^{(n)}}{x^{(1)}} = \pdiff{x^{(2)}}{x^{(1)}}
+	\pdiff{x^{(3)}}{x^{(2)}} \ldots \pdiff{x^{(n)}}{x^{(n-1)}}
+\end{equation}
+%Wow, great! this it the most beautiful proof of matrix calculus chain 
+%rule I see so far. I'm happy with this discovery when I go out to fetch 
+%water in the 9-th floor of SHB. Other proofs can be found online, 
+%like \cite{finite_appendix_mc}, which used linear combination of 
+%bridge variables beforehand. I think that one is not intuitive, 
+%at least for me, who is basically an engineer rather than mathematician. 
+%The following proposition is just to show one equation I have doubt 
+%when I read \cite{finite_appendix_mc}. They use this one to derive 
+%chain rule. However, it is more convenient for me to derive chain rule 
+%first, and apply chain rule to get it as a proposition. 
+\end{proof}
+
+\begin{myprop}
+Consider a chain of: $x$ a scalar, $y$ a column vector, $z$ a scalar. 
+$z = z(y), y_i = y_i(x), i=1,2\ldots, n$. Apply the chain rule, we have
+	\begin{equation}
+		\pdiff{z}{x} = \pdiff{y}{x} \pdiff{z}{y} = 
+		\sum_{i=1}^{n}{ \pdiff{y_i}{x} \pdiff{z}{y_i} }
+	\end{equation}
+\end{myprop}
+Now we explain the intuition behind. $x,z$ are both scalar, so 
+we're basically calculating the derivative in ordinary calculus. 
+Besides, we have a group of "bridge variables", $y_i$. 
+$\pdiff{y_i}{x} \pdiff{z}{y_i}$ is just the result of applying 
+scalar chain rule on the chain:$x \rightarrow y_i \rightarrow z$. 
+The separate results of different bridge variables are additive!
+To see why I make this proposition, interested readers can refer 
+to the comments in the corresponding \LaTeX ~source file. 
+
+\begin{myex}
+	Show the derivative of $\tran{(x-\mu)}\Sigma^{-1}(x-\mu)$ to $\mu$
+	(for symmetric $\Sigma^{-1}$). 
+	\begin{eqnarray}
+		&&\pdiff{[\tran{(x-\mu)}\Sigma^{-1}(x-\mu)]}{\mu}  \\
+		&=&\pdiff{[x-\mu]}{\mu}\pdiff{[\tran{(x-\mu)}\Sigma^{-1}(x-\mu)]}{[x-\mu]} \\
+	\text{(example(\ref{ex:xAx}))}	&=&\pdiff{[x-\mu]}{\mu}\,2\,\Sigma^{-1}(x-\mu) \\
+	(\dif [x-\mu] = -I\, \dif \mu)	&=&-I\,2\,\Sigma^{-1}(x-\mu) \\
+		&=&-2\Sigma^{-1}(x-\mu)
+\end{eqnarray}	 
 \end{myex}
 
 \section{Application}
