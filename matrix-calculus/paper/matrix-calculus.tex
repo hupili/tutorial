@@ -206,8 +206,17 @@ We'll show later as long as their sizes agree, it holds for matrix $a$ and $x$.
 \subsection{Properties of Trace}
 
 \begin{mydef}
+\label{def:trace}
 Trace of square matrix is defined as: $\tr{A} = \sum_{i}{A_{ii}}$
 \end{mydef}
+
+\begin{myex}
+	Using definition(\ref{def:org},\ref{def:trace}), it is very easy to show:
+	\begin{equation}
+		\pdiff{\tr{A}}{A} = I
+	\end{equation}
+	since only diagonal elements are kept by the trace operator. 
+\end{myex}
 
 \begin{mythm}
 \label{thm:trace_prop}
