@@ -1,0 +1,91 @@
+%Expectation Maximization
+%HU, Pili
+%Craete: 20120415
+%Update: 20120415
+
+%Modify the relative path accordingly
+\input{../../common/common.tex}
+
+%This usually doesn't need modification 
+\author{HU, Pili\thanks{hupili [at] ie [dot] cuhk [dot] edu [dot] hk}}
+
+%Modify them accordingly===
+\title{Expectation Maximization}
+\date{April 15, 2012\thanks{Last compile:\today}}
+
+\begin{document}
+
+\maketitle
+%>============================================
+\begin{abstract}
+	You're not reading the completed document. Only 
+	brainstorm and some message from the author are there.  
+\end{abstract}
+%<=======Abstract ENd=========================
+
+%>============================================
+\pagebreak
+\tableofcontents
+\pagebreak
+%<=======TOC ENd==============================
+
+
+
+\section{Brainstorm}
+
+Topics to becovered:
+\begin{itemize}
+	\item Collect how different people reach the $Q$ function, 
+		like \cite{dempster1977em}\cite{bishop2006pattern}\cite{borman2004-emtut}. 
+		Some are later interpretations, but worth to know. 
+	\item Why do we choose $\ln$ in the $Q$ function? 
+		Are there any other possibilities? I just find that any 
+		concave function with $f(1)=0$ suffices in the derivation of 
+		general form. The benefit of $\ln$ simply lies in the fact 
+		that it favours the exponential family. 
+	\item An application of GMM. 
+\end{itemize}
+
+
+
+
+
+
+%>============================================
+\section*{Acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+%<=======Acknowledgements ENd=================
+
+%>============================================
+\addcontentsline{toc}{section}{References}
+\input{../reference/gen_bib.bbl}
+%<=======Bibliography ENd=====================
+
+%>============================================
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+
+\subsection*{Message From the Author}
+The first time heard of EM algorithm was about 3 years ago. 
+During all these years, I tried to learn and re-learn it 
+for many times. Every time I find something new. Theoretists
+and practitioners have different tastes in explaining things. 
+The former makes rigorous derivations and provides 
+different views. The latter constructs guide rules for 
+people who only wants a solution but doesn't bother to 
+derive. 
+
+Recently, I eventually managed to derive the EM algorithm
+in general and apply it to the GMM Maximum Likelihood learning 
+problem. Although there are many tutorials out there, 
+I determine to write my own, making it complete with 
+theory, algorithm, and implementation. More importantly, 
+I make the source publicly open. If people want to fix anything
+or make their own notes upon this document, they
+should find it convenient. 
+
+
+%<=======Appendix ENd=========================
+
+\end{document}

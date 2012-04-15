@@ -1,4 +1,4 @@
-NAME=tutorial
+NAME=expectation-maximization
 TEX=$(NAME).tex
 PDF=$(NAME).pdf
 

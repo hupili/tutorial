@@ -4,18 +4,20 @@ EM Algorithm
 
 If you find anything useful and want to build 
 your future work on it, please cite this page properly. 
+
 One suggested entry:
 ---
-Pili HU, [[Tutorial]], [[Link]]
+Pili HU, Expectation Maximization Tutorial, https://github.com/hupili/tutorial/tree/master/expectation-maximization
 ---
+
 One suggested BibTex entry:
 ---
-@MISC{hu[[Key]],
+@MISC{hu2012-em,
 	author = {Hu, Pili},
-	title = {[[Title]]},
-	howpublished = {GitHub, [[Link]]},
-	month = {[[Month]]},
-	year = {[[Year]]},
+	title = {Expectation Maximization Tutorial},
+	howpublished = {GitHub, https://github.com/hupili/tutorial/tree/master/expectation-maximization},
+	month = {4},
+	year = {2012},
 	note = {HU, Pili's tutorial collection},
 }
 ---

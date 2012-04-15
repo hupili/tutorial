@@ -1,5 +1,24 @@
 \begin{thebibliography}{1}
 
+\bibitem{bishop2006pattern}
+C.M Bishop.
+\newblock {\em Pattern recognition and machine learning}, volume~4.
+\newblock springer New York, 2006.
+
+\bibitem{dempster1977em}
+A.P. Dempster, N.M. Laird, and D.B. Rubin.
+\newblock Maximum likelihood from incomplete data via the em algorithm.
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  (Methodological)}, 39:1--38, 1977.
+
+\bibitem{hu2012-em}
+Pili Hu.
+\newblock Expectation maximization tutorial.
+\newblock GitHub,
+  https://github.com/hupili/tutorial/tree/master/expectation-maximization, 4
+  2012.
+\newblock HU, Pili's tutorial collection.
+
 \bibitem{hu-tutorial}
 Pili Hu.
 \newblock Tutorial collection.
@@ -7,4 +26,10 @@ Pili Hu.
 \newblock HU, Pili's tutorial collection.
 
 
+\bibitem{wiki_em}
+	Expectation Maximization Algorithm, Wikipedia, 
+	\url{http://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm}
+\bibitem{borman2004-emtut}
+	Sean Borman, The Expectation Maximization Algorithm: A short tutorial, 2004,  
+	\url{http://www.seanborman.com/publications/EM_algorithm.pdf}
 \end{thebibliography}
