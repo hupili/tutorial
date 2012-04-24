@@ -577,14 +577,16 @@ and Jacobian matrix\cite{wiki_jacobian} from Wikipedia:
 
 Note two things about second order derivative:
 \begin{itemize}
-	\item By writting the abbreviation $\frac{\partial^2 f}{\partial x_2\,\partial x_1}$, 
-	people mean $\pdiff{}{x_2}\left(\frac{\partial f}{\partial x_1}\right)$ by 
+	\item By writting the abbreviation $\myfrac{\partial^2 f}{\partial x_2\,\partial x_1}$, 
+	people mean $\pdiff{}{x_2}\left(\myfrac{\partial f}{\partial x_1}\right)$ by 
 	convention. That is, first take derivative with respect to $x_1$ and 
 	then take derivative with respect to $x_2$. 
-	\item The Hessian matrix can be regarded as first compute the $\pdiff{f}{\tran{x}}$
+	\item The Hessian matrix can be regarded as first compute the 
+%	$\pdiff{f}{\tran{x}}$
+	$\pdiff{f}{x}$
 	(using definition(\ref{def:org}) to organize), and then compute 
 	a vector-function-to-vector-variable derivative
-	treating $\pdiff{f}{\tran{x}}$ as the function. 
+	treating $\pdiff{f}{x}$ as the function. 
 \end{itemize}
 
 Bearing this in mind, we find Hessian matrix and Jacobian matrix actually have 
