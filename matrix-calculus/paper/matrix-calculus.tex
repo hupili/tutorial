@@ -1225,6 +1225,149 @@ traditional calculus way.
 \section{Cheat Sheet}
 \label{sec:cheat}
 
+\subsection{Definition}
+
+For scalar function $f$ and matrix variable $x$, the derivative is:
+	\begin{equation}
+		\pdiff{f}{x} = 
+		\left[
+		\begin{matrix}
+			\pdiff{f}{x_{11}} & \pdiff{f}{x_{12}} & \ldots &\pdiff{f}{x_{1n}}\\
+			\pdiff{f}{x_{21}} & \pdiff{f}{x_{22}} & \ldots &\pdiff{f}{x_{2n}}\\
+			\vdots & \vdots & \ddots & \vdots \\
+			\pdiff{f}{x_{m1}} & \pdiff{f}{x_{m2}} & \ldots &\pdiff{f}{x_{mn}}\\
+		\end{matrix}
+		\right]
+	\end{equation}
+
+For column vector function $f$ and column vector variable $x$, the derivative is:
+\begin{equation}
+	\pdiff{f}{x} = \left[
+	\begin{matrix}
+			\pdiff{f_1}{x_{1}} & \pdiff{f_2}{x_{1}} & \ldots &\pdiff{f_n}{x_{1}}\\
+			\pdiff{f_1}{x_{2}} & \pdiff{f_2}{x_{2}} & \ldots &\pdiff{f_n}{x_{2}}\\
+			\vdots & \vdots & \ddots & \vdots \\
+			\pdiff{f_1}{x_{m}} & \pdiff{f_2}{x_{m}} & \ldots &\pdiff{f_n}{x_{m}}\\
+	\end{matrix}
+	\right]
+\end{equation}
+
+For $m \times n$ matrix $A$, the differential is:
+	\begin{equation}
+		\dif A = \left[
+		\begin{matrix}
+			\dif A_{11} & \dif A_{12} & \ldots &\dif A_{1n}\\
+			\dif A_{21} & \dif A_{22} & \ldots &\dif A_{2n}\\
+			\vdots & \vdots & \ddots & \vdots \\
+			\dif A_{m1} & \dif A_{m2} & \ldots &\dif A_{mn}\\
+		\end{matrix}
+		\right]
+	\end{equation}	 
+
+\subsection{Schema for Scalar Function}
+\begin{enumerate}
+	\item $\dif f = \dif \tr{f} =\tr{\dif f} $
+	\item Apply trace properties(see theorem(\ref{thm:trace_prop}))
+	and matrix differential properties(see theorem(\ref{thm:mdiff_prop}))
+	to get the following form:
+		\begin{equation}
+			\dif f = \tr{\tran{A}x}
+		\end{equation}
+	\item Apply theorem(\ref{thm:matrix_dif_der}) to get:
+		\begin{equation}
+			\pdiff{f}{x} = A
+		\end{equation}
+\end{enumerate}
+
+\subsection{Schema for Vector Function}
+\begin{enumerate}
+	\item Apply (possibly) trace properties(see theorem(\ref{thm:trace_prop}))
+	and matrix differential properties(see theorem(\ref{thm:mdiff_prop}))
+	to get the following form:
+		\begin{equation}
+			\dif f = \tran{A}x
+		\end{equation}
+	\item Apply theorem(\ref{thm:v2v_dif_der}) to get:
+		\begin{equation}
+			\pdiff{f}{x} = A
+		\end{equation}
+\end{enumerate}
+
+\subsection{Properties}
+
+Trace properties and differential properties are 
+collected in one list as follows:
+\begin{enumerate}
+	\item $\tr{A+B} = \tr{A} + \tr{B}$
+	\item $\tr{cA} = c \tr{A}$
+	\item $\tr{AB} = \tr{BA}$
+	\item $\tr{A_1A_2 \ldots A_n}=\tr{A_nA_1 \ldots A_{n-1}}$
+	\item $\tr{\tran{A}B} = \sum_{i}\sum_{j}{A_{ij}B_{ij}}$
+	\item $\tr{A} = \tr{\tran{A}}$
+	\item $\dif (cA) = c \dif A$
+	\item $\dif (A+B) = \dif A + \dif B$
+	\item $\dif (AB) = \dif A B + A \dif B$
+	\item $\dif \tr{A} = \tr{\dif A}$
+\end{enumerate}
+
+\subsection{Frequently Used Formula}
+For matrix $A$, column vector $x$:
+\begin{itemize}
+	\item $\pdiff{\tr{A}}{A} = I$
+	\item $\pdiff{\tran{x} A x}{x} = Ax+\tran{A}x$
+	\item $\pdiff{\tran{x} x}{x} = 2x$
+	\item $\pdiff{Ax}{x} = \tran{A}$
+	\item $\pdiff{\tran{x} A x}{x \tran{x}}=\pdiff{}{x}(\pdiff{\tran{x} A x}{x}) = \tran{A}+A$
+	\item $\dif \tr{A} = \tr{ I \dif A}$
+	\item $\tr{\dif (\tran{x} A x)} = \tr{(\tran{x}\tran{A} + \tran{x}A)\dif x}$
+	\item $\tr{\dif (\tran{x} x)} = \tr{2\tran{x} \dif x}$
+\end{itemize}
+
+When $A = \tran{A}$ those formulae are simplified to:
+\begin{itemize}
+	\item $\pdiff{\tran{x} A x}{x} = 2Ax$
+	\item $\pdiff{\tran{x} A x}{x \tran{x}} = 2A$
+	\item $\tr{\dif (\tran{x} A x)} = \tr{2(\tran{x}A)\dif x}$
+\end{itemize}
+
+The inverse: (for non-singular $A$)
+\begin{itemize}
+	\item $\dif(X^{-1})=-X^{-1} \dif X X^{-1}  $
+\end{itemize}
+Note we only have inverse formula for differential. Unless
+$X$ is a scalar, we have difficulty organize the elements of 
+$\pdiff{(X^{-1})}{X}$, which should be a 4-D tensor. 
+
+The determinant series: (for non-singular $A$)
+\begin{itemize}
+	\item $\pdiff{\det(A)}{A}=C$ ($C$ is cofactor matrix)
+	\item $\pdiff{\det(A)}{A}=\tran{(\adj(A))}$ ($\adj(A)$ is adjugate matrix)
+	\item $\pdiff{\det(A)}{A} = \tran{(\det(A)A^{-1})} =\det(A)\tran{(A^{-1})}$
+	\item $\pdiff{\ln \det(A)}{A} = \tran{(A^{-1})}$
+	\item $\dif \det(A)=\tr{ \det(A)A^{-1}  \dif A}$
+	\item $\dif \ln \det(A) = \tr{ A^{-1}  \dif A}$
+\end{itemize}
+Note the trace operator can not be ignored in the differential formula, 
+or the quantity at different sides of equality may be of different size. 
+Although we derive this series from derivative to differential and from 
+ordinary determinant to log determinant. However, the last one(
+differential of log determinant) is simplest for memorizing. Others 
+could be derive quickly from it(using our bridging theorems). 
+
+\subsection{Chain Rule}
+For all column vectors $x^{(i)}$: 
+\begin{equation}
+	\pdiff{x^{(n)}}{x^{(1)}} = \pdiff{x^{(2)}}{x^{(1)}}
+	\pdiff{x^{(3)}}{x^{(2)}} \ldots \pdiff{x^{(n)}}{x^{(n-1)}}
+\end{equation}
+Caution:
+\begin{itemize}
+	\item The chain rule works only for our definition. Other 
+	definition may result in reverse order of multiplication. 
+	\item The chain rule here is listed only for completeness 
+	of the current topic. Use of chain rule is depricated. 
+	Most work can be done using the trace and differential schema.  
+\end{itemize}
 
 
 %>============================================
