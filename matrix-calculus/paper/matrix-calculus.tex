@@ -41,8 +41,6 @@
 \pagebreak
 %<=======TOC ENd==============================
 
-
-
 \section{Introductory Example}
 
 We start with an one variable linear function:
@@ -1093,16 +1091,136 @@ Then we have:
 Let $\pdiff{L}{\Sigma}=0$, we solve for 
 $\Sigma =\frac{1}{N}\sum_t {(x_t-\mu)\tran{(x_t-\mu)}} $. 
 
-\subsection{Least Square Error Regression: a Comparison}
+\subsection{Least Square Error Inference: a Comparison}
 \label{sec:lse}
+
+This application is rather simple. The purpose is
+to compare the derivation with and without matrix 
+calculus. 
 
 \subsubsection{Problem Definition}
 
+Here we consider a simple version:
+\footnote{Sid Jaggi, Dec 2011, Final Exam Q1 of CUHK ERG2013}
+
+Given the linear system with noise $y=Ax+n$, where $x$ is the input, 
+$y$ is the output and $n$ is the noise term. $A$ as the system 
+parameter is a known $p \times q$ matrix. 
+Now we have one observation of output, $\hat{y}$. 
+We want to infer the "most possible" corresponding input $\hat{x}$
+defined by the following formula:
+\footnote{Assuming Gaussian noise, the maximum likelihood inference results
+in the same expression of least squares. For simplicity, we ignore the argument
+of this conclusion. Readers can refer to the previous example to 
+see the relation between least squares and Gaussian distribution.}
+\begin{equation}
+	\hat{x} = \argmin_{x:\hat{y}=Ax+n}{||n||^2}
+\end{equation}
+
 \subsubsection{Ordinary Formulation and Derivation}
 
-\subsubsection{Matrix Formulationand Derivation}
+First, we write the error function explicitly:
+\begin{eqnarray}
+	f(x) &=& ||\hat{y} - Ax||^2 \\
+	&=& \sum_{i=1}^{p}{(\hat{y}_i - (Ax)_i)^2} \\
+	&=& \sum_{i=1}^{p}{(\hat{y}_i - \sum_{j=1}^{q}{A_{ij}x_j} )^2}
+\end{eqnarray}
+
+This is the quadratic form of all $x_k, k=1,2 \ldots q$. We take 
+derivative of $x_k$:
+\begin{eqnarray}
+	\pdiff{f}{x_k} 
+	&=& \sum_{i=1}^{p}
+		{[2(\hat{y}_i - \sum_{j=1}^{q}{A_{ij}x_j} )
+		(- A_{ik})]} \\
+	&=& -2 \sum_{i=1}^{p}
+		{[(\hat{y}_i - (Ax)_i )
+		A_{ik}]} \\
+	&=& -2 <(\hat{y} - (Ax)), A_{k}> \\
+	&=& -2 \tran{A_k}(\hat{y} - Ax)
+%fault derivation below. 
+%	&=& \sum_{i=1}^{p}
+%		{[2(\hat{y}_i - \sum_{j=1}^{q}{A_{ij}x_j} )
+%		\hat{y_i}]}
+%		- \sum_{i=1}^{p}
+%		{[2(\hat{y}_i - \sum_{j=1}^{q}{A_{ij}x_j} )
+%		A_{ik}]} \\
+%	&=& \sum_{i=1}^{p}
+%		{[2 (\hat{y}_i - (Ax)_i)\hat{y_i} ]} 
+\end{eqnarray}
+where $A_k$ is the k-th column of $A$ and $<.,.>$ denotes the inner product 
+of two vectors. 
+We let all $\pdiff{f}{x_k} = 0$ and put the $q$ equations together
+to get the matrix form:
+\begin{equation}
+	\left[
+	\begin{matrix}
+		\pdiff{f}{x_1} \\
+		\pdiff{f}{x_2} \\
+		\vdots \\
+		\pdiff{f}{x_q}
+	\end{matrix}
+	\right]
+	=\left[
+	\begin{matrix}
+		-2 \tran{A_1}(\hat{y} - Ax) \\
+		-2 \tran{A_2}(\hat{y} - Ax) \\
+		\vdots \\
+		-2 \tran{A_q}(\hat{y} - Ax)
+	\end{matrix}
+	\right]
+	= -2 \tran{A}(\hat{y} - Ax) = 0 
+\end{equation}
+We solve for:
+\begin{equation}
+	x = (\tran{A}A)^{-1}\tran{A}\hat{y}
+\end{equation}
+when $(\tran{A}A)$ is invertible. 
 
 
+\subsubsection{Matrix Formulation and Derivation}
+
+The error function can be written as:
+\begin{eqnarray}
+	f(x) &=& ||\hat{y} - Ax||^2 \\
+	&=& \tran{(\hat{y} - Ax)}(\hat{y} - Ax) \\
+\end{eqnarray}
+
+We apply the trace schema to obtain the differential:
+\begin{eqnarray}
+	\dif f 
+	&=& \dif \tr{ \tran{(\hat{y} - Ax)}(\hat{y} - Ax) } \\
+	&=& \tr{ \dif \tran{(\hat{y} - Ax)}(\hat{y} - Ax)
+		+ \tran{(\hat{y} - Ax)} \dif (\hat{y} - Ax) } \\
+	&=& - \tr{ \tran{(\dif x)} \tran{A} (\hat{y} - Ax)
+		+ \tran{(\hat{y} - Ax)} A \dif x} \\
+	&=& - \tr{ \tran{(\hat{y} - Ax)} A \dif x
+		+ \tran{(\hat{y} - Ax)} A \dif x} \\
+	&=& -2 \tr{ \tran{(\hat{y} - Ax)} A \dif x} 
+\end{eqnarray}
+The derivative is:
+\begin{equation}
+	\pdiff{f}{x} = -2 \tran{A}(\hat{y} - Ax)
+\end{equation}
+We let $\pdiff{f}{x}=0$ and get the same result. 
+
+\subsubsection{Remarks}
+
+Without matrix calculus, we can still achieve the 
+goal. Every step is straightforward using ordinary 
+calculus, except for the last one where we organize 
+everything into the matrix form. 
+
+With matrix calculus, we utilize those well established 
+matrix operators, like matrix multiplication. Thus
+the notation is sharply simplified. Comparing the two 
+derivations, we find the one with matrix calculus 
+is absent of annoying summations. This should be very 
+advantegeous in more complex expressions. 
+
+This example aims to disclose the essence of matrix calculus.
+Whenever we need new rules, it's always workable in 
+traditional calculus way. 
 
 \section{Cheat Sheet}
 \label{sec:cheat}
