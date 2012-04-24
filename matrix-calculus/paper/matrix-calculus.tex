@@ -731,6 +731,29 @@ Instead, we provide an example.
 	which we'll see an application of generalizing the multivariate Gaussian distribution. 
 \end{myex}
 
+\begin{mythm}
+	When $f$ and $x$ are of the same size, with definition(\ref{def:v2v}):
+	\begin{equation}
+		(\pdiff{f}{x})^{-1} = \pdiff{x}{f}
+	\end{equation}	 
+\end{mythm}
+\begin{proof}
+	Using theorem(\ref{thm:v2v_dif_der}):
+	\begin{eqnarray}
+		\dif f  &=& \tran{(\pdiff{f}{x})}\dif x \\
+		(\tran{(\pdiff{f}{x})})^{-1} \dif f  &=& \dif x \\
+		\dif x  &=& \tran{((\pdiff{f}{x})^{-1})} \dif f\\
+	\end{eqnarray}
+	Using theorem(\ref{thm:v2v_dif_der} in the reverse direction:
+	\begin{equation}
+		\pdiff{x}{f} = (\pdiff{f}{x})^{-1}
+	\end{equation}
+\end{proof}
+This result is consistent with scalar derivative. It is useful 
+in manipulating variable substitutions(the inverse of Jacobian 
+is the Jacobian of reverse substitution). 
+
+
 \subsection{Chain Rule}
 
 In the schemas we conclude above, differential is convenient in 
