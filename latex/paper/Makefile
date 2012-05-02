@@ -1,4 +1,4 @@
-NAME=tutorial
+NAME=latex
 TEX=$(NAME).tex
 PDF=$(NAME).pdf
 
