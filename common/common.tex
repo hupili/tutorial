@@ -76,3 +76,19 @@
 \newcommand{\var}[0]{\mathrm{Var}}
 \newcommand{\cov}[0]{\mathrm{Cov}}
 
+%=====Quick and Unified Reference====
+%20120505
+%Usage: \eq{\ref{xxx}}
+%The reason I keep "\ref" away from definition, 
+%and let user type it every time is that: 
+%currently I'm working on Texmaker, and it can 
+%trigger a selection panel when the sequence 
+%"\ref" is found. Maybe further configuration of 
+%texmake can make it do the same thing when the 
+%following self-defined sequence is detected.
+%This is left for future work. 
+\newcommand{\req}[1]{\textbf{Eq~{#1}}}
+\newcommand{\rfig}[1]{\textbf{Fig~{#1}}}
+\newcommand{\rtbl}[1]{\textbf{Tbl~{#1}}}
+\newcommand{\rpg}[1]{\textbf{P~{#1}}}
+\newcommand{\rsec}[1]{\textbf{Section~{#1}}}
