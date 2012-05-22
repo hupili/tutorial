@@ -49,13 +49,13 @@ J = eye(n,n) - repmat(1/n,n,n) ;
 %MDS
 B = -0.5 * J * D * J ;
 [v, d] = eig(B) ;
-x = v * (d .^ 0.5) ;
+x = v(:,1:m) * (d(1:m,1:m) .^ 0.5) ;
 Bn = -0.5 * J * Dn * J ;
 [vn, dn] = eig(Bn) ;
-xn = vn * (dn .^ 0.5) ;
+xn = vn(:,1:m) * (dn(1:m,1:m) .^ 0.5) ;
 Bnn = -0.5 * J * Dnn * J ;
 [vnn, dnn] = eig(Bnn) ;
-xnn = vnn * (dnn .^ 0.5) ;
+xnn = vnn(:,1:m) * (dnn(1:m,1:m) .^ 0.5) ;
 
 figure ;
 hold on ;
