@@ -1,6 +1,21 @@
-The article starts from spectral clustering, 
-digests the essence, proposes a general framework, 
-collects justifications, and relates spectral clustering
-to other dimensionality reduction techniques. 
+Matrix Calculus
 
-I have trouble to the article a proper name...
+>> 1. Citation Notes
+
+If you find anything useful and want to build 
+your future work on it, please cite this page properly. 
+One suggested entry:
+---
+Pili HU, Matrix Calculus, https://github.com/hupili/tutorial/tree/master/spectral-clustering
+---
+One suggested BibTex entry:
+---
+@MISC{hu2012-spectral-clustering,
+	author = {Hu, Pili},
+	title = {Spectral Clustering Survey},
+	howpublished = {GitHub, https://github.com/hupili/tutorial/tree/master/spectral-clustering},
+	month = {5},
+	year = {2012},
+	note = {HU, Pili's tutorial collection},
+}
+---
