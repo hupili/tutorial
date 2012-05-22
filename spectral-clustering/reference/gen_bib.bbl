@@ -1,0 +1,247 @@
+\begin{thebibliography}{10}
+
+\bibitem{aggarwal2011social}
+C.C. Aggarwal.
+\newblock {\em Social network data analytics}.
+\newblock Springer-Verlag New York Inc, 2011.
+
+\bibitem{andersen2007detecting}
+R.~Andersen and F.~Chung.
+\newblock Detecting sharp drops in pagerank and a simplified local partitioning
+  algorithm.
+\newblock {\em Theory and Applications of Models of Computation},
+  <<missing>>:1--12, 2007.
+
+\bibitem{andersen2009finding}
+R.~Andersen and Y.~Peres.
+\newblock Finding sparse cuts locally using evolving sets.
+\newblock In {\em Proceedings of the 41st annual ACM symposium on Theory of
+  computing}, pages 235--244. ACM, 2009.
+
+\bibitem{belkin2003laplacian}
+M.~Belkin and P.~Niyogi.
+\newblock Laplacian eigenmaps for dimensionality reduction and data
+  representation.
+\newblock {\em Neural computation}, 15(6):1373--1396, 2003.
+
+\bibitem{bengio2006spectral}
+Y.~Bengio, O.~Delalleau, N.~Le~Roux, J.F. Paiement, P.~Vincent, and M.~Ouimet.
+\newblock Spectral dimensionality reduction.
+\newblock {\em Feature Extraction}, <<missing>>:519--550, 2006.
+
+\bibitem{bengio2004learning}
+Y.~Bengio, O.~Delalleau, N.L. Roux, J.F. Paiement, P.~Vincent, and M.~Ouimet.
+\newblock Learning eigenfunctions links spectral embedding and kernel pca.
+\newblock {\em Neural Computation}, 16(10):2197--2219, 2004.
+
+\bibitem{bengio2004out}
+Y.~Bengio, J.F. Paiement, P.~Vincent, O.~Delalleau, N.~Le~Roux, and M.~Ouimet.
+\newblock Out-of-sample extensions for lle, isomap, mds, eigenmaps, and
+  spectral clustering.
+\newblock {\em Advances in neural information processing systems}, 16:177--184,
+  2004.
+
+\bibitem{bishop2006pattern}
+C.M Bishop.
+\newblock {\em Pattern recognition and machine learning}, volume~4.
+\newblock springer New York, 2006.
+
+\bibitem{borg2005modern}
+I.~Borg and P.J.F. Groenen.
+\newblock {\em Modern multidimensional scaling: Theory and applications}.
+\newblock Springer Verlag, 2005.
+
+\bibitem{brand2003unifying}
+M.~Brand and K.~Huang.
+\newblock A unifying theorem for spectral embedding and clustering.
+\newblock In {\em Proceedings of the Ninth International Workshop on Artificial
+  Intelligence and Statistics}, 2003.
+
+\bibitem{chen2010isoperimetric}
+M.~Chen, M.~Liu, J.~Liu, and X.~Tang.
+\newblock Isoperimetric cut on a directed graph.
+\newblock In {\em Computer Vision and Pattern Recognition (CVPR), 2010 IEEE
+  Conference on}, pages 2109--2116. IEEE, 2010.
+
+\bibitem{chung2007random}
+F.~Chung.
+\newblock Random walks and local cuts in graphs.
+\newblock {\em Linear Algebra and its applications}, 423(1):22--32, 2007.
+
+\bibitem{cox2008mds}
+M.A.A. Cox and T.F. Cox.
+\newblock Multidimensional scaling.
+\newblock {\em Handbook of data visualization}, <<missing>>:315--347, 2008.
+
+\bibitem{dhillon2004unified}
+I.~Dhillon, Y.~Guan, and B.~Kulis.
+\newblock A unified view of kernel k-means, spectral clustering and graph cuts.
+\newblock Technical report, Univ. of Texas at Austin, 2004.
+
+\bibitem{donoho2003hessian}
+D.L. Donoho and C.~Grimes.
+\newblock Hessian eigenmaps: Locally linear embedding techniques for
+  high-dimensional data.
+\newblock {\em Proceedings of the National Academy of Sciences of the United
+  States of America}, 100(10):5591, 2003.
+
+\bibitem{hadley1992efficient}
+S.W. Hadley, B.L. Mark, and A.~Vannelli.
+\newblock An efficient eigenvector approach for finding netlist partitions.
+\newblock {\em Computer-Aided Design of Integrated Circuits and Systems, IEEE
+  Transactions on}, 11(7):885--892, 1992.
+
+\bibitem{ham2004kernel}
+J.~Ham, D.D. Lee, S.~Mika, and B.~Sch{\"o}lkopf.
+\newblock A kernel view of the dimensionality reduction of manifolds.
+\newblock In {\em Proceedings of the twenty-first international conference on
+  Machine learning}, page~47. ACM, 2004.
+
+\bibitem{hendrickson1993multidimensional}
+B.~Hendrickson and R.~Leland.
+\newblock Multidimensional spectral load balancing.
+\newblock {\em Report SAND93-0074, Sandia National Laboratories, Albuquerque,
+  NM}, <<missing>>:<<missing>>, 1993.
+
+\bibitem{hu2012-matrix-calculus}
+Pili Hu.
+\newblock Matrix calculus.
+\newblock GitHub,
+  https://github.com/hupili/tutorial/tree/master/matrix-calculus, 3 2012.
+\newblock HU, Pili's tutorial collection.
+
+\bibitem{hu2012-spectral2hop}
+Pili Hu.
+\newblock Spectral techniques for community detection on 2-hop topology.
+\newblock GitHub, https://github.com/hupili/Spectral-2Hop, 4 2012.
+\newblock course project of CUHK/CSCI5160.
+
+\bibitem{hu-tutorial}
+Pili Hu.
+\newblock Tutorial collection.
+\newblock GitHub, https://github.com/hupili/tutorial, 3 2012.
+\newblock HU, Pili's tutorial collection.
+
+\bibitem{jiawei2001data}
+H.~Jiawei and M.~Kamber.
+\newblock {\em Data mining: concepts and techniques}, volume~5.
+\newblock San Francisco, CA, itd: Morgan Kaufmann, 2001.
+
+\bibitem{kannan2004clusterings}
+R.~Kannan, S.~Vempala, and A.~Vetta.
+\newblock On clusterings: Good, bad and spectral.
+\newblock {\em Journal of the ACM (JACM)}, 51(3):497--515, 2004.
+
+\bibitem{katz1953catzindex}
+L.~Katz.
+\newblock A new status index derived from sociometric analysis.
+\newblock {\em Psychometrika}, 18(1):39--43, 1953.
+
+\bibitem{lau-2012-spectral-ln}
+Lap~Chi Lau.
+\newblock Spectral algorithm lecture notes.
+\newblock http://www.cse.cuhk.edu.hk/~chi/csc5160/index.html, 2012.
+
+\bibitem{lovasz1990mixing}
+L.~Lov{\'a}sz and M.~Simonovits.
+\newblock The mixing rate of markov chains, an isoperimetric inequality, and
+  computing the volume.
+\newblock In {\em Foundations of Computer Science, 1990. Proceedings., 31st
+  Annual Symposium on}, pages 346--354. IEEE, 1990.
+
+\bibitem{maila2001random}
+M.~Maila and J.~Shi.
+\newblock A random walks view of spectral segmentation.
+\newblock {\em AI and STATISTICS (AISTATS) 2001}, <<misssing>>:<<misssing>>,
+  2001.
+
+\bibitem{ng2002spectral}
+A.Y. Ng, M.I. Jordan, and Y.~Weiss.
+\newblock On spectral clustering: Analysis and an algorithm.
+\newblock {\em Advances in neural information processing systems}, 2:849--856,
+  2002.
+
+\bibitem{roweis2000lle}
+S.T. Roweis and L.K. Saul.
+\newblock Nonlinear dimensionality reduction by locally linear embedding.
+\newblock {\em Science}, 290(5500):2323--2326, 2000.
+
+\bibitem{saul2000introduction}
+L.K. Saul and S.T. Roweis.
+\newblock An introduction to locally linear embedding.
+\newblock Technical report, NYU, 2000.
+
+\bibitem{saul2003think}
+L.K. Saul and S.T. Roweis.
+\newblock Think globally, fit locally: unsupervised learning of low dimensional
+  manifolds.
+\newblock {\em The Journal of Machine Learning Research}, 4:119--155, 2003.
+
+\bibitem{scholkopf1998kpca}
+B.~Sch{\"o}lkopf, A.~Smola, and K.R. M{\"u}ller.
+\newblock Nonlinear component analysis as a kernel eigenvalue problem.
+\newblock {\em Neural computation}, 10(5):1299--1319, 1998.
+
+\bibitem{shi2000normalized}
+J.~Shi and J.~Malik.
+\newblock Normalized cuts and image segmentation.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 22(8):888--905, 2000.
+
+\bibitem{spielman-2009spectral-ln}
+DA~Spielman.
+\newblock Spectral graph theory lecture notes.
+\newblock http://www.cs.yale.edu/homes/spielman/561/, 2011.
+
+\bibitem{tenenbaum2000isomap}
+J.B. Tenenbaum, V.~De~Silva, and J.C. Langford.
+\newblock A global geometric framework for nonlinear dimensionality reduction.
+\newblock {\em Science}, 290(5500):2319--2323, 2000.
+
+\bibitem{tipping1999probabilistic}
+M.E. Tipping and C.M. Bishop.
+\newblock Probabilistic principal component analysis.
+\newblock {\em Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, 61(3):611--622, 1999.
+
+\bibitem{von2007tutorial}
+U.~Von~Luxburg.
+\newblock A tutorial on spectral clustering.
+\newblock {\em Statistics and Computing}, 17(4):395--416, 2007.
+
+
+\bibitem{wiki_jaccard}
+	Wikipedia, Jaccard Coefficient, 
+	\url{http://en.wikipedia.org/wiki/Jaccard_index}
+	
+\bibitem{wiki_md}
+	Wikipedia, Mahalanobis Distance, 
+	\url{http://en.wikipedia.org/wiki/Mahalanobis_distance}
+	
+\bibitem{wiki_cos}
+	Wikipedia, Cosine Similarity, 
+	\url{http://en.wikipedia.org/wiki/Cosine_similarity}
+	
+\bibitem{wiki_svd}
+	Wikipedia, Singular Value Decomposition
+	\url{http://en.wikipedia.org/wiki/Singular_value_decomposition}
+	
+\bibitem{wiki_kcl_kvl}
+	Wikipedia, Kirchhoff's Circuit Laws, 
+	\url{http://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws}
+	
+\bibitem{wiki_mpinv}
+	Wikipedia, Moore-Penrose Inverse, 
+	\url{http://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_pseudoinverse}
+	
+\bibitem{wiki_mnorm}
+	Wikipedia, Matrix Norm, 
+	\url{http://en.wikipedia.org/wiki/Matrix_norm}
+	
+\bibitem{wiki_mds}
+	Wikipedia, Multi-Dimensional Scaling
+	\url{http://en.wikipedia.org/wiki/Multidimensional_scaling}
+	
+\bibitem{wiki_floyd}
+	Wikipedia, Floyd-Warshall Algorithm, 
+	\url{http://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm}\end{thebibliography}
