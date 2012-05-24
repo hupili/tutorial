@@ -1646,7 +1646,9 @@ Using the argument in \rsec{\ref{sec:pca}}, we can
 invoke the inner product version PCA on $ K $(\ralg{\ref{alg:pca_in}}). 
 When the kernel is specified as kernel function, 
 this leads to the KPCA algorithm, where inner product
-is not performed explicitly. We show the KPCA algorithm in 
+is not performed explicitly
+(nor do we have to specify $ \phi(.) $ explicitly). 
+We show the KPCA algorithm in 
 \ralg{\ref{alg:kpac}}. 
  
 \begin{algorithm}[htb]
@@ -1663,6 +1665,27 @@ is not performed explicitly. We show the KPCA algorithm in
 		\STATE $ Y = U_{\hat{d}} $
 	\end{algorithmic}
 \end{algorithm}
+
+The kernel function $ k(x_i,x_j) $ for ordinary PCA is a pure 
+inner product 
+$ k(x_i,x_j) = K_{ij} = \tran{\phi(x_i)} \phi(x_j) = \tran{x_i}x_j $. 
+More complex kernels can be constructed by specifying a valid 
+kernel function. Some examples are shown in \rtbl{\ref{tbl:kernel_ex}}.
+
+\begin{table}[htb]
+	\centering
+	\caption{Example Kernels}
+	\label{tbl:kernel_ex}
+	\begin{tabular}{c|c}
+		\hline	
+		Kernel & $ k(x_i,x_j) $ \\
+		\hline	
+		Linear & $ \tran{x_i}x_j $\\
+		Gaussion & $ \exp\{ -\frac{1}{2}\frac{||x_i-x_j||^2}{\sigma^2} \} $ \\
+		Polynomial & $ (1 + \tran{x_i}x_j)^p $ \\
+		\hline
+	\end{tabular}
+\end{table}
 
 In this article, we concern more about in-sample embedding, so 
 our way to present KPCA looks quite simple if readers have 
