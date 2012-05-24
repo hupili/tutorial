@@ -1631,9 +1631,13 @@ Kernel PCA(KPCA) and we will see in \rsec{\ref{sec:kfx}}
 the kernel framework is so general that it can 
 cover almost all the SET. 
 
-Let $X_{n \times N} = [x_1, x_2, \ldots, x_N]$ be data points; 
-$\Phi_{d \times N} = [\phi(x_1), \phi(x_2), \ldots, \phi(x_N)]$ be
-their image in the feature space. Performing covariance 
+Let $X_{n \times N} = [x_1, x_2, \ldots, x_N]$ be data points.
+The already centered image in feature space is denoted by 
+$\Phi_{d \times N} = [\phi(x_1), \phi(x_2), \ldots, \phi(x_N)]$, 
+i.e. $ \sum_i\phi(x_i)=0 $. If the feature space image 
+is not centered, the double centering procedure 
+(\rsec{\ref{sec:proximity}}) can be performed 
+before we proceed. Performing covariance 
 version algorithm(\ralg{\ref{alg:pca_cov}}) in feature space 
 may be intractable due to probably very large $ d $. Thus 
 we want to avoid the explicit construction of covariance 
