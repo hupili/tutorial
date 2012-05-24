@@ -182,6 +182,18 @@ B.~Sch{\"o}lkopf, A.~Smola, and K.R. M{\"u}ller.
 \newblock Nonlinear component analysis as a kernel eigenvalue problem.
 \newblock {\em Neural computation}, 10(5):1299--1319, 1998.
 
+\bibitem{shaw2007minimum}
+B.~Shaw and T.~Jebara.
+\newblock Minimum volume embedding.
+\newblock In {\em Proceedings of the 2007 Conference on Artificial Intelligence
+  and Statistics}. Citeseer, 2007.
+
+\bibitem{shaw2009structure}
+B.~Shaw and T.~Jebara.
+\newblock Structure preserving embedding.
+\newblock In {\em Proceedings of the 26th Annual International Conference on
+  Machine Learning}, pages 937--944. ACM, 2009.
+
 \bibitem{shi2000normalized}
 J.~Shi and J.~Malik.
 \newblock Normalized cuts and image segmentation.
@@ -208,6 +220,26 @@ M.E. Tipping and C.M. Bishop.
 U.~Von~Luxburg.
 \newblock A tutorial on spectral clustering.
 \newblock {\em Statistics and Computing}, 17(4):395--416, 2007.
+
+\bibitem{weinberger2005nonlinear}
+K.Q. Weinberger, B.D. Packer, and L.K. Saul.
+\newblock Nonlinear dimensionality reduction by semidefinite programming and
+  kernel matrix factorization.
+\newblock In {\em Proceedings of the tenth international workshop on artificial
+  intelligence and statistics}, pages 381--388, 2005.
+
+\bibitem{weinberger2004unsupervised}
+K.Q. Weinberger and L.K. Saul.
+\newblock Unsupervised learning of image manifolds by semidefinite programming.
+\newblock In {\em Computer Vision and Pattern Recognition, 2004. CVPR 2004.
+  Proceedings of the 2004 IEEE Computer Society Conference on}, volume~2, pages
+  II--988. IEEE, 2004.
+
+\bibitem{weinberger2004learning}
+K.Q. Weinberger, F.~Sha, and L.K. Saul.
+\newblock Learning a kernel matrix for nonlinear dimensionality reduction.
+\newblock In {\em Proceedings of the twenty-first international conference on
+  Machine learning}, page 106. ACM, 2004.
 
 
 \bibitem{wiki_jaccard}

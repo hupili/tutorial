@@ -503,14 +503,48 @@ is treated as normal distance, $D$. The standard MDS
 construct an embedding for $D$. For details, please see 
 \rsec{\ref{sec:isomap}}. 
 
-Although we have not found other widely used enhancements
-in literature, the discussion here do reveal other possibilities. 
+Others propose more sophisticated enhancements using optimization 
+tools. For example, Weinberger\cite{weinberger2004learning} 
+propose a Semi-Definite Programming framework to optimize the kernel 
+used in Kernel PCA(i.e. the graph weight matrix in our terminology). 
+The SDP framework is further ellaborated by Shaw\cite{shaw2007minimum}
+to induce certain embedding properties. This batch of work will be presented 
+in \rsec{\ref{sec:sde}}, \rsec{\ref{sec:mve}}, and \rsec{\ref{sec:spe}}.
+It's worth to note that the purpose of SE stage in SC, SE, and DR now comes
+to a fork. Those SDP enhanced kernels are more suitable for visualization 
+oriented embedding when input is noise-free. With the presense of noise, 
+enhancement like MVE(\rsec{\ref{sec:mve}}) may try to absorb as much energy 
+into the first few eigen values as possible, so noise is also preserved. 
+This is a different principle of DR. For example, PCA(\rsec{\ref{sec:pca}})
+has one probabilistic interpretation that the observation is composed
+of a few large components and small isotropic Guassian noise. The eigen decomposition 
+reveal those large components. The truncation of smaller eigen values 
+reduce noise in lower-dimensional embedding. 
+Although the purposes are no longer consistent, we still present them 
+because those vatiations are very new progresses in this field. After 
+the discussion in this article, we will find that the framework of 
+SET is rather simple and most variations root from the metric formulation 
+stage. Discussion in \rsec{\ref{sec:metric_hdd}} and \rsec{\ref{sec:proximity}} 
+looks pretty standardized now. The optimization based enhancements 
+do open a promising direction of exploring better SET.
+
+%Fig 3 of \cite{shaw2009structure} shows a series
+%of example embeddings when there are noise. 
+
+%Although we have not found other widely used enhancements
+%in literature, the discussion here do reveal other possibilities. 
+Besides those enhancements discussed above, we can construct many others
+as long as they have good justification. 
 For example, what will be the result if we plug in effective 
 resistance as distance and fit in later SE stage? The effective 
 resistance is closely related with commute time\cite{lau-2012-spectral-ln}. 
 If it yield good results in practice, justification will not 
 be hard. 
-
+%20120524. 
+%Sigh, I wrote this paragraph before I reach those literatures 
+%discussing communte time. It turns out people have already 
+%used it widely. The effective resistance can be shown to 
+%be Euclidean, which is a good metric. 
 
 
 % and conductance
