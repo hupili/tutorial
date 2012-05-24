@@ -511,6 +511,8 @@ resistance is closely related with commute time\cite{lau-2012-spectral-ln}.
 If it yield good results in practice, justification will not 
 be hard. 
 
+
+
 % and conductance
 
 \subsection{Spectral Embeding}
@@ -1403,7 +1405,7 @@ from machine learning community and in
 \rsec{\ref{sec:unify}} we give several unifying views
 those all of those algorithms. 
 
-\subsection{MDS}
+\subsection{Multi-Dimensional Scaling(MDS)}
 \label{sec:mds}
 
 The term Multi-Dimensional Scaling(MDS) 
@@ -1436,7 +1438,7 @@ this section, we assemble them to give the algorithm(\ralg{\ref{alg:mds}}).
 	\end{algorithmic}
 \end{algorithm}
 
-\subsection{isomap}
+\subsection{Isometric Feature Mapping(isomap)}
 \label{sec:isomap}
 
 Bearing in mind that MDS performs distance preserving 
@@ -1481,7 +1483,7 @@ comes from two assumptions:\cite{donoho2003hessian}
 	in parametric space is convex.  
 \end{itemize}
 
-\subsection{PCA}
+\subsection{Principal Component Analysis(PCA)}
 \label{sec:pca}
 
 Principal Component Analysis(PCA)\cite{bishop2006pattern} has a very long history in 
@@ -1587,7 +1589,7 @@ There are two points to note:
 	explicit kernel function because $ (\tran{X}X)_{ij} = k(x_i,x_j) $. 
 \end{itemize}
 
-\subsection{Kernel PCA}
+\subsection{Kernel PCA(KPCA)}
 \label{sec:kpca}
 
 In \cite{scholkopf1998kpca}, Sch{\"o}lkopf proposed 
@@ -1633,7 +1635,7 @@ our way to present KPCA looks quite simple if readers have
 seen related articles before. For out-of-sample embedding, 
 readers can refer to \cite{scholkopf1998kpca} and \cite{bengio2004out}. 
 
-\subsection{LLE}
+\subsection{Locally Linear Embedding(LLE)}
 \label{sec:lle}
 
 Locally Linear Embedding\cite{roweis2000lle} is a neighbourhood
@@ -1706,7 +1708,7 @@ for more details.
 	\end{algorithmic}
 \end{algorithm}
 
-\subsection{Laplacian Eigenmap}
+\subsection{Laplacian Eigenmap(LEmap)}
 \label{sec:lemap}
 
 By first glance, one may find that 
@@ -1765,7 +1767,7 @@ in \ralg{\ref{alg:lemap}}.
 	\end{algorithmic}
 \end{algorithm}
 
-\subsection{Hessian Eigenmap}
+\subsection{Hessian Eigenmap(HEmap)}
 \label{sec:hemap}
 
 Hessian Eigenmap, also called Hessian Locally Linear Embedding
@@ -1782,6 +1784,18 @@ advantages in embedding. The two assumptions of isomap
 	can arise naturally for compound shapes. Missing samples 
 	in observation space is also a problem. 
 \end{itemize} 
+
+\subsection{Semi-Definite Embedding(SDE)}
+\label{sec:sde}
+
+
+\subsection{Minimum Volume Embedding(MVE)}
+\label{sec:mve}
+
+
+\subsection{Structure Preserving Embedding(SPE)}
+\label{sec:spe}
+
 
 \section{Unifying Views}
 \label{sec:unify}
