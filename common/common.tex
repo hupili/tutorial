@@ -51,16 +51,20 @@
 %=====Matrix======
 \newcommand{\tr}[1]{\mathrm{Tr}\left[#1\right]}
 \newcommand{\tran}[1]{#1^\mathrm{T}}
+\newcommand{\her}[1]{#1^\mathrm{*}}
 %The following shorthand of matrix may be convenient. 
 %However, it is so short that I'm worried it may 
 %collide with something else. I don't use at present.
 %\newcommand{\m}[1]{\mathbf{#1}}
 \newcommand{\adj}[0]{\mathrm{adj}}
+\newcommand{\inv}[1]{#1^{-1}}
+
 
 %=====Theorem definitions=====
 \newcounter{mytheoremorder}
 \newtheorem{mydef}{Definition}
 \newtheorem{myaxm}{Axiom}
+\newtheorem{myaxm}{Lemma}
 \newtheorem{mythm}[mytheoremorder]{Theorem}
 \newtheorem{myprop}[mytheoremorder]{Proposition}
 \newtheorem{myex}{Example}
