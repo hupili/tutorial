@@ -20,7 +20,7 @@
 mkdir -p tmp
 
 declare -a LIB_BIB=( \ 
-"/home/hpl/library/database/tutorial/mylibrary.bib" 
+"$HOME/Desktop/library/database/tutorial/mylibrary.bib" 
 )
 
 rm -f tmp/all.bib
