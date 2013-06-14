@@ -467,7 +467,247 @@
 
   <section|Spectral Clustering Framework>
 
+  A bold guess:
+
+  <\itemize>
+    <item>Decomposing <math|K=\<Phi\><rsup|\<Tau\>>\<Phi\>> gives good
+    low-dimension embedding. Inner product measures similarity, i.e.
+    <math|k<around*|(|x<rsub|i>,x<rsub|j>|)>=\<phi\><rsup|\<Tau\>><around*|(|x<rsub|i>|)>\<phi\><around*|(|x<rsub|j>|)>>.
+    <math|K> is similarity matrix.
+
+    <item>In the operation, we acturally do not look at <math|\<Phi\>>.
+
+    <item>We can specify <math|K> directly and perform EVD:
+
+    <\equation*>
+      X<rsub|n\<times\>N>\<rightarrow\>K<rsub|N\<times\>N>
+    </equation*>
+
+    <item>What if we directly give a similarity measure, <math|K>, without
+    the constraint of PSD?
+  </itemize>
+
+  That leads to the general spectral clustering. <new-page>
+
+  <section|Spectral Clustering Framework>
+
+  <\enumerate>
+    <item>Get similarity matrix <math|A<rsub|N\<times\>N>> from data points
+    <math|X>. (<math|A>: affinity matrix; adjacency matrix of a graph;
+    similarity graph)
+
+    <item>EVD: <math|A=U\<Lambda\>U<rsup|T>>. Use <math|U<rsub|d>> (or
+    post-processed version, see <cite|hu2012-spectral>) as the
+    <math|d>-dimension embedding.
+
+    <item>Perform clustering on <math|d>-D embedding.<new-page>
+  </enumerate>
+
+  <section|Spectral Clustering Framework>
+
+  Review our naive spectral clustering demo:
+
+  <\enumerate>
+    <item><verbatim|epsilon = 0.7 ;>\ 
+
+    <verbatim|D = dist(X') ;>
+
+    <verbatim|A = double(D \<less\> epsilon) ;>
+
+    <item><verbatim|[V, Lambda] = eigs(A, K) ;>
+
+    <item><verbatim|[idx, c] = kmeans(V, K) ;><new-page>
+  </enumerate>
+
+  <section|Remarks: SC Fx>
+
+  <\itemize>
+    <item>We start by relaxing <math|A> (<math|K>) in KPCA.
+
+    <item>Lose PSD == Lose KPCA justification? Not exact
+
+    <\equation*>
+      A<rprime|'>=A+\<sigma\>I
+    </equation*>
+
+    <item>Real tricks: (see <cite|hu2012-spectral> section 2 for details)
+
+    <\itemize>
+      <item>How to form <math|A>?
+
+      <item>Decompose <math|A> or other variants of <math|A> (<math|L=D-A>).
+
+      <item>Use EVD result directly (e.g. <math|U>) or use a variant (e.g.
+      <math|U\<Lambda\><rsup|1/2>>).\ 
+    </itemize>
+  </itemize>
+
+  <section|Similarity graph>
+
+  Input is high dimensional data: (e.g. come in form of <math|X>)
+
+  <\itemize>
+    <item><math|k>-nearest neighbour
+
+    <item><math|\<varepsilon\>>-ball
+
+    <item>mutual <math|k>-NN
+
+    <item>complete graph (with Gaussian kernel weight)<new-page>
+  </itemize>
+
+  <section|Similarity graph>
+
+  Input is distance <math|<around*|(|D<rsup|<around*|(|2|)>>|)><rsub|i,j>> is
+  the squred distance between <math|i> and <math|j>. (may not come from raw
+  <math|x<rsub|i>>, <math|x<rsub|j>>)
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|c>|<cell|=>|<cell|<around*|[|x<rsup|\<Tau\>><rsub|1>x<rsub|1>,\<ldots\>,x<rsup|T><rsub|N>x<rsub|N>|]><rsup|\<Tau\>>>>|<row|<cell|D<rsup|<around*|(|2|)>>>|<cell|=>|<cell|c*1<rsup|\<Tau\>>+1*c<rsup|\<Tau\>>-2X<rsup|\<Tau\>>X>>|<row|<cell|J>|<cell|=>|<cell|I-<frac|1|n>1*1<rsup|\<Tau\>>>>|<row|<cell|X<rsup|\<Tau\>>X>|<cell|=>|<cell|-<frac|1|2>J*D<rsup|<around*|(|2|)>>J>>>>
+  </eqnarray*>
+
   <new-page>
+
+  <section|Similarity graph>
+
+  Input is a graph:
+
+  <\itemize>
+    <item>Just use it.
+
+    <item>Or do some enhancements. e.g. Geodesic distance. See
+    <cite|hu2012-spectral> Section 2.1.3 for some possible methods.
+  </itemize>
+
+  After get the graph (or input):
+
+  <\itemize>
+    <item>Adjacency matrix <math|A>, Laplacian matrix <math|L=D-A>.
+
+    <item>Normalized versions:\ 
+
+    <\itemize>
+      <item><math|A<rsub|left>=D<rsup|-1>*A>,
+      <math|A<rsub|sym>=D<rsup|-1/2><rsub|>A*D<rsup|-1/2>>
+
+      <item><math|L<rsub|left>=D<rsup|-1>*L>,
+      <math|L<rsub|sym>=D<rsup|-1/2><rsub|>L*D<rsup|-1/2>><new-page>
+    </itemize>
+  </itemize>
+
+  <section|EVD of the Graph>
+
+  Matrix types:
+
+  <\itemize>
+    <item>Adjacency series: Use the largest EVs.
+
+    <item>Laplacian series: Use the smallest EVs.<new-page>
+  </itemize>
+
+  <section|Remarks: SC Fx>
+
+  <\itemize>
+    <item>There are many possibilities in construction of similarity matrix
+    and the post-processing of EVD.
+
+    <item>Not all of these combinations have justifications.
+
+    <item>Once a combination is shown to working, it may not be very hard to
+    find justifications.
+
+    <item>Existing works actually starts from very different flavoured
+    formulations.
+
+    <item>Only one common property: involve EVD; aka ``spectral analysis'';
+    hence the name. <new-page>
+  </itemize>
+
+  <section|Spectral Clustering Justification>
+
+  <\itemize>
+    <item>Cut based argument (main stream; origin)
+
+    <item>Random walk escaping probability
+
+    <item>Commute time: <math|L<rsup|-1>> encodes the effective resistance.
+
+    <item>Low-rank approximation.
+
+    <item>Density estimation.
+
+    <item>Matrix perturbation.
+
+    <item>Polarization. (the demo)
+  </itemize>
+
+  See <cite|hu2012-spectral> for pointers. <new-page>
+
+  <section|Cut Justification>
+
+  Normalized Cut (Shi 2000 <cite|shi2000normalized>):
+
+  <\equation*>
+    NCut=<big|sum><rsub|i=1><rsup|K><frac|cut<around*|(|C<rsub|i>,V-C<rsub|i>|)>|vol<around*|(|C<rsub|i>|)>>
+  </equation*>
+
+  Characteristic vector for <math|C<rsub|i>>,
+  <math|\<chi\><rsub|i>=<around*|{|0,1|}><rsup|N>>:
+
+  <\equation*>
+    NCut=<big|sum><rsub|i=1><rsup|K><frac|\<chi\><rsup|\<Tau\>><rsub|i>L\<chi\><rsub|i>|\<chi\><rsup|\<Tau\>><rsub|i>D\<chi\><rsub|i>>
+  </equation*>
+
+  Relax <math|\<chi\><rsub|i>> to real value:
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|min<rsub|v<rsub|i>\<in\>\<bbb-R\><rsup|N>>>|<cell|>|<cell|<big|sum><rsub|i=1><rsup|K>v<rsup|\<Tau\>><rsub|i>L*v<rsub|i>>>|<row|<cell|s.t.>|<cell|>|<cell|v<rsup|\<Tau\>><rsub|i>D*v<rsub|i>=1>>|<row|<cell|>|<cell|>|<cell|v<rsup|\<Tau\>><rsub|i>*v<rsub|j>=0,\<forall\>i\<neq\>j>>>>
+  </eqnarray*>
+
+  This is the generalized eigenvalue problem:
+
+  <\equation*>
+    L*v=\<lambda\>D*v
+  </equation*>
+
+  Equivalent to EVD on:
+
+  <\equation*>
+    L<rsub|left>=D<rsup|-1>L
+  </equation*>
+
+  <new-page>
+
+  <section|Matrix Perturbation Justification>
+
+  <\itemize>
+    <item>When the graph is ideally separable, i.e. multiple connected
+    components, <math|A> and <math|L> have characteristic (or piecewise
+    linear) EVs.
+
+    <item>When not ideally separable but sparse cut exists, <math|A> can be
+    viewed as ideal separable matrix plus a small perturbation.
+
+    <item>Small perturbation of matrix entries leads to small perturbation of
+    EVs.\ 
+
+    <item>EVs are not too far from piecewise linear: easy to separate by
+    simple algorithms like K-Means.<new-page>
+  </itemize>
+
+  <section|Low Rank Approximation>
+
+  The similarity matrix <math|A> is generated by inner product in some
+  unknown space we want to recover. We want to minimize the recovering error:
+
+  <\equation*>
+    min<rsub|Y\<in\>\<bbb-R\><rsup|N\<times\>d>><around*|\<\|\|\>|A-Y*Y<rsup|T>|\<\|\|\>><rsup|2><rsub|F>
+  </equation*>
+
+  The standard low-rank approximation problem, which leads to EVD of
+  <math|A>. <new-page>
+
+  \;
 
   <\bibliography|bib|abbrv|spectral.bib>
     <\bib-list|1>
@@ -551,9 +791,21 @@
     <associate|auto-41|<tuple|29|30>>
     <associate|auto-42|<tuple|30|31>>
     <associate|auto-43|<tuple|31|32>>
-    <associate|auto-44|<tuple|31|33>>
-    <associate|auto-45|<tuple|32|34>>
+    <associate|auto-44|<tuple|32|33>>
+    <associate|auto-45|<tuple|33|34>>
+    <associate|auto-46|<tuple|34|?>>
+    <associate|auto-47|<tuple|35|?>>
+    <associate|auto-48|<tuple|36|?>>
+    <associate|auto-49|<tuple|37|?>>
     <associate|auto-5|<tuple|2|4>>
+    <associate|auto-50|<tuple|38|?>>
+    <associate|auto-51|<tuple|39|?>>
+    <associate|auto-52|<tuple|40|?>>
+    <associate|auto-53|<tuple|41|?>>
+    <associate|auto-54|<tuple|42|?>>
+    <associate|auto-55|<tuple|43|?>>
+    <associate|auto-56|<tuple|43|?>>
+    <associate|auto-57|<tuple|44|?>>
     <associate|auto-6|<tuple|4|5>>
     <associate|auto-7|<tuple|3|5>>
     <associate|auto-8|<tuple|5|6>>
