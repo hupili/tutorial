@@ -18,9 +18,9 @@
     <item>Preliminaries
 
     <\itemize>
-      <item>Clustering. K-means Algorithm
+      <item>Clustering: K-means Algorithm
 
-      <item>Dimensionality Reduction. PCA
+      <item>Dimensionality Reduction: PCA, KPCA.
     </itemize>
 
     <item>Spectral Clustering Framework
@@ -185,6 +185,28 @@
   The first two EVs of <math|A> are nearly perpendicular to each other if
   there are two well separable clusters. <new-page>
 
+  <section|Notations>
+
+  <\itemize>
+    <item>Data points: <math|X<rsub|n\<times\>N>=<around*|[|x<rsub|1>,x<rsub|2>,\<ldots\>,x<rsub|N>|]>>.
+    <math|N> points, each of <math|n> dimensions. Organize in columns.
+
+    <item>Feature extraction: <math|\<phi\><around*|(|x<rsub|i>|)>>. <math|d>
+    dimensional.
+
+    <item>Eigen value decomposition: <math|A=U\<Lambda\>U<rsup|\<Tau\>>>.
+    First <math|d> colums of <math|U>: <math|U<rsub|d>>.\ 
+
+    <item>Feature matrix: <math|\<Phi\><rsub|<wide|n|^>\<times\>N>=<around*|[|\<phi\><around*|(|x|)><rsub|1>,\<phi\><around*|(|x|)><rsub|2>,\<ldots\>,\<phi\><around*|(|x|)><rsub|N>|]>>
+
+    <item>Low dimension embedding: <math|Y<rsub|N\<times\>d>>. Embed <math|N>
+    points into <math|d>-dimensional space.
+
+    <item>Number of clusters: <math|K>.\ 
+  </itemize>
+
+  <new-page>
+
   <section|K-Means>
 
   <\itemize>
@@ -228,19 +250,245 @@
   We address the 4th points by transforming the data into a space where
   straight line boundary is enough. <new-page>
 
-  <section|Principal Component Analysis>
+  <section|Principle Component Analysis>
 
-  \;
+  <big-figure|<with|gr-mode|<tuple|edit|point>|gr-frame|<tuple|scale|1cm|<tuple|0.0700086gw|0.0500126gh>>|gr-geometry|<tuple|geometry|0.657131par|0.439974par|axis>|gr-grid|<tuple|empty>|gr-grid-old|<tuple|cartesian|<point|0|0>|10>|gr-edit-grid-aspect|<tuple|<tuple|axes|none>|<tuple|1|none>|<tuple|10|none>>|gr-edit-grid|<tuple|empty>|gr-edit-grid-old|<tuple|cartesian|<point|0|0>|10>|gr-point-style|round|<graphics||<point|2.4|4>|<point|3|2.7>|<point|1.5|2.6>|<point|0.7|3>|<point|1|4>|<point|3|4>|<point|2.3|2.6>|<point|2|2>|<with|point-style|round|<point|4.6|2.6>>|<with|point-style|round|<point|5.5|2.7>>|<with|point-style|round|<point|6.4|1.5>>|<with|point-style|round|<point|6.4|2.2>>|<with|point-style|round|<point|6|2>>|<with|point-style|round|<point|5|1.7>>|<with|point-style|round|<point|6.4|1.5>>|<with|point-style|round|<point|6.8|1>>|<with|point-style|round|<point|5|0.5>>|<with|point-style|round|<point|4|1>>|<with|point-style|round|<point|6.4|1>>|<with|color|red|<line|<point|-0.257709|4.62773>|<point|7.48741566344755|0.0210345283767694>>>|<with|color|blue|dash-style|11100|<line|<point|2.4|4>|<point|1.95837797346617|3.30963141940909>>>|<with|color|blue|dash-style|11100|<line|<point|3|4>|<point|2.37991951151728|3.05890420986451>>>|<with|color|blue|dash-style|11100|<line|<point|2.3|2.6>|<point|2.55852987920237|2.95266917714993>>>|<with|color|blue|dash-style|11100|<line|<point|2|2>|<point|2.73815306374658|2.84583173465613>>>|<with|color|blue|dash-style|11100|<line|<point|1.5|2.6>|<point|1.95837797346617|3.30963141940909>>>|<with|color|blue|dash-style|11100|<line|<point|0.7|3>|<point|1.27820793785122|3.71418736384582>>>|<with|color|blue|dash-style|11100|<line|<point|4.6|2.6>|<point|4.16035907673022|1.99992281976841>>>|<with|color|blue|dash-style|11100|<line|<point|5.5|2.7>|<point|4.74563534096971|1.65180840802175>>>|<with|color|blue|dash-style|11100|<line|<point|4|1>|<point|4.51947547746622|1.78632523820026>>>|<with|color|blue|dash-style|11100|<line|<point|5|1.7>|<point|4.87591599787085|1.57431923408772>>>|<with|color|blue|dash-style|11100|<line|<point|6|2>|<point|5.49192439230714|1.20792576665599>>>|<with|color|blue|dash-style|11100|<line|<point|6.4|2.2>|<point|5.6802652921187|1.09590314494429>>>|<with|color|blue|dash-style|11100|<line|<point|5|0.5>|<point|5.49192439230714|1.20792576665599>>>|<with|color|blue|dash-style|11100|<line|<point|6.4|1.5>|<point|5.98828638160041|0.91269636393836>>>|<with|color|blue|dash-style|11100|<line|<point|6.4|1>|<point|6.20695802802493|0.782633424072419>>>|<with|color|blue|dash-style|11100|<line|<point|6.8|1>|<point|6.51558731449733|0.59906489571643>>>|<with|color|blue|dash-style|11100|<line|<point|5.43151|6.85992>|<point|7.10368434978172|6.85991864003175>>>|<with|color|red|<line|<point|5.47384|6.07675>|<point|7.10368434978172|6.07674626273317>>>|<with|color|none|<point|5.62201|5.42057>>|<with|point-style|round|<point|6.80735|5.37824>>|<text-at|Data|<point|7.69635533800767|5.08190567535388>>|<text-at|PC|<point|7.7171130845736|5.80291705252017>>|<text-at|Error|<point|7.7268833097885|6.52392842968647>>>>|Error
+  minimization formulation><new-page>
+
+  <section|Principle Component Analysis>
+
+  Assume <math|x<rsub|i>> is already <strong|centered> (easy to preprocess).
+  Project points onto the space spanned by <math|U<rsub|n\<times\>d>> with
+  minimum errors:
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|min<rsub|U\<in\>\<bbb-R\><rsup|n\<times\>d>>>|<cell|>|<cell|J<around*|(|U|)>=<big|sum><rsub|i=1><rsup|N><around*|\<\|\|\>|U*U<rsup|\<Tau\>>x<rsub|i>-x<rsub|i>|\<\|\|\>><rsup|2>>>|<row|<cell|s.t.>|<cell|>|<cell|U<rsup|\<Tau\>>U=I>>>>
+  </eqnarray*>
+
+  <new-page>
+
+  <section|Principle Component Analysis>
+
+  Transform to trace maximization:
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|max<rsub|U\<in\>\<bbb-R\><rsup|n\<times\>d>>>|<cell|>|<cell|Tr<around*|[|U<rsup|\<Tau\>><around*|(|X*X<rsup|\<Tau\>>|)>U|]>>>|<row|<cell|s.t.>|<cell|>|<cell|U<rsup|\<Tau\>>U=I>>>>
+  </eqnarray*>
+
+  Standard problem in matrix theory:
+
+  <\itemize>
+    <item>Solution of <math|U> is given by the largest <math|d> eigen vectors
+    of <math|X*X<rsup|\<Tau\>>> (those corresponding to largest eigen
+    values). i.e. <math|X*X<rsup|\<Tau\>>U=U\<Lambda\>>.\ 
+
+    <item>Usually denote <math|\<Sigma\><rsub|n\<times\>n>=X*X<rsup|\<Tau\>>>,
+    because <math|X*X<rsup|\<Tau\>>> can be interpreted as the covariance of
+    variables (<math|n> variables).<new-page>\ 
+  </itemize>
+
+  <section|Principle Component Analysis>
+
+  About <math|U*U<rsup|\<Tau\>>x<rsub|i>>:
+
+  <\itemize>
+    <item><math|x<rsub|i>>: the data points in original <math|n> dimensional
+    space.
+
+    <item><math|U<rsub|n\<times\>d>>: the <math|d> dimensional space (axis)
+    <strong|expressed> using the coordinates of original <math|n>-D space. --
+    <strong|Principle Axis>.
+
+    <item><math|U<rsup|\<Tau\>>x<rsub|i>>: the coordinates of
+    <math|x<rsub|i>> in <math|d>-dimensional space; <math|d>-dimensional
+    <strong|embedding>; the projection of <math|x<rsub|i>> to <math|d>-D
+    space <strong|expressed> in <math|d>-D space. -- <strong|Principle
+    Component>.\ 
+
+    <item><math|U*U<rsup|\<Tau\>>x<rsub|i>>: the projection of
+    <math|x<rsub|i>> to <math|d>-D space expressed in <math|n>-D
+    space.<new-page>
+  </itemize>
+
+  <section|Principle Component Analysis>
+
+  From principle axis to principle component:
+
+  <\itemize>
+    <item>One data point: <math|U<rsup|\<Tau\>>x<rsub|i>>
+
+    <item>Matrix form: <math|<around*|(|Y<rsup|\<Tau\>>|)><rsup|><rsub|d\<times\>N>=U<rsup|\<Tau\>>X>
+  </itemize>
+
+  Relation between covariance and similarity:
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|<around*|(|X<rsup|\<Tau\>>X*|)>Y>|<cell|=>|<cell|X<rsup|\<Tau\>>X*<around*|(|U<rsup|\<Tau\>>X|)><rsup|\<Tau\>>>>|<row|<cell|>|<cell|=>|<cell|X<rsup|\<Tau\>>X*X<rsup|\<Tau\>>U>>|<row|<cell|>|<cell|=>|<cell|X<rsup|\<Tau\>>U*\<Lambda\>>>|<row|<cell|>|<cell|=>|<cell|Y\<Lambda\>>>>>
+  </eqnarray*>
+
+  Observation: <math|Y> is the eigen vectors of <math|X<rsup|\<Tau\>>X>.
+  <new-page>
+
+  <section|Principle Component Analysis>
+
+  Two operational approaches:
+
+  <\itemize>
+    <item>Decompose <math|<around*|(|X*X<rsup|\<Tau\>>|)><rsub|n\<times\>n>>
+    and Let <math|<around*|(|Y<rsup|\<Tau\>>|)><rsup|><rsub|d\<times\>N>=U<rsup|\<Tau\>>X>.\ 
+
+    <item>Decompose <math|<around*|(|X<rsup|\<Tau\>>X|)><rsub|N\<times\>N>*>
+    and directly get <math|Y>.
+  </itemize>
+
+  Implications:
+
+  <\itemize>
+    <item>Choose the smaller size one in practice.
+
+    <item><math|X<rsup|\<Tau\>>X> hint that we can do more with the
+    structure.
+  </itemize>
+
+  Remarks:
+
+  <\itemize>
+    <item>Principle components are what we want in most cases. i.e. <math|Y>.
+    i.e. <math|d>-dimension embedding. e.g. Can do clustering on coordinates
+    given by <math|Y>. <new-page>
+  </itemize>
+
+  <section|Kernel PCA>
+
+  Settings:
+
+  <\itemize>
+    <item>A feature extraction function:
+
+    <\equation*>
+      \<phi\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|<wide|n|^>>
+    </equation*>
+
+    original <math|n> dimension features. Map to <math|<wide|n|^>> dimension.
+
+    <item>Matrix organization:
+
+    <\equation*>
+      \<Phi\><rsub|<wide|n|^>\<times\>N>=<around*|[|\<phi\><around*|(|x|)><rsub|1>,\<phi\><around*|(|x|)><rsub|2>,\<ldots\>,\<phi\><around*|(|x|)><rsub|N>|]>
+    </equation*>
+
+    <item>Now <math|\<Phi\>> is the ``data points'' in the formulation of
+    PCA. Try to embed them into <math|d>-dimensions.<new-page>
+  </itemize>
+
+  <section|Kernel PCA>
+
+  According to the analysis of PCA, we can operate on:
+
+  <\itemize>
+    <item><math|<around*|(|\<Phi\>\<Phi\><rsup|\<Tau\>>|)><rsub|<wide|n|^>\<times\><wide|n|^>>>:
+    the covariance matrix of features
+
+    <item><math|<around*|(|\<Phi\><rsup|\<Tau\>>\<Phi\>|)><rsub|N\<times\>N>>:
+    the similarity/ affinity matrix (in spectral clustering language); the
+    gram/ kernal matrix (in keneral PCA language).
+  </itemize>
+
+  The observation:
+
+  <\itemize>
+    <item><math|<wide|n|^>> can be very large. e.g.
+    <math|\<phi\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|\<infty\>>>
+
+    <item><math|<around*|(|\<Phi\><rsup|\<Tau\>>\<Phi\>|)><rsub|i,j>=\<phi\><rsup|\<Tau\>><around*|(|x<rsub|i>|)>\<phi\><around*|(|x<rsub|j>|)>>.
+    Don't need explict <math|\<phi\>>; only need
+    <math|k<around*|(|x<rsub|i>,x<rsub|j>|)>=\<phi\><rsup|\<Tau\>><around*|(|x<rsub|i>|)>\<phi\><around*|(|x<rsub|j>|)>>.<new-page>
+  </itemize>
+
+  <section|Kernel PCA>
+
+  <math|k<around*|(|x<rsub|i>,x<rsub|j>|)>=\<phi\><rsup|\<Tau\>><around*|(|x<rsub|i>|)>\<phi\><around*|(|x<rsub|j>|)>>
+  is the ``kernel''. One important property: by definition,\ 
+
+  <\itemize>
+    <item><math|k<around*|(|x<rsub|i>,x<rsub|j>|)>> is a positive
+    semidefinite function.
+
+    <item><math|K> is a positive semidefinite matrix.
+  </itemize>
+
+  Some example kernals:
+
+  <\itemize>
+    <item>Linear: <math|k<around*|(|x<rsub|i>,x<rsub|j>|)>=x<rsup|\<Tau\>><rsub|i>x<rsub|j>>.
+    Degrade to PCA.\ 
+
+    <item>Polynomial: <math|k<around*|(|x<rsub|i>,x<rsub|j>|)>=<around*|(|1+x<rsup|\<Tau\>><rsub|i>x<rsub|j>|)><rsup|p>>
+
+    <item>Gaussion: <math|k<around*|(|x<rsub|i>,x<rsub|j>|)>=e<rsup|-<frac|<around*|\<\|\|\>|x<rsub|i>-x<rsub|j>|\<\|\|\>><rsup|2>|2\<sigma\><rsup|2>>>><new-page>
+  </itemize>
+
+  <section|Remarks: KPCA>
+
+  <\itemize>
+    <item>Avoid explicit high dimension (maybe infinite) feature
+    construction.
+
+    <item>Enable one research direction: kernel engineering.
+
+    <item>The above discussion <strong|assume <math|\<Phi\>> is centered>!
+    See Bishop 2006 <cite|bishop2006pattern> for how to center this matrix
+    (using only kernel function). (or ``double centering'' technique in
+    <cite|hu2012-spectral>)
+
+    <item>Out of sample embedding is the real difficulty, see Bengio 2004
+    <cite|bengio2004out>.<new-page>
+  </itemize>
+
+  <section|Review: PCA and KPCA>
+
+  <\itemize>
+    <item>Minimum error formulation of PCA
+
+    <item>Two equivalent implementation approaches:
+
+    <\itemize>
+      <item>covariance matrix
+
+      <item>similarity matrix
+    </itemize>
+
+    <item>Similarity matrix is more convenient to manipulate and leads to
+    KPCA.
+
+    <item>Kernel is Positive Semi-Definite (PSD) by definition.
+    <math|K=\<Phi\><rsup|\<Tau\>>\<Phi\>> <new-page>
+  </itemize>
+
+  <section|Spectral Clustering Framework>
+
+  <new-page>
 
   <\bibliography|bib|abbrv|spectral.bib>
     <\bib-list|1>
-      <bibitem*|1><label|bib-brand2003unifying>M.<nbsp>Brand and
+      <bibitem*|1><label|bib-bengio2004out>Y.<nbsp>Bengio, J.<nbsp>Paiement,
+      P.<nbsp>Vincent, O.<nbsp>Delalleau, N.<nbsp>Le<nbsp>Roux, and
+      M.<nbsp>Ouimet. <newblock>Out-of-sample extensions for lle, isomap,
+      mds, eigenmaps, and spectral clustering.
+      <newblock><with|font-shape|italic|Advances in neural information
+      processing systems>, 16:177--184, 2004.
+
+      <bibitem*|2><label|bib-bishop2006pattern>C.<nbsp>Bishop.
+      <newblock><with|font-shape|italic|Pattern recognition and machine
+      learning>, volume<nbsp>4. <newblock>springer New York, 2006.
+
+      <bibitem*|3><label|bib-brand2003unifying>M.<nbsp>Brand and
       K.<nbsp>Huang. <newblock>A unifying theorem for spectral embedding and
       clustering. <newblock>In <with|font-shape|italic|Proceedings of the
       Ninth International Workshop on Artificial Intelligence and
       Statistics>, 2003.
 
-      <bibitem*|2><label|bib-hu2012-spectral>P.<nbsp>Hu. <newblock>Spectral
+      <bibitem*|4><label|bib-hu2012-spectral>P.<nbsp>Hu. <newblock>Spectral
       clustering survey, 5 2012.
     </bib-list>
   </bibliography>
@@ -288,18 +536,32 @@
     <associate|auto-28|<tuple|17|18>>
     <associate|auto-29|<tuple|18|19>>
     <associate|auto-3|<tuple|1|3>>
-    <associate|auto-30|<tuple|19|?>>
-    <associate|auto-31|<tuple|19|?>>
-    <associate|auto-32|<tuple|20|?>>
-    <associate|auto-33|<tuple|17|?>>
+    <associate|auto-30|<tuple|19|20>>
+    <associate|auto-31|<tuple|20|21>>
+    <associate|auto-32|<tuple|12|21>>
+    <associate|auto-33|<tuple|21|22>>
+    <associate|auto-34|<tuple|22|23>>
+    <associate|auto-35|<tuple|23|24>>
+    <associate|auto-36|<tuple|24|25>>
+    <associate|auto-37|<tuple|25|26>>
+    <associate|auto-38|<tuple|26|27>>
+    <associate|auto-39|<tuple|27|28>>
     <associate|auto-4|<tuple|3|4>>
+    <associate|auto-40|<tuple|28|29>>
+    <associate|auto-41|<tuple|29|30>>
+    <associate|auto-42|<tuple|30|31>>
+    <associate|auto-43|<tuple|31|32>>
+    <associate|auto-44|<tuple|31|33>>
+    <associate|auto-45|<tuple|32|34>>
     <associate|auto-5|<tuple|2|4>>
     <associate|auto-6|<tuple|4|5>>
     <associate|auto-7|<tuple|3|5>>
     <associate|auto-8|<tuple|5|6>>
     <associate|auto-9|<tuple|4|6>>
-    <associate|bib-brand2003unifying|<tuple|1|18>>
-    <associate|bib-hu2012-spectral|<tuple|2|18>>
+    <associate|bib-bengio2004out|<tuple|1|33>>
+    <associate|bib-bishop2006pattern|<tuple|2|33>>
+    <associate|bib-brand2003unifying|<tuple|3|33>>
+    <associate|bib-hu2012-spectral|<tuple|4|33>>
     <associate|bib-hu2012-spectral2hop|<tuple|1|15>>
     <associate|footnote-1|<tuple|1|?>>
     <associate|footnote-2|<tuple|2|?>>
@@ -314,6 +576,12 @@
       hu2012-spectral
 
       brand2003unifying
+
+      bishop2006pattern
+
+      hu2012-spectral
+
+      bengio2004out
     </associate>
     <\associate|figure>
       <tuple|normal|Abstract your target using feature
@@ -351,7 +619,10 @@
       </tuple|<pageref|auto-24>>
 
       <tuple|normal|Even better after projecting to unit circle (not used in
-      our sample but more applicable [<write|bib|brand2003unifying><reference|bib-brand2003unifying>])|<pageref|auto-26>>
+      our sample but more applicable, Brand 2003
+      [<write|bib|brand2003unifying><reference|bib-brand2003unifying>])|<pageref|auto-26>>
+
+      <tuple|normal|Error minimization formulation|<pageref|auto-32>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Outline>
@@ -418,13 +689,73 @@
       of Preprocessing> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-27><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Notations>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-28><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Thanks>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|K-Means>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-29><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Remarks:
+      K-Means> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-30><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Principle
+      Component Analysis> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-31><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Principle
+      Component Analysis> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-33><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Principle
+      Component Analysis> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-34><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Principle
+      Component Analysis> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-35><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Principle
+      Component Analysis> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-36><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Principle
+      Component Analysis> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-37><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Kernel
+      PCA> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-38><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Kernel
+      PCA> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-39><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Kernel
+      PCA> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-40><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Remarks:
+      KPCA> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-41><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Review:
+      PCA and KPCA> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-42><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
+      Clustering Framework> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-43><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-44><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Thanks>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-45><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
