@@ -30,7 +30,7 @@
     <item>Ohter Spectral Embedding Techniques
   </itemize>
 
-  Main reference: <cite|hu2012-spectral> <new-page>
+  Main reference: Hu 2012 <cite|hu2012-spectral> <new-page>
 
   <section|Clustering Problem>
 
@@ -132,12 +132,32 @@
     <item>High to low: dimensionality reduction, low dimension embedding.
     e.g. Spectral clustering.\ 
 
-    <item>Low to high. e.g. SVM
+    <item>Low to high. e.g. Support Vector Machine (SVM)<new-page>
   </itemize>
 
   <section|Secrets of Preprocessing>
 
-  \;
+  <\big-figure|<image|plot/sc_sample_adj.eps|11cm|||>>
+    The similarity graph: connect to <math|\<varepsilon\>>-ball.
+
+    <\verbatim>
+      D = dist(X'); A = double(D \<less\> epsilon);
+    </verbatim>
+  </big-figure>
+
+  <section|Secrets of Preprocessing>
+
+  <\big-figure|<image|plot/sc_sample_2d_embed.eps|11cm|||>>
+    2-D embedding using largest 2 eigenvectors
+
+    <verbatim|[V, Lambda] = eigs(A, K);>
+  </big-figure>
+
+  <section|Secrets of Preprocessing>
+
+  <big-figure|<image|plot/sc_sample_2d_embed_unit_circle.eps|11cm|||>|Even
+  better after projecting to unit circle (not used in our sample but more
+  applicable, Brand 2003 <cite|brand2003unifying>)><new-page>
 
   <section|Secrets of Preprocessing>
 
@@ -165,9 +185,62 @@
   The first two EVs of <math|A> are nearly perpendicular to each other if
   there are two well separable clusters. <new-page>
 
+  <section|K-Means>
+
+  <\itemize>
+    <item>Initialize <math|m<rsub|1>,\<ldots\>,m<rsub|K>> centers
+
+    <item>Iterate until convergence:
+
+    <\itemize>
+      <item>Cluster assignment: <math|C<rsub|i>=arg
+      min<rsub|j><around*|\<\|\|\>|x<rsub|i>-m<rsub|j>|\<\|\|\>>> for all
+      data points, <math|1\<leqslant\>i\<leqslant\>N>.\ 
+
+      <item>Update clustering: <math|S<rsub|j>=<around*|{|i:C<rsub|i>=j|}>,1\<leqslant\>j\<leqslant\>K>
+
+      <item>Update centers: <math|m<rsub|j>=<frac|1|<around*|\||S<rsub|j>|\|>><big|sum><rsub|i\<in\>S<rsub|j>>x<rsub|i>>
+    </itemize>
+  </itemize>
+
+  <new-page>
+
+  <section|Remarks: K-Means>
+
+  <\enumerate>
+    <item>A chiken and egg problem.
+
+    <item>How to initialize centers?
+
+    <item>Determine superparameter <math|K>?
+
+    <item>Decision boundary is a straight line:
+
+    <\itemize>
+      <item><math|C<rsub|i>=arg min<rsub|j><around*|\<\|\|\>|x<rsub|i>-m<rsub|j>|\<\|\|\>>>
+
+      <item><math|<around*|\<\|\|\>|x-m<rsub|j>|\<\|\|\>>=<around*|\<\|\|\>|x-m<rsub|k>|\<\|\|\>>>
+
+      <item><math|m<rsub|i><rsup|\<Tau\>>m<rsub|i>-m<rsub|j><rsup|\<Tau\>>m<rsub|j>=2x<rsup|\<Tau\>><around*|(|m<rsub|i>-m<rsub|j>|)>>
+    </itemize>
+  </enumerate>
+
+  We address the 4th points by transforming the data into a space where
+  straight line boundary is enough. <new-page>
+
+  <section|Principal Component Analysis>
+
+  \;
+
   <\bibliography|bib|abbrv|spectral.bib>
     <\bib-list|1>
-      <bibitem*|1><label|bib-hu2012-spectral>P.<nbsp>Hu. <newblock>Spectral
+      <bibitem*|1><label|bib-brand2003unifying>M.<nbsp>Brand and
+      K.<nbsp>Huang. <newblock>A unifying theorem for spectral embedding and
+      clustering. <newblock>In <with|font-shape|italic|Proceedings of the
+      Ninth International Workshop on Artificial Intelligence and
+      Statistics>, 2003.
+
+      <bibitem*|2><label|bib-hu2012-spectral>P.<nbsp>Hu. <newblock>Spectral
       clustering survey, 5 2012.
     </bib-list>
   </bibliography>
@@ -206,17 +279,27 @@
     <associate|auto-2|<tuple|2|3>>
     <associate|auto-20|<tuple|12|13>>
     <associate|auto-21|<tuple|13|14>>
-    <associate|auto-22|<tuple|14|15>>
-    <associate|auto-23|<tuple|14|16>>
-    <associate|auto-24|<tuple|15|?>>
+    <associate|auto-22|<tuple|9|14>>
+    <associate|auto-23|<tuple|14|15>>
+    <associate|auto-24|<tuple|10|15>>
+    <associate|auto-25|<tuple|15|16>>
+    <associate|auto-26|<tuple|11|16>>
+    <associate|auto-27|<tuple|16|17>>
+    <associate|auto-28|<tuple|17|18>>
+    <associate|auto-29|<tuple|18|19>>
     <associate|auto-3|<tuple|1|3>>
+    <associate|auto-30|<tuple|19|?>>
+    <associate|auto-31|<tuple|19|?>>
+    <associate|auto-32|<tuple|20|?>>
+    <associate|auto-33|<tuple|17|?>>
     <associate|auto-4|<tuple|3|4>>
     <associate|auto-5|<tuple|2|4>>
     <associate|auto-6|<tuple|4|5>>
     <associate|auto-7|<tuple|3|5>>
     <associate|auto-8|<tuple|5|6>>
     <associate|auto-9|<tuple|4|6>>
-    <associate|bib-hu2012-spectral|<tuple|1|15>>
+    <associate|bib-brand2003unifying|<tuple|1|18>>
+    <associate|bib-hu2012-spectral|<tuple|2|18>>
     <associate|bib-hu2012-spectral2hop|<tuple|1|15>>
     <associate|footnote-1|<tuple|1|?>>
     <associate|footnote-2|<tuple|2|?>>
@@ -229,6 +312,8 @@
   <\collection>
     <\associate|bib>
       hu2012-spectral
+
+      brand2003unifying
     </associate>
     <\associate|figure>
       <tuple|normal|Abstract your target using feature
@@ -249,6 +334,24 @@
       <tuple|normal|Standard K-Means|<pageref|auto-16>>
 
       <tuple|normal|Our Sample Spectral Clustering|<pageref|auto-18>>
+
+      <\tuple|normal>
+        The similarity graph: connect to <with|mode|<quote|math>|\<varepsilon\>>-ball.
+
+        <\with|font-family|<quote|tt>|language|<quote|verbatim>>
+          D = dist(X'); A = double(D \<less\> epsilon);
+        </with>
+      </tuple|<pageref|auto-22>>
+
+      <\tuple|normal>
+        2-D embedding using largest 2 eigenvectors
+
+        <with|font-family|<quote|tt>|language|<quote|verbatim>|[V, Lambda] =
+        eigs(A, K);>
+      </tuple|<pageref|auto-24>>
+
+      <tuple|normal|Even better after projecting to unit circle (not used in
+      our sample but more applicable [<write|bib|brand2003unifying><reference|bib-brand2003unifying>])|<pageref|auto-26>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Outline>
@@ -303,13 +406,25 @@
       of Preprocessing> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-21><vspace|0.5fn>
 
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Secrets
+      of Preprocessing> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-23><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Secrets
+      of Preprocessing> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-25><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Secrets
+      of Preprocessing> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-27><vspace|0.5fn>
+
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-22><vspace|0.5fn>
+      <no-break><pageref|auto-28><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Thanks>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-23><vspace|0.5fn>
+      <no-break><pageref|auto-29><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
