@@ -4,9 +4,9 @@ This repository collects tutorial materials constructed by HU, Pili
 
 ## Things Included
 
-    * Tutorials
-    * Source code of the documents (e.g. `.tex`, `.bbl`)
-    * Source codes of related programs. 
+   * Tutorials
+   * Source code of the documents (e.g. `.tex`, `.bbl`)
+   * Source codes of related programs. 
 
 ## Citation Notes
 
