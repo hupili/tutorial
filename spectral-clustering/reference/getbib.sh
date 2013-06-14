@@ -20,14 +20,14 @@
 mkdir -p tmp
 
 declare -a LIB_BIB=( \ 
-"/home/hpl/library/database/tutorial/mylibrary.bib" 
-"/home/hpl/library/database/data-mining/mylibrary.bib" 
-"/home/hpl/library/database/social-network/mylibrary.bib" 
-"/home/hpl/library/database/machine-learning/mylibrary.bib" 
-"/home/hpl/library/database/machine-learning/dimensionality-reduction/mylibrary.bib" 
-"/home/hpl/library/database/spectral-algorithm/mylibrary.bib" 
-"/home/hpl/library/database/spectral-algorithm/spectral-clustering/mylibrary.bib" 
-"/home/hpl/library/database/spectral-algorithm/graph-partitioning/mylibrary.bib" 
+"$HOME/Desktop/library/database/tutorial/mylibrary.bib" 
+"$HOME/Desktop/library/database/data-mining/mylibrary.bib" 
+"$HOME/Desktop/library/database/social-network/mylibrary.bib" 
+"$HOME/Desktop/library/database/machine-learning/mylibrary.bib" 
+"$HOME/Desktop/library/database/machine-learning/dimensionality-reduction/mylibrary.bib" 
+"$HOME/Desktop/library/database/spectral-algorithm/mylibrary.bib" 
+"$HOME/Desktop/library/database/spectral-algorithm/spectral-clustering/mylibrary.bib" 
+"$HOME/Desktop/library/database/spectral-algorithm/graph-partitioning/mylibrary.bib" 
 )
 
 rm -f tmp/all.bib

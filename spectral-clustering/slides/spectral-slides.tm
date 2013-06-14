@@ -30,7 +30,7 @@
     <item>Ohter Spectral Embedding Techniques
   </itemize>
 
-  <new-page>
+  Main reference: <cite|hu2012-spectral> <new-page>
 
   <section|Clustering Problem>
 
@@ -122,10 +122,22 @@
 
     <item>Preprocessing is as important as algorithms
 
-    <item>The problem looks easier in another space (the secret coming soon)
+    <item>The problem looks easier in <strong|another space> (the secret
+    coming soon)
   </itemize>
 
-  <new-page>
+  Transformation to another space:
+
+  <\itemize>
+    <item>High to low: dimensionality reduction, low dimension embedding.
+    e.g. Spectral clustering.\ 
+
+    <item>Low to high. e.g. SVM
+  </itemize>
+
+  <section|Secrets of Preprocessing>
+
+  \;
 
   <section|Secrets of Preprocessing>
 
@@ -151,9 +163,20 @@
   \;
 
   The first two EVs of <math|A> are nearly perpendicular to each other if
-  there are two well separable clusters.<new-page>
+  there are two well separable clusters. <new-page>
 
-  <section|References>
+  <\bibliography|bib|abbrv|spectral.bib>
+    <\bib-list|1>
+      <bibitem*|1><label|bib-hu2012-spectral>P.<nbsp>Hu. <newblock>Spectral
+      clustering survey, 5 2012.
+    </bib-list>
+  </bibliography>
+
+  <new-page>
+
+  <section|Thanks>
+
+  Q/A
 
   \;
 </body>
@@ -170,82 +193,123 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|2>>
-    <associate|auto-10|<tuple|6|8>>
-    <associate|auto-11|<tuple|5|8>>
+    <associate|auto-10|<tuple|6|7>>
+    <associate|auto-11|<tuple|5|7>>
     <associate|auto-12|<tuple|7|8>>
-    <associate|auto-13|<tuple|8|8>>
-    <associate|auto-14|<tuple|6|8>>
-    <associate|auto-15|<tuple|9|?>>
-    <associate|auto-16|<tuple|7|?>>
-    <associate|auto-17|<tuple|10|?>>
-    <associate|auto-18|<tuple|8|?>>
-    <associate|auto-19|<tuple|11|?>>
+    <associate|auto-13|<tuple|8|9>>
+    <associate|auto-14|<tuple|6|9>>
+    <associate|auto-15|<tuple|9|10>>
+    <associate|auto-16|<tuple|7|10>>
+    <associate|auto-17|<tuple|10|11>>
+    <associate|auto-18|<tuple|8|11>>
+    <associate|auto-19|<tuple|11|12>>
     <associate|auto-2|<tuple|2|3>>
-    <associate|auto-20|<tuple|12|?>>
-    <associate|auto-21|<tuple|13|?>>
-    <associate|auto-22|<tuple|14|?>>
-    <associate|auto-3|<tuple|1|4>>
+    <associate|auto-20|<tuple|12|13>>
+    <associate|auto-21|<tuple|13|14>>
+    <associate|auto-22|<tuple|14|15>>
+    <associate|auto-23|<tuple|14|16>>
+    <associate|auto-24|<tuple|15|?>>
+    <associate|auto-3|<tuple|1|3>>
     <associate|auto-4|<tuple|3|4>>
-    <associate|auto-5|<tuple|2|5>>
+    <associate|auto-5|<tuple|2|4>>
     <associate|auto-6|<tuple|4|5>>
-    <associate|auto-7|<tuple|3|6>>
+    <associate|auto-7|<tuple|3|5>>
     <associate|auto-8|<tuple|5|6>>
-    <associate|auto-9|<tuple|4|7>>
+    <associate|auto-9|<tuple|4|6>>
+    <associate|bib-hu2012-spectral|<tuple|1|15>>
+    <associate|bib-hu2012-spectral2hop|<tuple|1|15>>
+    <associate|footnote-1|<tuple|1|?>>
+    <associate|footnote-2|<tuple|2|?>>
+    <associate|footnr-1|<tuple|1|?>>
+    <associate|footnr-2|<tuple|2|?>>
   </collection>
 </references>
 
 <\auxiliary>
   <\collection>
+    <\associate|bib>
+      hu2012-spectral
+    </associate>
     <\associate|figure>
-      <tuple|normal|Data Scatter Plot|<pageref|auto-4>>
+      <tuple|normal|Abstract your target using feature
+      vector|<pageref|auto-3>>
 
-      <tuple|normal|Standard K-Means|<pageref|auto-6>>
+      <tuple|normal|Cluster the data points into <with|mode|<quote|math>|K>
+      (2 here) groups|<pageref|auto-5>>
 
-      <tuple|normal|Our Sample Spectral Clustering|<pageref|auto-8>>
+      <tuple|normal|Gain Insights of your data|<pageref|auto-7>>
+
+      <tuple|normal|The center is representative
+      (knowledge)|<pageref|auto-9>>
+
+      <tuple|normal|Use the knowledge for prediction|<pageref|auto-11>>
+
+      <tuple|normal|Data Scatter Plot|<pageref|auto-14>>
+
+      <tuple|normal|Standard K-Means|<pageref|auto-16>>
+
+      <tuple|normal|Our Sample Spectral Clustering|<pageref|auto-18>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Outline>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
-      Clustering Demo> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Clustering
+      Problem> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
-      Clustering Demo> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-3><vspace|0.5fn>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Clustering
+      Problem> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-4><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
-      Clustering Demo> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-5><vspace|0.5fn>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Clustering
+      Problem> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
-      Clustering Demo> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7><vspace|0.5fn>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Clustering
+      Problem> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
-      Clustering Demo> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-9><vspace|0.5fn>
-
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|sdlfksjdf>
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Clustering
+      Problem> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-10><vspace|0.5fn>
 
-      <with|par-left|<quote|1.5fn>|sldkfjsdf
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Review:
+      Clustering> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-12><vspace|0.5fn>
 
-      <with|par-left|<quote|3fn>|sdlkfj <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12>>
-
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|sdlfkjsdf>
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
+      Clustering Demo> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-13><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|sdfsd>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
+      Clustering Demo> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-15><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
+      Clustering Demo> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-17><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
+      Clustering Demo> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-19><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Review:
+      The Demo> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-20><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Secrets
+      of Preprocessing> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-21><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-14><vspace|0.5fn>
+      <no-break><pageref|auto-22><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Thanks>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-23><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
