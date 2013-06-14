@@ -707,7 +707,11 @@
   The standard low-rank approximation problem, which leads to EVD of
   <math|A>. <new-page>
 
-  \;
+  <section|Spectral Embedding Techniques>
+
+  See <cite|hu2012-spectral> for some pointers: MDS, isomap, PCA, KPCA, LLE,
+  LEmap, HEmap, SDE, MVE, SPE. The difference, as said, lies mostly in the
+  construction of <math|A>.<new-page>
 
   <\bibliography|bib|abbrv|spectral.bib>
     <\bib-list|1>
@@ -730,10 +734,13 @@
 
       <bibitem*|4><label|bib-hu2012-spectral>P.<nbsp>Hu. <newblock>Spectral
       clustering survey, 5 2012.
+
+      <bibitem*|5><label|bib-shi2000normalized>J.<nbsp>Shi and J.<nbsp>Malik.
+      <newblock>Normalized cuts and image segmentation.
+      <newblock><with|font-shape|italic|Pattern Analysis and Machine
+      Intelligence, IEEE Transactions on>, 22(8):888--905, 2000.
     </bib-list>
   </bibliography>
-
-  <new-page>
 
   <section|Thanks>
 
@@ -793,28 +800,30 @@
     <associate|auto-43|<tuple|31|32>>
     <associate|auto-44|<tuple|32|33>>
     <associate|auto-45|<tuple|33|34>>
-    <associate|auto-46|<tuple|34|?>>
-    <associate|auto-47|<tuple|35|?>>
-    <associate|auto-48|<tuple|36|?>>
-    <associate|auto-49|<tuple|37|?>>
+    <associate|auto-46|<tuple|34|35>>
+    <associate|auto-47|<tuple|35|36>>
+    <associate|auto-48|<tuple|36|37>>
+    <associate|auto-49|<tuple|37|38>>
     <associate|auto-5|<tuple|2|4>>
-    <associate|auto-50|<tuple|38|?>>
-    <associate|auto-51|<tuple|39|?>>
-    <associate|auto-52|<tuple|40|?>>
-    <associate|auto-53|<tuple|41|?>>
-    <associate|auto-54|<tuple|42|?>>
-    <associate|auto-55|<tuple|43|?>>
-    <associate|auto-56|<tuple|43|?>>
-    <associate|auto-57|<tuple|44|?>>
+    <associate|auto-50|<tuple|38|39>>
+    <associate|auto-51|<tuple|39|40>>
+    <associate|auto-52|<tuple|40|41>>
+    <associate|auto-53|<tuple|41|42>>
+    <associate|auto-54|<tuple|42|44>>
+    <associate|auto-55|<tuple|43|45>>
+    <associate|auto-56|<tuple|44|46>>
+    <associate|auto-57|<tuple|44|47>>
+    <associate|auto-58|<tuple|45|48>>
     <associate|auto-6|<tuple|4|5>>
     <associate|auto-7|<tuple|3|5>>
     <associate|auto-8|<tuple|5|6>>
     <associate|auto-9|<tuple|4|6>>
-    <associate|bib-bengio2004out|<tuple|1|33>>
-    <associate|bib-bishop2006pattern|<tuple|2|33>>
-    <associate|bib-brand2003unifying|<tuple|3|33>>
-    <associate|bib-hu2012-spectral|<tuple|4|33>>
+    <associate|bib-bengio2004out|<tuple|1|47>>
+    <associate|bib-bishop2006pattern|<tuple|2|47>>
+    <associate|bib-brand2003unifying|<tuple|3|47>>
+    <associate|bib-hu2012-spectral|<tuple|4|47>>
     <associate|bib-hu2012-spectral2hop|<tuple|1|15>>
+    <associate|bib-shi2000normalized|<tuple|5|47>>
     <associate|footnote-1|<tuple|1|?>>
     <associate|footnote-2|<tuple|2|?>>
     <associate|footnr-1|<tuple|1|?>>
@@ -834,6 +843,18 @@
       hu2012-spectral
 
       bengio2004out
+
+      hu2012-spectral
+
+      hu2012-spectral
+
+      hu2012-spectral
+
+      hu2012-spectral
+
+      shi2000normalized
+
+      hu2012-spectral
     </associate>
     <\associate|figure>
       <tuple|normal|Abstract your target using feature
@@ -1001,13 +1022,65 @@
       Clustering Framework> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-43><vspace|0.5fn>
 
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
+      Clustering Framework> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-44><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
+      Clustering Framework> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-45><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Remarks:
+      SC Fx> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-46><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Similarity
+      graph> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-47><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Similarity
+      graph> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-48><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Similarity
+      graph> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-49><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|EVD
+      of the Graph> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-50><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Remarks:
+      SC Fx> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-51><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
+      Clustering Justification> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-52><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Cut
+      Justification> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-53><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Matrix
+      Perturbation Justification> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-54><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Low
+      Rank Approximation> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-55><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
+      Embedding Techniques> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-56><vspace|0.5fn>
+
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-44><vspace|0.5fn>
+      <no-break><pageref|auto-57><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Thanks>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-45><vspace|0.5fn>
+      <no-break><pageref|auto-58><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
