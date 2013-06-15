@@ -284,7 +284,8 @@
 
     <item>Usually denote <math|\<Sigma\><rsub|n\<times\>n>=X*X<rsup|\<Tau\>>>,
     because <math|X*X<rsup|\<Tau\>>> can be interpreted as the covariance of
-    variables (<math|n> variables).<new-page>\ 
+    variables (<math|n> variables). (Again not that <math|X> is
+    centered)<new-page>\ 
   </itemize>
 
   <section|Principle Component Analysis>
@@ -519,7 +520,7 @@
     <item><verbatim|[idx, c] = kmeans(V, K) ;><new-page>
   </enumerate>
 
-  <section|Remarks: SC Fx>
+  <section|Remarks: SC Framework>
 
   <\itemize>
     <item>We start by relaxing <math|A> (<math|K>) in KPCA.
@@ -558,15 +559,19 @@
 
   <section|Similarity graph>
 
-  Input is distance <math|<around*|(|D<rsup|<around*|(|2|)>>|)><rsub|i,j>> is
-  the squred distance between <math|i> and <math|j>. (may not come from raw
-  <math|x<rsub|i>>, <math|x<rsub|j>>)
+  Input is distance. <math|<around*|(|D<rsup|<around*|(|2|)>>|)><rsub|i,j>>
+  is the squred distance between <math|i> and <math|j>. (may not come from
+  raw <math|x<rsub|i>>, <math|x<rsub|j>>)
 
   <\eqnarray*>
     <tformat|<table|<row|<cell|c>|<cell|=>|<cell|<around*|[|x<rsup|\<Tau\>><rsub|1>x<rsub|1>,\<ldots\>,x<rsup|T><rsub|N>x<rsub|N>|]><rsup|\<Tau\>>>>|<row|<cell|D<rsup|<around*|(|2|)>>>|<cell|=>|<cell|c*1<rsup|\<Tau\>>+1*c<rsup|\<Tau\>>-2X<rsup|\<Tau\>>X>>|<row|<cell|J>|<cell|=>|<cell|I-<frac|1|n>1*1<rsup|\<Tau\>>>>|<row|<cell|X<rsup|\<Tau\>>X>|<cell|=>|<cell|-<frac|1|2>J*D<rsup|<around*|(|2|)>>J>>>>
   </eqnarray*>
 
-  <new-page>
+  Remarks:
+
+  <\itemize>
+    <item>See MDS.<new-page>
+  </itemize>
 
   <section|Similarity graph>
 
@@ -605,7 +610,7 @@
     <item>Laplacian series: Use the smallest EVs.<new-page>
   </itemize>
 
-  <section|Remarks: SC Fx>
+  <section|Remarks: SC Framework>
 
   <\itemize>
     <item>There are many possibilities in construction of similarity matrix
@@ -631,6 +636,7 @@
     <item>Random walk escaping probability
 
     <item>Commute time: <math|L<rsup|-1>> encodes the effective resistance.
+    (where <math|U\<Lambda\><rsup|-1/2>> come from)
 
     <item>Low-rank approximation.
 
@@ -705,7 +711,13 @@
   </equation*>
 
   The standard low-rank approximation problem, which leads to EVD of
-  <math|A>. <new-page>
+  <math|A>:
+
+  <\equation*>
+    Y=U\<Lambda\><rsup|1/2>
+  </equation*>
+
+  \ <new-page>
 
   <section|Spectral Embedding Techniques>
 
@@ -747,6 +759,124 @@
   Q/A
 
   \;
+
+  \;
+
+  \;
+
+  Some supplementary slides for details are attached.
+
+  \;
+
+  <new-page>
+
+  <section|SVD and EVD>
+
+  Definitions of Singular Value Decomposition (SVD):
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|X<rsub|n\<times\>N>>|<cell|=>|<cell|U<rsub|n\<times\>k>\<Sigma\><rsub|k\<times\>k>V<rsup|\<Tau\>><rsub|N\<times\>k>>>>>
+  </eqnarray*>
+
+  Definitions of Eigen Value Decomposition (EVD):
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|A>|<cell|=>|<cell|X<rsup|\<Tau\>>X>>|<row|<cell|A>|<cell|=>|<cell|U\<Lambda\>U<rsup|\<Tau\>>>>>>
+  </eqnarray*>
+
+  Relations:
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|X<rsup|\<Tau\>>X>|<cell|=>|<cell|V\<Sigma\><rsup|2>V<rsup|\<Tau\>>>>|<row|<cell|X*X<rsup|\<Tau\>>>|<cell|=>|<cell|U\<Sigma\><rsup|2>U<rsup|\<Tau\>>>>>>
+  </eqnarray*>
+
+  Remarks:
+
+  <\itemize>
+    <item>SVD requires <math|U<rsup|\<Tau\>>U=I>, <math|V<rsup|\<Tau\>>V=I>
+    and <math|\<sigma\><rsub|i>\<geqslant\>0>
+    (<math|\<Sigma\>=diag<around*|(|\<sigma\><rsub|1>,\<ldots\>,\<sigma\><rsub|N>|)>>).
+    This is to guarantee the uniqueness of solution.
+
+    <item>EVD does not have constraints, any <math|U> and <math|\<Lambda\>>
+    satisfying <math|A*U=U\<Lambda\>> is OK. The requirement of
+    <math|U<rsup|\<Tau\>>U=I> is also to guarantee uniqueness of solution
+    (e.g. PCA). Another benefit is the numerical stability of subspace
+    spanned by <math|U>: orthogonal layout is more error resilient.
+
+    <item>The computation of SVD is done via EVD.\ 
+
+    <item>Watch out the terms and the object they refer to.<new-page>
+  </itemize>
+
+  <section|Out of Sample Embedding>
+
+  <\itemize>
+    <item>New data point <math|x\<in\>\<bbb-R\><rsup|n>> that is not in
+    <math|X>. How to find the lower dimension embedding, i.e.
+    <math|y\<in\>\<bbb-R\><rsup|d>>.
+
+    <item>In PCA, we have principle axis <math|U>
+    (<math|X*X<rsup|\<Tau\>>=U\<Lambda\>U<rsup|T>>). Out of sample embedding
+    is simple: <math|y=U<rsup|\<Tau\>>x>.
+
+    <item><math|U<rsub|n\<times\>d>> is actually a <strong|compact
+    representation of knowledge>.\ 
+
+    <item>In KPCA and different variants of SC, we operate on similarity
+    graph and do not have such compact representation. It is thus hard to
+    explicitly the out of sample embedding result.
+
+    <item>See <cite|bengio2004out> for some researches on this. <new-page>
+  </itemize>
+
+  <section|Gaussian Kernel>
+
+  The gaussian kernel: (Let <math|\<tau\>=<frac|1|2\<sigma\><rsup|2>>>)
+
+  <\equation*>
+    k<around*|(|x<rsub|i>,x<rsub|j>|)>=e<rsup|-<frac|<around*|\<\|\|\>|x<rsub|i>-x<rsub|j>|\<\|\|\>><rsup|2>|2\<sigma\><rsup|2>>>=e<rsup|-\<tau\><around*|\<\|\|\>|x<rsub|i>-x<rsub|j>|\<\|\|\>><rsup|2>>
+  </equation*>
+
+  Use Taylor expansion:
+
+  <\equation*>
+    e<rsup|x>=<big|sum><rsub|k=0><rsup|\<infty\>><frac|1|k!>x<rsup|k>
+  </equation*>
+
+  Rewrite the kernel:
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|k<around*|(|x<rsub|i>,x<rsub|j>|)>>|<cell|=>|<cell|e<rsup|-\<tau\><around*|(|x<rsub|i>-x<rsub|j>|)><rsup|\<Tau\>><around*|(|x<rsub|i>-x<rsub|j>|)>>>>|<row|<cell|>|<cell|=>|<cell|e<rsup|-\<tau\>x<rsup|\<Tau\>><rsub|i>x<rsub|i>>\<cdot\>e<rsup|-\<tau\>x<rsup|\<Tau\>><rsub|j>x<rsub|j>>\<cdot\>e<rsup|2\<tau\>x<rsup|\<Tau\>><rsub|i>x<rsub|j>>>>>>
+  </eqnarray*>
+
+  Focus on the last part:
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|e<rsup|2\<tau\>x<rsup|\<Tau\>><rsub|i>x<rsub|j>>>|<cell|=>|<cell|<big|sum><rsub|k=0><rsup|\<infty\>><frac|1|k!><around*|(|2\<tau\>x<rsup|\<Tau\>><rsub|i>x<rsub|j>|)><rsup|k>>>>>
+  </eqnarray*>
+
+  Hard to write out the form when <math|x<rsub|i>\<in\>\<bbb-R\><rsup|n>,n\<gtr\>1>.
+  We demo the case when <math|n=1>. <math|x<rsub|i>> and <math|x<rsub|j>> are
+  now single variable:
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|e<rsup|2\<tau\>x<rsup|\<Tau\>><rsub|i>x<rsub|j>>>|<cell|=>|<cell|<big|sum><rsub|k=0><rsup|\<infty\>><frac|1|k!><around*|(|2\<tau\>|)><rsup|k>x<rsup|k><rsub|i>x<rsup|k><rsub|j>>>|<row|<cell|>|<cell|=>|<cell|<big|sum><rsub|k=0><rsup|\<infty\>>c<around*|(|k|)>\<cdot\>x<rsup|k><rsub|i>x<rsup|k><rsub|j>>>>>
+  </eqnarray*>
+
+  The feature vector is:
+
+  <\equation*>
+    \<phi\><around*|(|x|)>=e<rsup|-\<tau\>x<rsup|2>><around*|[|<sqrt|c<around*|(|0|)>>,<sqrt|c<around*|(|1|)>>x,<sqrt|c<around*|(|2|)>>x<rsup|2>,\<ldots\>,<sqrt|c<around*|(|k|)>>x<rsup|k>,\<ldots\>|]>
+  </equation*>
+
+  Verify that:
+
+  <\equation*>
+    k<around*|(|x<rsub|i>,x<rsub|j>|)>=\<phi\><around*|(|x<rsub|i>|)>\<cdot\>\<phi\><around*|(|x<rsub|j>|)>
+  </equation*>
+
+  <new-page>
 </body>
 
 <\initial>
@@ -814,7 +944,10 @@
     <associate|auto-56|<tuple|44|46>>
     <associate|auto-57|<tuple|44|47>>
     <associate|auto-58|<tuple|45|48>>
+    <associate|auto-59|<tuple|46|49>>
     <associate|auto-6|<tuple|4|5>>
+    <associate|auto-60|<tuple|47|51>>
+    <associate|auto-61|<tuple|48|52>>
     <associate|auto-7|<tuple|3|5>>
     <associate|auto-8|<tuple|5|6>>
     <associate|auto-9|<tuple|4|6>>
@@ -855,6 +988,8 @@
       shi2000normalized
 
       hu2012-spectral
+
+      bengio2004out
     </associate>
     <\associate|figure>
       <tuple|normal|Abstract your target using feature
@@ -1031,7 +1166,7 @@
       <no-break><pageref|auto-45><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Remarks:
-      SC Fx> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      SC Framework> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-46><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Similarity
@@ -1051,7 +1186,7 @@
       <no-break><pageref|auto-50><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Remarks:
-      SC Fx> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      SC Framework> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-51><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
@@ -1081,6 +1216,18 @@
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Thanks>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-58><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|SVD
+      and EVD> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-59><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Out
+      of Sample Embedding> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-60><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-61><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
