@@ -856,7 +856,7 @@
     <tformat|<table|<row|<cell|e<rsup|2\<tau\>x<rsup|\<Tau\>><rsub|i>x<rsub|j>>>|<cell|=>|<cell|<big|sum><rsub|k=0><rsup|\<infty\>><frac|1|k!><around*|(|2\<tau\>x<rsup|\<Tau\>><rsub|i>x<rsub|j>|)><rsup|k>>>>>
   </eqnarray*>
 
-  Hard to write out the form when <math|x<rsub|i>\<in\>\<bbb-R\><rsup|n>,n\<gtr\>1>.
+  It's hard to write out the form when <math|x<rsub|i>\<in\>\<bbb-R\><rsup|n>,n\<gtr\>1>.
   We demo the case when <math|n=1>. <math|x<rsub|i>> and <math|x<rsub|j>> are
   now single variable:
 
@@ -864,7 +864,7 @@
     <tformat|<table|<row|<cell|e<rsup|2\<tau\>x<rsup|\<Tau\>><rsub|i>x<rsub|j>>>|<cell|=>|<cell|<big|sum><rsub|k=0><rsup|\<infty\>><frac|1|k!><around*|(|2\<tau\>|)><rsup|k>x<rsup|k><rsub|i>x<rsup|k><rsub|j>>>|<row|<cell|>|<cell|=>|<cell|<big|sum><rsub|k=0><rsup|\<infty\>>c<around*|(|k|)>\<cdot\>x<rsup|k><rsub|i>x<rsup|k><rsub|j>>>>>
   </eqnarray*>
 
-  The feature vector is:
+  The feature vector is: (infinite dimension)
 
   <\equation*>
     \<phi\><around*|(|x|)>=e<rsup|-\<tau\>x<rsup|2>><around*|[|<sqrt|c<around*|(|0|)>>,<sqrt|c<around*|(|1|)>>x,<sqrt|c<around*|(|2|)>>x<rsup|2>,\<ldots\>,<sqrt|c<around*|(|k|)>>x<rsup|k>,\<ldots\>|]>
@@ -876,7 +876,8 @@
     k<around*|(|x<rsub|i>,x<rsub|j>|)>=\<phi\><around*|(|x<rsub|i>|)>\<cdot\>\<phi\><around*|(|x<rsub|j>|)>
   </equation*>
 
-  <new-page>
+  This shows that Gaussian kernel implicitly map 1-D data to an infinite
+  dimensional feature space.<new-page>
 </body>
 
 <\initial>
@@ -1225,8 +1226,8 @@
       of Sample Embedding> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-60><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|>
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Gaussian
+      Kernel> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-61><vspace|0.5fn>
     </associate>
   </collection>
