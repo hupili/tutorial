@@ -3,18 +3,52 @@
 <style|article>
 
 <\body>
+  <\hide-preamble>
+    <assign|inner|<macro|x|y|<around*|\<langle\>|<arg|x>,<arg|y>|\<rangle\>>>>
+  </hide-preamble>
+
   <doc-data|<doc-title|Kernel Trick>|<doc-author|<author-data|<author-name|HU
   Pili>|<\author-affiliation>
     \;
   </author-affiliation>>>|<doc-date|June 15, 2013>>
 
-  <abstract-data|<abstract|Kernel>>
+  <abstract-data|<\abstract>
+    Kernel is very useful.
 
-  <section|>
+    <nocite|lin2012libsvm>
+  </abstract>>
+
+  <section|Polynomial Kernels>
+
+  <subsection|<math|\<bbb-R\><rsup|2>> and 2nd Order Polynomial>
+
+  Consider <math|x=<around*|(|x<rsub|1>,x<rsub|2>|)>\<in\>\<bbb-R\><rsup|2>>,
+  the feature mapping is: <math|\<phi\><around*|(|x<rsub|1>,x<rsub|2>|)>=<around*|(|x<rsub|1><rsup|2>,<sqrt|2>x<rsub|1>x<rsub|2>,x<rsub|2><rsup|2>|)>>.
+  The kernel:
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|k<around*|(|x,y|)>>|<cell|=>|<cell|\<phi\><rsup|\<Tau\>><around*|(|x|)>\<phi\><around*|(|y|)>>>|<row|<cell|>|<cell|=>|<cell|x<rsub|1><rsup|2>y<rsub|1><rsup|2>+2x<rsub|1>x<rsub|2>y<rsub|1>y<rsub|2>+x<rsub|2><rsup|2>y<rsub|2><rsup|2>>>|<row|<cell|>|<cell|=>|<cell|<around*|(|x<rsub|1>y<rsub|1>+x<rsub|2>y<rsub|2>|)><rsup|2>>>|<row|<cell|>|<cell|=>|<cell|<around*|(|x<rsup|\<Tau\>>y|)><rsup|2>>>>>
+  </eqnarray*>
+
+  <subsection|<math|\<bbb-R\><rsup|2>> and 3rd Order Polynomial>
+
+  Consider <math|x=<around*|(|x<rsub|1>,x<rsub|2>|)>\<in\>\<bbb-R\><rsup|2>>.
+  Guess from the previous example that <math|<around*|(|x<rsup|\<Tau\>>y|)><rsup|3>>
+  is also a valid kernel.
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|<around*|(|x<rsup|\<Tau\>>y|)><rsup|3>>|<cell|=>|<cell|<around*|(|x<rsub|1>y<rsub|1>+x<rsub|2>y<rsub|2>|)><rsup|3>>>|<row|<cell|>|<cell|=>|<cell|<around*|(|x<rsub|1>y<rsub|1>|)><rsup|3>+3<around*|(|x<rsub|1>y<rsub|1>|)><rsup|2><around*|(|x<rsub|2>y<rsub|2>|)>+3<around*|(|x<rsub|1>y<rsub|1>|)><around*|(|x<rsub|2>y<rsub|2>|)><rsup|2>+<around*|(|x<rsub|2>y<rsub|2>|)><rsup|3>>>|<row|<cell|>|<cell|=>|<cell|x<rsub|1><rsup|3>\<cdot\>y<rsub|1><rsup|3>+<sqrt|3>x<rsub|1><rsup|2>x<rsub|2>\<cdot\><sqrt|3>y<rsub|1><rsup|2>y<rsub|2>+<sqrt|3>x<rsub|1>x<rsup|2><rsub|2>\<cdot\><sqrt|3>y<rsub|1>y<rsup|2><rsub|2>+x<rsub|2><rsup|3>\<cdot\>y<rsub|2><rsup|3>>>|<row|<cell|>|<cell|=>|<cell|<inner|<around*|(|x<rsub|1><rsup|3>,<sqrt|3>x<rsub|1><rsup|2>x<rsub|2>,<sqrt|3>x<rsub|1>x<rsub|2><rsup|2>,x<rsub|2><rsup|3>|)>|<around*|(|y<rsub|1><rsup|3>,<sqrt|3>y<rsub|1><rsup|2>y<rsub|2>,<sqrt|3>y<rsub|1>y<rsub|2><rsup|2>,y<rsub|2><rsup|3>|)>>>>>>
+  </eqnarray*>
+
+  \;
 
   <\bibliography|bib|abbrv|kernel.bib>
     <\bib-list|1>
-      <bibitem*|1><label|bib-ng2008lecture-kernel>A.<nbsp>Ng.
+      <bibitem*|1><label|bib-lin2012libsvm>C.-J. Lin. <newblock>Support
+      vector machines and kernel methods. <newblock>Seminal Talk in Baidu,
+      2011.
+
+      <bibitem*|2><label|bib-ng2008lecture-kernel>A.<nbsp>Ng.
       <newblock>Kernel. <newblock>Stanford Machine Learning (Lecture 8),
       2008.
     </bib-list>
@@ -118,55 +152,77 @@
 
   Quote from wiki ``String kernels are used in domains where sequence data
   are to be clustered or classified, e.g. in text mining and gene analysis''.
-  </body>
+</body>
 
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|?>>
-    <associate|auto-2|<tuple|1|?>>
-    <associate|auto-3|<tuple|A|?>>
-    <associate|auto-4|<tuple|A.1|?>>
-    <associate|auto-5|<tuple|A.2|?>>
-    <associate|auto-6|<tuple|A.3|?>>
-    <associate|auto-7|<tuple|1|?>>
-    <associate|auto-8|<tuple|A.4|?>>
-    <associate|auto-9|<tuple|A.5|?>>
-    <associate|bib-ng2008lecture-kernel|<tuple|1|?>>
+    <associate|auto-10|<tuple|A.4|?>>
+    <associate|auto-11|<tuple|A.5|?>>
+    <associate|auto-2|<tuple|1.1|?>>
+    <associate|auto-3|<tuple|1.2|?>>
+    <associate|auto-4|<tuple|1.2|?>>
+    <associate|auto-5|<tuple|A|?>>
+    <associate|auto-6|<tuple|A.1|?>>
+    <associate|auto-7|<tuple|A.2|?>>
+    <associate|auto-8|<tuple|A.3|?>>
+    <associate|auto-9|<tuple|1|?>>
+    <associate|bib-lin2012libsvm|<tuple|1|?>>
+    <associate|bib-ng2008lecture-kernel|<tuple|2|?>>
   </collection>
 </references>
 
 <\auxiliary>
   <\collection>
     <\associate|bib>
+      lin2012libsvm
+
       ng2008lecture-kernel
     </associate>
     <\associate|figure>
-      <tuple|normal|Map from 1-D to higher D|<pageref|auto-5>>
+      <tuple|normal|Map from 1-D to higher D|<pageref|auto-9>>
     </associate>
     <\associate|toc>
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Polynomial
+      Kernels> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Derivations>
+      <with|par-left|<quote|1.5fn>|1.1<space|2spc><with|mode|<quote|math>|\<bbb-R\><rsup|2>>
+      and 2nd Order Polynomial <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-2>>
+
+      <with|par-left|<quote|1.5fn>|1.2<space|2spc><with|mode|<quote|math>|\<bbb-R\><rsup|2>>
+      and 3rd Order Polynomial <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-3>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-2><vspace|0.5fn>
-
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>Intuition
-      of Kernel> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-3><vspace|0.5fn>
-
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>Valid
-      Kernel> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|4<space|2spc>Digital
-      Recoginition> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-6><vspace|0.5fn>
-
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5<space|2spc>Protein>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Appendix
+      A<space|2spc>Notes From Andrew Ng's Lecture>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7><vspace|0.5fn>
+      <no-break><pageref|auto-5><vspace|0.5fn>
+
+      <with|par-left|<quote|1.5fn>|A.1<space|2spc>Derivations
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6>>
+
+      <with|par-left|<quote|1.5fn>|A.2<space|2spc>Intuition of Kernel
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7>>
+
+      <with|par-left|<quote|1.5fn>|A.3<space|2spc>Valid Kernel
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8>>
+
+      <with|par-left|<quote|1.5fn>|A.4<space|2spc>Digital Recoginition
+      Example <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10>>
+
+      <with|par-left|<quote|1.5fn>|A.5<space|2spc>Protein Example
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-11>>
     </associate>
   </collection>
 </auxiliary>
