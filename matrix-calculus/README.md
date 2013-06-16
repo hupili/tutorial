@@ -1,5 +1,10 @@
 # Matrix Calculus
 
+
+
+
+
+
 ## Citation Notes
 
 If you find anything useful and want to build 
@@ -17,8 +22,7 @@ One suggested BibTex entry:
 	author = {Hu, Pili},
 	title = {Matrix Calculus},
 	howpublished = {GitHub, https://github.com/hupili/tutorial/tree/master/matrix-calculus},
-	month = {3},
-	year = {2012},
-	note = {HU, Pili's tutorial collection},
+	month = {March},
+	year = {2012}
 }
 ```
