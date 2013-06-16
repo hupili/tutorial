@@ -63,6 +63,21 @@ plot(Vn(idx==2, 1), Vn(idx==2, 2), 'or') ;
 grid on;
 print(gcf, '-depsc', '../plot/sc_sample_2d_embed_unit_circle.eps') ;
 
+figure ;
+angle_all = Vn * Vn';
+subplot(3, 1, 1); 
+hist(reshape(angle_all, numel(angle_all), 1), 50) ;
+title('Angles -- All Points');
+angle_cluster1 = Vn(1:N, :) * Vn(1:N, :)'; 
+subplot(3, 1, 2); 
+hist(reshape(angle_cluster1, numel(angle_cluster1), 1), 50) ;
+title('Angles -- Cluster 1');
+angle_cluster2 = Vn((N+1):end, :) * Vn((N+1):end, :)'; 
+subplot(3, 1, 3); 
+hist(reshape(angle_cluster2, numel(angle_cluster2), 1), 50) ;
+title('Angles -- Cluster 2');
+print(gcf, '-depsc', '../plot/sc_sample_2d_embed_angle_hist.eps') ;
+
 
 % h = plot(c(1, 1), c(1, 2), '*b') ;
 % set(h, 'LineWidth', 20) ;

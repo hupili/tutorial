@@ -161,29 +161,9 @@
 
   <section|Secrets of Preprocessing>
 
-  <math|V> is the <math|N\<times\>K> -- The largest <math|K> EVs. (<math|K=2>
-  here)
-
-  \;
-
-  <\verbatim>
-    \>\> norm(V(:,1))
-
-    ans = 1.0000
-
-    \>\> norm(V(:,2))
-
-    ans = 1.0000
-
-    \>\> sum(V(:,1) .* V(:,2))
-
-    ans = 4.3368e-17
-  </verbatim>
-
-  \;
-
-  The first two EVs of <math|A> are nearly perpendicular to each other if
-  there are two well separable clusters. <new-page>
+  <big-figure|<image|plot/sc_sample_2d_embed_angle_hist.eps|11cm|||>|Angle
+  histogram: The two clusters are concentrated and they are nearly
+  perpendicular to each other><new-page>
 
   <section|Notations>
 
@@ -911,44 +891,45 @@
     <associate|auto-25|<tuple|15|16>>
     <associate|auto-26|<tuple|11|16>>
     <associate|auto-27|<tuple|16|17>>
-    <associate|auto-28|<tuple|17|18>>
-    <associate|auto-29|<tuple|18|19>>
+    <associate|auto-28|<tuple|12|17>>
+    <associate|auto-29|<tuple|17|18>>
     <associate|auto-3|<tuple|1|3>>
-    <associate|auto-30|<tuple|19|20>>
-    <associate|auto-31|<tuple|20|21>>
-    <associate|auto-32|<tuple|12|21>>
-    <associate|auto-33|<tuple|21|22>>
-    <associate|auto-34|<tuple|22|23>>
-    <associate|auto-35|<tuple|23|24>>
-    <associate|auto-36|<tuple|24|25>>
-    <associate|auto-37|<tuple|25|26>>
-    <associate|auto-38|<tuple|26|27>>
-    <associate|auto-39|<tuple|27|28>>
+    <associate|auto-30|<tuple|18|19>>
+    <associate|auto-31|<tuple|19|20>>
+    <associate|auto-32|<tuple|20|21>>
+    <associate|auto-33|<tuple|13|21>>
+    <associate|auto-34|<tuple|21|22>>
+    <associate|auto-35|<tuple|22|23>>
+    <associate|auto-36|<tuple|23|24>>
+    <associate|auto-37|<tuple|24|25>>
+    <associate|auto-38|<tuple|25|26>>
+    <associate|auto-39|<tuple|26|27>>
     <associate|auto-4|<tuple|3|4>>
-    <associate|auto-40|<tuple|28|29>>
-    <associate|auto-41|<tuple|29|30>>
-    <associate|auto-42|<tuple|30|31>>
-    <associate|auto-43|<tuple|31|32>>
-    <associate|auto-44|<tuple|32|33>>
-    <associate|auto-45|<tuple|33|34>>
-    <associate|auto-46|<tuple|34|35>>
-    <associate|auto-47|<tuple|35|36>>
-    <associate|auto-48|<tuple|36|37>>
-    <associate|auto-49|<tuple|37|38>>
+    <associate|auto-40|<tuple|27|28>>
+    <associate|auto-41|<tuple|28|29>>
+    <associate|auto-42|<tuple|29|30>>
+    <associate|auto-43|<tuple|30|31>>
+    <associate|auto-44|<tuple|31|32>>
+    <associate|auto-45|<tuple|32|33>>
+    <associate|auto-46|<tuple|33|34>>
+    <associate|auto-47|<tuple|34|35>>
+    <associate|auto-48|<tuple|35|36>>
+    <associate|auto-49|<tuple|36|37>>
     <associate|auto-5|<tuple|2|4>>
-    <associate|auto-50|<tuple|38|39>>
-    <associate|auto-51|<tuple|39|40>>
-    <associate|auto-52|<tuple|40|41>>
-    <associate|auto-53|<tuple|41|42>>
-    <associate|auto-54|<tuple|42|44>>
-    <associate|auto-55|<tuple|43|45>>
-    <associate|auto-56|<tuple|44|46>>
-    <associate|auto-57|<tuple|44|47>>
-    <associate|auto-58|<tuple|45|48>>
-    <associate|auto-59|<tuple|46|49>>
+    <associate|auto-50|<tuple|37|38>>
+    <associate|auto-51|<tuple|38|39>>
+    <associate|auto-52|<tuple|39|40>>
+    <associate|auto-53|<tuple|40|41>>
+    <associate|auto-54|<tuple|41|42>>
+    <associate|auto-55|<tuple|42|44>>
+    <associate|auto-56|<tuple|43|45>>
+    <associate|auto-57|<tuple|44|46>>
+    <associate|auto-58|<tuple|44|47>>
+    <associate|auto-59|<tuple|45|48>>
     <associate|auto-6|<tuple|4|5>>
-    <associate|auto-60|<tuple|47|51>>
-    <associate|auto-61|<tuple|48|52>>
+    <associate|auto-60|<tuple|46|49>>
+    <associate|auto-61|<tuple|47|51>>
+    <associate|auto-62|<tuple|48|52>>
     <associate|auto-7|<tuple|3|5>>
     <associate|auto-8|<tuple|5|6>>
     <associate|auto-9|<tuple|4|6>>
@@ -1031,7 +1012,10 @@
       our sample but more applicable, Brand 2003
       [<write|bib|brand2003unifying><reference|bib-brand2003unifying>])|<pageref|auto-26>>
 
-      <tuple|normal|Error minimization formulation|<pageref|auto-32>>
+      <tuple|normal|Angle histogram: The two clusters are concentrated and
+      they are nearly perpendicular to each other|<pageref|auto-28>>
+
+      <tuple|normal|Error minimization formulation|<pageref|auto-33>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Outline>
@@ -1100,23 +1084,19 @@
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Notations>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-28><vspace|0.5fn>
+      <no-break><pageref|auto-29><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|K-Means>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-29><vspace|0.5fn>
+      <no-break><pageref|auto-30><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Remarks:
       K-Means> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-30><vspace|0.5fn>
-
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Principle
-      Component Analysis> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-31><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Principle
       Component Analysis> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-33><vspace|0.5fn>
+      <no-break><pageref|auto-32><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Principle
       Component Analysis> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
@@ -1134,8 +1114,8 @@
       Component Analysis> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-37><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Kernel
-      PCA> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Principle
+      Component Analysis> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-38><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Kernel
@@ -1146,16 +1126,16 @@
       PCA> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-40><vspace|0.5fn>
 
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Kernel
+      PCA> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-41><vspace|0.5fn>
+
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Remarks:
       KPCA> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-41><vspace|0.5fn>
+      <no-break><pageref|auto-42><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Review:
       PCA and KPCA> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-42><vspace|0.5fn>
-
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
-      Clustering Framework> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-43><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
@@ -1166,12 +1146,12 @@
       Clustering Framework> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-45><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Remarks:
-      SC Framework> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
+      Clustering Framework> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-46><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Similarity
-      graph> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Remarks:
+      SC Framework> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-47><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Similarity
@@ -1182,53 +1162,57 @@
       graph> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-49><vspace|0.5fn>
 
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Similarity
+      graph> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-50><vspace|0.5fn>
+
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|EVD
       of the Graph> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-50><vspace|0.5fn>
+      <no-break><pageref|auto-51><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Remarks:
       SC Framework> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-51><vspace|0.5fn>
+      <no-break><pageref|auto-52><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
       Clustering Justification> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-52><vspace|0.5fn>
+      <no-break><pageref|auto-53><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Cut
       Justification> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-53><vspace|0.5fn>
+      <no-break><pageref|auto-54><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Matrix
       Perturbation Justification> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-54><vspace|0.5fn>
+      <no-break><pageref|auto-55><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Low
       Rank Approximation> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-55><vspace|0.5fn>
+      <no-break><pageref|auto-56><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Spectral
       Embedding Techniques> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-56><vspace|0.5fn>
+      <no-break><pageref|auto-57><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-57><vspace|0.5fn>
+      <no-break><pageref|auto-58><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Thanks>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-58><vspace|0.5fn>
+      <no-break><pageref|auto-59><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|SVD
       and EVD> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-59><vspace|0.5fn>
+      <no-break><pageref|auto-60><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Out
       of Sample Embedding> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-60><vspace|0.5fn>
+      <no-break><pageref|auto-61><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Gaussian
       Kernel> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-61><vspace|0.5fn>
+      <no-break><pageref|auto-62><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
