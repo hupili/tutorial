@@ -6,7 +6,7 @@
   <doc-data|<doc-title|Spectral Clustering>|<doc-author|<author-data|<author-name|HU
   Pili>|<\author-affiliation>
     \;
-  </author-affiliation>>>|<doc-date|<date>>>
+  </author-affiliation>>>|<doc-date|June 15, 2013>>
 
   <section|Outline>
 
