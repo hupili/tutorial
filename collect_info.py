@@ -5,12 +5,7 @@
 # Run this script at the tutorial root
 
 import os
-import jinja2
 import json
-
-template = jinja2.Template(open('README.tpl.md').read())
-
-dir_tutorial_root = os.path.abspath(os.path.dirname(__file__))
 
 import re
 PATTERN_SKIP = re.compile('^\.|~$')
@@ -24,26 +19,23 @@ def filter_paths(paths):
         paths[i] = v
     del paths[i+1:]
 
-def render_md(root):
-    '''
-    Render MD. 
-
-    A 'meta.json' file should be placed in ``root``
-    '''
-    auto = {}
-    auto['path'] = root[2:]
-    try:
-        auto['body'] = open('%s/%s' % (root, '_README.md'), 'r').read()
-    except Exception as e:
-        auto['body'] = ''
-    meta = json.loads(open('%s/%s' % (root, 'meta.json'), 'r').read())
-    result = template.render({'meta': meta, 'auto': auto})
-    open('%s/README.md' % (root), 'w').write(result)
-
-if __name__ == '__main__':
+def collect_meta():
+    all_info = []
     for root, dirs, files in os.walk('.'):
         filter_paths(dirs)
         filter_paths(files)
         for name in files:
             if name == 'meta.json':
-                render_md(root)
+                auto = {}
+                auto['path'] = root[2:]
+                try:
+                    auto['body'] = open('%s/%s' % (root, '_README.md'), 'r').read()
+                except Exception as e:
+                    auto['body'] = ''
+                meta = json.loads(open('%s/%s' % (root, 'meta.json'), 'r').read())
+                all_info.append({'meta': meta, 'auto': auto})
+    return all_info
+
+if __name__ == '__main__':
+    import pickle
+    open('info.pickle', 'w').write(pickle.dumps(collect_meta()))
