@@ -2,5 +2,17 @@
   "title": "Spectral Clustering Survey",
   "month": "May",
   "year": "2012",
-  "bib_key": "hu2012-spectral"
+  "bib_key": "hu2012-spectral",
+  "files": [
+    {
+      "src": "paper/spectral.pdf",
+      "dst": "hu2012spectral-survey.pdf",
+      "name": "Spectral Clustering Survey"
+	},
+    {
+      "src": "slides/spectral-slides.pdf",
+      "dst": "hu2013spectral-slides.pdf",
+      "name": "Presentation Slides on Spectral Clustering"
+	}
+  ]
 }

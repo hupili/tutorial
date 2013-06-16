@@ -2,5 +2,12 @@
   "title": "Matrix Calculus",
   "month": "March",
   "year": "2012",
-  "bib_key": "hu2012-matrix-calculus"
+  "bib_key": "hu2012-matrix-calculus",
+  "files": [
+    {
+      "src": "paper/matrix-calculus.pdf",
+      "dst": "hu2012matrix-calculus.pdf",
+      "name": "Matrix Calculus"
+	}
+  ]
 }

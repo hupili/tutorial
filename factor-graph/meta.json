@@ -2,5 +2,12 @@
   "title": "Factor Graph",
   "month": "March",
   "year": "2012",
-  "bib_key": "hu2012-factor-graph"
+  "bib_key": "hu2012-factor-graph",
+  "files": [
+    {
+      "src": "paper/factor-graph.pdf",
+      "dst": "hu2012factor-graph.pdf",
+      "name": "Factor Graph"
+	}
+  ]
 }
