@@ -1,0 +1,4 @@
+{% assign nav_pages = site.navigation %}
+{% for p in nav_pages %}
+<li> <a href="{{p.href}}">{{p.name}}</a> </li>
+{% endfor %}
