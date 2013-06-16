@@ -1,4 +1,12 @@
-# Spectral Clustering
+# Spectral Clustering Survey
+
+## Abstract
+
+dsdf
+
+
+
+
 
 ## Citation Notes
 
@@ -13,12 +21,11 @@ Pili HU, Spectral Clustering Survey, https://github.com/hupili/tutorial/tree/mas
 One suggested BibTex entry:
 
 ```
-@MISC{hu2012-spectral-clustering,
+@MISC{hu2012-spectral,
 	author = {Hu, Pili},
 	title = {Spectral Clustering Survey},
 	howpublished = {GitHub, https://github.com/hupili/tutorial/tree/master/spectral-clustering},
-	month = {5},
-	year = {2012},
-	note = {HU, Pili's tutorial collection},
+	month = {May},
+	year = {2012}
 }
 ```
