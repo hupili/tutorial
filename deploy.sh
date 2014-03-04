@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dir_input="_site"
+dir_input="webpage/_site"
 dir_output="_deploy"
 remote_url=`git config --get remote.origin.url`
 cur_time=`date`
