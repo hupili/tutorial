@@ -7,5 +7,5 @@ dir_output="$PWD/_site"
 
 rm -rf $dir_output
 cd $dir_input
-jekyll --safe --no-auto $dir_output
+jekyll build $dir_output
 
