@@ -34,3 +34,21 @@ At the same time, we hope to gain some insights
 through the analysis of a bunch of algorithms.
 Source code of documents and sample algorithms can be found
 in the online open source repository.
+
+## Amendments
+
+### Slides P. 26
+
+The math derivations are correct but the conclusion that
+"decompose X.T * X and direclty get Y" is not precise.
+
+Although Y is the eigen vector of X.T * X,
+you probably can not get it directly using common decomposition routine.
+This is because eigen vectors can be arbitrarily scaled
+and they are still eigen vectors corresponding to the same eigen values.
+
+Usually, the decomposition routine will give you an orthonormal set of eigen vectors.
+This is guaranteed by spectral theorem in our case:
+input is a real symmetric matrix.
+You need to scale the eigen vectors by their corresponding **singular value**
+(square root of the corresponding **eigen value**).
