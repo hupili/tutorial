@@ -52,3 +52,28 @@ This is guaranteed by spectral theorem in our case:
 input is a real symmetric matrix.
 You need to scale the eigen vectors by their corresponding **singular value**
 (square root of the corresponding **eigen value**).
+
+### Techreport P. 16 - Angular K-Means
+
+I didn't think too much about the so-called angular K-means.
+I just want to point out that there are some variations
+which can fit into the general spectral clustering framework.
+It turns out people already coined the term "spherical K-means" in literatures, e.g.
+
+   * Zhong, Shi. "Efficient online spherical k-means clustering." Neural Networks, 2005. IJCNN'05. Proceedings. 2005 IEEE International Joint Conference on. Vol. 5. IEEE, 2005.
+APA
+   * Dhillon, Inderjit S., Yuqiang Guan, and J. Kogan. "Refining clusters in high-dimensional text data." Proceedings of the Workshop on Clustering High Dimensional Data and its Applications at the Second SIAM International Conference on Data Mining. 2002.
+
+One thing note:
+
+   * Original K-means defines centroid as:
+   a point c to minimize sum of distance from all points in the cluster c.
+   * Using cosine (similarity/distance),
+   there are two formulations for the centroid:
+      * The exact version is: minimize arc-cosine distance.
+      I haven't reached closed form yet. May come back some time later.
+      * One estimate version is: maximize cosine similarity.
+      Using this way, we have closed form.
+      This is the formula in P. 16 of this survey and same in previous literature.
+   * The two formulations are not the same.
+
