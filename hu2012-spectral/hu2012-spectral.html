@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Spectral Clustering Survey</title>
+    
+    <meta name="author" content="Pili HU">
+
+	
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/tutorial/assets/themes/twitter-hpl/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	
+    <link href="/tutorial/assets/themes/twitter-hpl/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+	<!-- hupili's custom elements -->
+    <link rel="stylesheet" href="/tutorial/assets/themes/twitter-hpl/custom/jquery-ui.css" type="text/css">
+    <script type="text/javascript" src="/tutorial/assets/themes/twitter-hpl/custom/jquery.js"></script>
+    <script type="text/javascript" src="/tutorial/assets/themes/twitter-hpl/custom/jquery-ui.js"></script>
+    <script type="text/javascript" src="/tutorial/assets/themes/twitter-hpl/custom/jq_articles.js"></script>
+    <script type="text/javascript" src="/tutorial/assets/themes/twitter-hpl/custom/jq_md_polish.js"></script>
+	
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+		  <div class="container">
+			  <a class="brand" href="/tutorial">Tutorials</a>
+			  <ul class="nav">
+				  
+
+<li> <a href="/index.html">Home</a> </li>
+
+
+			  	  <!--
+				  
+				  
+				  
+
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+
+				  -->
+			  </ul>
+			  <!--
+			  <div id="searchFrom" style="float:right;display:table-cell;vertical-align:middle;height=11pt">
+			  -->
+			  <ul>
+			  </ul>
+			  <input type="text" style="float:right;" name="j_search" id="j_search" size="30" placeholder="Search" autocomplete="off" required="" class="ui-autocomplete-input" />
+		  </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+
+<div class="page-header">
+	<h1>Spectral Clustering Survey </h1>
+</div>
+
+<div class="row">
+	<div class="span12">
+		<h1>Spectral Clustering Survey</h1>
+
+<h2>Abstract</h2>
+
+<p>The term Spectral Clustering is a collection of algorithms.
+Many researchers propose their own variations and
+algorithm specific justifications. We observe that
+the core operation of Spectral Clustering is eigen value
+decomposition and an embedding step is implicitly or
+explicitly performed. This is analogous to Spectral Embedding
+algorithms and many eigen decomposition based Dimensionality
+Reduction methods from machine learning community. In
+this article, we term them all as Spectral Embedding
+Technique.</p>
+
+<p>In this survey, we first construct a simple-minded
+sample spectral clustering algorithm.
+Then we conclude taxonomy of spectral clustering.
+Next, we propose
+a general three-stage framework of spectral clustering.
+Combinatoric, stochastic, and other type of justifications
+are collected and organized in later sections.
+After that, we give a brief introduction on
+several representative dimensionality
+reduction methods and relate them to our general
+spectral clustering framework.
+We give several unifying views of Spectral Embedding
+Technique: graph framework, kernel framework,
+trace maximization. We end this article with
+a discussion on the relationship between
+Kernel K-Means and Spectral Clustering.</p>
+
+<p>This article aims at providing systematic ways
+to explore new spectral clustering algorithms.
+At the same time, we hope to gain some insights
+through the analysis of a bunch of algorithms.
+Source code of documents and sample algorithms can be found
+in the online open source repository.</p>
+
+<h2>Amendments</h2>
+
+<h3>Slides P. 26</h3>
+
+<p>The math derivations are correct but the conclusion that
+&quot;decompose X.T * X and direclty get Y&quot; is not precise.</p>
+
+<p>Although Y is the eigen vector of X.T * X,
+you probably can not get it directly using common decomposition routine.
+This is because eigen vectors can be arbitrarily scaled
+and they are still eigen vectors corresponding to the same eigen values.</p>
+
+<p>Usually, the decomposition routine will give you an orthonormal set of eigen vectors.
+This is guaranteed by spectral theorem in our case:
+input is a real symmetric matrix.
+You need to scale the eigen vectors by their corresponding <strong>singular value</strong>
+(square root of the corresponding <strong>eigen value</strong>).</p>
+
+<h3>Techreport P. 16 - Angular K-Means</h3>
+
+<p>I didn&#39;t think too much about the so-called angular K-means.
+I just want to point out that there are some variations
+which can fit into the general spectral clustering framework.
+It turns out people already coined the term &quot;spherical K-means&quot; in literatures, e.g.</p>
+
+<ul>
+<li>Zhong, Shi. &quot;Efficient online spherical k-means clustering.&quot; Neural Networks, 2005. IJCNN&#39;05. Proceedings. 2005 IEEE International Joint Conference on. Vol. 5. IEEE, 2005.
+APA</li>
+<li>Dhillon, Inderjit S., Yuqiang Guan, and J. Kogan. &quot;Refining clusters in high-dimensional text data.&quot; Proceedings of the Workshop on Clustering High Dimensional Data and its Applications at the Second SIAM International Conference on Data Mining. 2002.</li>
+</ul>
+
+<p>One thing note:</p>
+
+<ul>
+<li>Original K-means defines centroid as:
+a point c to minimize sum of distance from all points in the cluster c.</li>
+<li>Using cosine (similarity/distance),
+there are two formulations for the centroid:
+
+<ul>
+<li>The exact version is: minimize arc-cosine distance.
+I haven&#39;t reached closed form yet. May come back some time later.</li>
+<li>One estimate version is: maximize cosine similarity.
+Using this way, we have closed form.
+This is the formula in P. 16 of this survey and same in previous literature.</li>
+</ul></li>
+<li>The two formulations are not the same.</li>
+</ul>
+
+<h2>Citation Notes</h2>
+
+<p>If you find anything useful and want to build 
+your future work on it, please cite this page properly. 
+One suggested entry:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Pili HU, Spectral Clustering Survey, https://github.com/hupili/tutorial/tree/master/spectral-clustering
+</code></pre></div>
+<p>One suggested BibTex entry:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">@MISC{hu2012-spectral,
+    author = {Hu, Pili},
+    title = {Spectral Clustering Survey},
+    howpublished = {GitHub, https://github.com/hupili/tutorial/tree/master/spectral-clustering},
+    month = {May},
+    year = {2012}
+}
+</code></pre></div>
+<h2>Files</h2>
+
+<ul>
+<li><p><a href="hu2012spectral-survey.pdf">Spectral Clustering Survey</a></p></li>
+<li><p><a href="hu2013spectral-slides.pdf">Presentation Slides on Spectral Clustering (June 15, MobiTeC)</a></p></li>
+</ul>
+
+	</div>
+</div>
+
+
+
+
+
+
+
+      </div>
+
+      <footer>
+        <p>&copy; Pili HU 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

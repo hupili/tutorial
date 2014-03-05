@@ -1,0 +1,21 @@
+body {
+	counter-reset:c_h1;
+	/*counter-reset:c_h2;
+	counter-reset:c_h3;*/
+}
+h1{
+	counter-reset:c_h2;
+	counter-increment:c_h1;
+	/*counter-reset:c_h3;*/
+}
+h2{
+	counter-increment:c_h2;
+	counter-reset:c_h3;
+	margin-left:-10px;
+}
+h3{
+	counter-increment:c_h3;
+	margin-left:-5px;
+}
+h2:before { content:"\00A7" counter(c_h2) " "; }
+h3:before { content:" \00A7" counter(c_h2) "." counter(c_h3) " "; }
